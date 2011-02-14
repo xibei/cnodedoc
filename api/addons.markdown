@@ -1,12 +1,20 @@
 ## Addons
+## 扩展插件
 
 Addons are dynamically linked shared objects. They can provide glue to C and
 C++ libraries. The API (at the moment) is rather complex, involving
 knowledge of several libraries:
 
+插件扩展（Addons）是一个动态连接分享对象。该对象提供了与C/C++类库
+的连接。由于涉及了多个类库导致了这类API目前比较繁杂，主要包括下述
+几个主要类库：
+
  - V8 JavaScript, a C++ library. Used for interfacing with JavaScript:
    creating objects, calling functions, etc.  Documented mostly in the
    `v8.h` header file (`deps/v8/include/v8.h` in the Node source tree).
+ - V8 JavaScript，C++类库，作为JavaScript的接口类，主要用于创
+  建对象、调用方法等功能。大部分功能在头文件`v8.h` (在node文
+  件夹下的路径为`deps/v8/include/v8.h` )中有详细文档。
 
  - libev, C event loop library. Anytime one needs to wait for a file
    descriptor to become readable, wait for a timer, or wait for a signal to
