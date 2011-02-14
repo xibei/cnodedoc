@@ -2,6 +2,7 @@
 
 These functions are in the module `'util'`. Use `require('util')` to access
 them.
+下列函数属于`'工具'`模块，可通过调用`require('util')`访问它们。
 
 
 ### util.debug(string)
