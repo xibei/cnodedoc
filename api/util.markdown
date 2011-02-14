@@ -1,4 +1,4 @@
-## util
+## util 工具模块
 
 These functions are in the module `'util'`. Use `require('util')` to access
 them.
