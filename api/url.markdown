@@ -67,24 +67,43 @@ string will not be in the parsed object. Examples are shown for the URL
   例如：`'/p/a/t/h'`
 * `search`: The 'query string' portion of the URL, including the leading question mark.
 
+  `search`：URL中的“查询字符串”部分，包括前导的`'?'`。
+
   Example: `'?query=string'`
+
+  例如：`'?query=string'`
 * `query`: Either the 'params' portion of the query string, or a querystring-parsed object.
 
+  `query`：查询字符串中的“参数”部分，或者是由查询字符串解析出的对象。
+
   Example: `'query=string'` or `{'query':'string'}`
+
+  例如：`'query=string'` or `{'query':'string'}`
 * `hash`: The 'fragment' portion of the URL including the pound-sign.
+
+  `hash`：URL中的“锚点”部分，包含前导的`'#'`。
 
   Example: `'#hash'`
 
+  例如：`'#hash'`
+
 The following methods are provided by the URL module:
+
+URL模块提供了如下方法：
 
 ### url.parse(urlStr, parseQueryString=false)
 
 Take a URL string, and return an object.  Pass `true` as the second argument to also parse
 the query string using the `querystring` module.
 
+以一个 URL字符串为参数，返回一个解析后的对象。如设置第二个参数为`true`，
+则会使用`querystring`模块解析URL中的查询字符串。
+
 ### url.format(urlObj)
 
 Take a parsed URL object, and return a formatted URL string.
+
+以一个解析后的URL对象为参数，返回格式化的URL字符串。
 
 ### url.resolve(from, to)
 
