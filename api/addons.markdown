@@ -20,17 +20,14 @@ knowledge of several libraries:
    any I/O, libev will need to be used.  Node uses the `EV_DEFAULT` event
    loop.  Documentation can be found [here](http://cvs.schmorp.de/libev/ev.html).
 
- - libev, 基于C的事件循环库。当需要等待文件描述（file descriptor）为
-  可读时，等待定时器时，或者等待接受信号时，会需要调用libev库中的相关接口。也可以说，任何IO操作都需要调用libev库。Node使用EV_DEFAULT事件循环机制。在[这里](http://cvs.schmorp.de/libev/ev.html)可以查阅相关文档。
+ - libev, 基于C的事件循环库。当需要等待文件描述（file descriptor）为可读时，等待定时器时，或者等待接受信号时，会需要调用libev库中的相关接口。也可以说，任何IO操作都需要调用libev库。Node使用EV_DEFAULT事件循环机制。在[这里](http://cvs.schmorp.de/libev/ev.html)可以查阅相关文档。
 
  - libeio, C thread pool library. Used to execute blocking POSIX system
    calls asynchronously. Mostly wrappers already exist for such calls, in
    `src/file.cc` so you will probably not need to use it. If you do need it,
    look at the header file `deps/libeio/eio.h`.
 
- - libeio，基于C的线程池库，用于异步阻塞POSIX系统呼叫。因为有
-  不少对这类呼叫的封装，所以在使用时可能在 `src/file.cc`中不会
-  经常调用libeio库。当使用者必须使用该类库时，头文件路径为`deps/libeio/eio.h`。
+ - libeio，基于C的线程池库，用于异步阻塞POSIX系统呼叫。因为存在许多对这类呼叫的封装，所以在使用时，可能在 `src/file.cc`中不会经常调用libeio库。当使用者必须使用该类库时，其头文件路径为`deps/libeio/eio.h`。
 
  - Internal Node libraries. Most importantly is the `node::ObjectWrap`
    class which you will likely want to derive from.
@@ -39,7 +36,7 @@ knowledge of several libraries:
 
  - Others. Look in `deps/` for what else is available.
 
- - 其他的一些类库同样可以在deps/中找到。
+ - 其他的一些类库同样可以在`deps/` 中找到。
 
 Node statically compiles all its dependencies into the executable. When
 compiling your module, you don't need to worry about linking to any of these
