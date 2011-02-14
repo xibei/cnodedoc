@@ -11,7 +11,7 @@ them.
 A synchronous output function. Will block the process and
 output `string` immediately to `stderr`.
 
-一个同步输出函数。将`string`参数的内容实时输出到`标准错误`，调用时将阻塞当前进程直到输出完成。
+这是一个同步输出函数，将`string`参数的内容实时输出到`标准错误`。调用此函数时将阻塞当前进程直到输出完成。
 
     require('util').debug('message on stderr');
 
@@ -29,8 +29,13 @@ Output with timestamp on `stdout`.
 
 Return a string representation of `object`, which is useful for debugging.
 
+以字符串形式返回`object`对象的结构信息，这对程序调试非常有帮助。
+
 If `showHidden` is `true`, then the object's non-enumerable properties will be
 shown too.
+
+如果`showHidden`参数设置为`true`，则此对象的非枚举属性也会被显示。
+
 
 If `depth` is provided, it tells `inspect` how many times to recurse while
 formatting the object. This is useful for inspecting large complicated objects.
