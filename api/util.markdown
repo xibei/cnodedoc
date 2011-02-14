@@ -11,6 +11,8 @@ them.
 A synchronous output function. Will block the process and
 output `string` immediately to `stderr`.
 
+一个同步输出函数。将`string`参数的字符串实时输出到`标准错误`，调用时将阻塞当前进程知道输出完成。
+
     require('util').debug('message on stderr');
 
 
