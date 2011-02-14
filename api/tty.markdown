@@ -10,9 +10,14 @@ Use `require('tty')` to access this module.
 Spawns a new process with the executable pointed to by `path` as the session
 leader to a new pseudo terminal.
 
+用`path`路径所指向的可执行文件启动一个新的进程，并将其作为一个新的伪终端的控制进程。
+
 Returns an array `[slaveFD, childProcess]`. `slaveFD` is the file descriptor
 of the slave end of the pseudo terminal. `childProcess` is a child process
 object.
+
+返回一个数组 `[slaveFD, childProcess]`。`slaveFD` 是这个伪终端的从设备
+文件描述符，`childProcess`是一个子进程对象。
 
 
 ### tty.isatty(fd)
