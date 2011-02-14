@@ -20,6 +20,8 @@ output `string` immediately to `stderr`.
 
 Output with timestamp on `stdout`.
 
+将`string`参数的内容输出到`标准输出`，并加上当前时间戳。
+
     require('util').log('Timestmaped message.');
 
 
