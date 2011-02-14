@@ -4,11 +4,15 @@ This module has utilities for URL resolution and parsing.
 Call `require('url')` to use it.
 
 此模块包含用于解析和分析URL的工具。
-可通过调用`require('url')`
+可通过调用`require('url')`访问他们。
 
 Parsed URL objects have some or all of the following fields, depending on
 whether or not they exist in the URL string. Any parts that are not in the URL
 string will not be in the parsed object. Examples are shown for the URL
+
+解析后的URL对象包含下述部分或全部字段。具体包含哪些字段取决于解析前
+的URL字符串中是否存在这些字段。在原始的URL字符串中不存在的字段在解
+析后的对象中也不会包含。例如下面这个URL：
 
 `'http://user:pass@host.com:8080/p/a/t/h?query=string#hash'`
 
