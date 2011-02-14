@@ -6,17 +6,13 @@ Addons are dynamically linked shared objects. They can provide glue to C and
 C++ libraries. The API (at the moment) is rather complex, involving
 knowledge of several libraries:
 
-扩展插件（Addons）是一个动态连接分享对象。该对象提供了与C/C++类库
-的连接。由于涉及了多个类库导致了这类API目前比较繁杂，主要包括下
-述几个主要类库：
+扩展插件（Addons）是一个动态连接分享对象。该对象提供了与C/C++类库的连接。由于涉及了多个类库导致了这类API目前比较繁杂，主要包括下述几个主要类库：
 
  - V8 JavaScript, a C++ library. Used for interfacing with JavaScript:
    creating objects, calling functions, etc.  Documented mostly in the
    `v8.h` header file (`deps/v8/include/v8.h` in the Node source tree).
 
- - V8 JavaScript，C++类库，作为JavaScript的接口类，主要用于创
-  建对象、调用方法等功能。大部分功能在头文件`v8.h` (在node文
-  件夹下的路径为`deps/v8/include/v8.h` )中有详细文档。
+ - V8 JavaScript，C++类库，作为JavaScript的接口类，主要用于创建对象、调用方法等功能。大部分功能在头文件`v8.h` (在node文件夹下的路径为`deps/v8/include/v8.h` )中有详细文档。
 
  - libev, C event loop library. Anytime one needs to wait for a file
    descriptor to become readable, wait for a timer, or wait for a signal to
@@ -25,9 +21,7 @@ knowledge of several libraries:
    loop.  Documentation can be found [here](http://cvs.schmorp.de/libev/ev.html).
 
  - libev, 基于C的事件循环库。当需要等待文件描述（file descriptor）为
-  可读时，等待定时器时，或者等待接受信号时，会需要调用libev
-   库中的相关接口。也可以说，任何IO操作都需要调用libev库。Node
-   使用EV_DEFAULT事件循环机制。在[这里](http://cvs.schmorp.de/libev/ev.html)可以查阅相关文档。
+  可读时，等待定时器时，或者等待接受信号时，会需要调用libev库中的相关接口。也可以说，任何IO操作都需要调用libev库。Node使用EV_DEFAULT事件循环机制。在[这里](http://cvs.schmorp.de/libev/ev.html)可以查阅相关文档。
 
  - libeio, C thread pool library. Used to execute blocking POSIX system
    calls asynchronously. Mostly wrappers already exist for such calls, in
