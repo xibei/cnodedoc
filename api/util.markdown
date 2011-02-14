@@ -34,16 +34,21 @@ Return a string representation of `object`, which is useful for debugging.
 If `showHidden` is `true`, then the object's non-enumerable properties will be
 shown too.
 
-如果`showHidden`参数设置为`true`，则此对象的非枚举属性也会被显示。
-
+如果`showHidden`参数设置为`true`，则此对象的不可枚举属性也会被显示。
 
 If `depth` is provided, it tells `inspect` how many times to recurse while
 formatting the object. This is useful for inspecting large complicated objects.
 
+可使用`depth`参数指定`inspect`函数在格式化对象信息时的递归次数。这对分析复杂对象的内部结构非常有帮助。
+
 The default is to only recurse twice.  To make it recurse indefinitely, pass
 in `null` for `depth`.
 
+默认情况下递归两次，如果想要无限递归可将`depth`参数设为`null`。
+
 Example of inspecting all properties of the `util` object:
+
+显示`util`对象所有属性的例子如下：
 
     var util = require('util');
 
@@ -54,11 +59,19 @@ Example of inspecting all properties of the `util` object:
 
 Experimental
 
+实验性的函数
+
 Read the data from `readableStream` and send it to the `writableStream`.
 When `writableStream.write(data)` returns `false` `readableStream` will be
 paused until the `drain` event occurs on the `writableStream`. `callback` gets
 an error as its only argument and is called when `writableStream` is closed or
 when an error occurs.
+
+从`readableStream`参数所指定的可读流中读取数据，并将其写入到`writableStream`
+参数所指定的可写流中。当`writeableStream.write(data)`函数调用返回为`false`时，
+`readableStream`流将被暂停，直到在`writableStream`流上发生`drain`事件。当`writableStream`
+流关闭或发生一个错误时，`callback`回调函数被调用。此回调函数只接受一个参数
+用以指明所发生的错误。
 
 
 ### util.inherits(constructor, superConstructor)
@@ -68,8 +81,15 @@ Inherit the prototype methods from one
 into another.  The prototype of `constructor` will be set to a new
 object created from `superConstructor`.
 
+将一个[构造函数](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/constructor)
+的原型方法继承到另一个构造函数中。`constructor`构造函数的原型
+将被设置为使用`superConstructor`构造函数所创建的一个新对象。
+
 As an additional convenience, `superConstructor` will be accessible
 through the `constructor.super_` property.
+
+此函数带来的额外的方便是，可以通过`constructor.super_`属性来
+访问`superConstructor`构造函数。
 
     var util = require("util");
     var events = require("events");
