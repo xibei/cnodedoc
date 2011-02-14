@@ -108,3 +108,5 @@ Take a parsed URL object, and return a formatted URL string.
 ### url.resolve(from, to)
 
 Take a base URL, and a href URL, and resolve them as a browser would for an anchor tag.
+
+指定一个默认URL地址，和一个链接的目标URL地址，返回链接的绝对URL地址。处理方式与浏览器处理锚点标签的方法一致。
