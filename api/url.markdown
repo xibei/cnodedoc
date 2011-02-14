@@ -12,31 +12,59 @@ string will not be in the parsed object. Examples are shown for the URL
 
 解析后的URL对象包含下述部分或全部字段。具体包含哪些字段取决于解析前
 的URL字符串中是否存在这些字段。在原始的URL字符串中不存在的字段在解
-析后的对象中也不会包含。例如下面这个URL：
+析后的对象中也不会包含。以下面这个URL为例：
 
 `'http://user:pass@host.com:8080/p/a/t/h?query=string#hash'`
 
 * `href`: The full URL that was originally parsed.
 
+  `href`：完整的原始URL字符串。
+
   Example: `'http://user:pass@host.com:8080/p/a/t/h?query=string#hash'`
+
+  例如：`'http://user:pass@host.com:8080/p/a/t/h?query=string#hash'`
 * `protocol`: The request protocol.
 
+  `protocol`：请求所用的协议。
+
   Example: `'http:'`
+
+  例如：`'http:'`
 * `host`: The full host portion of the URL, including port and authentication information.
 
+  `host`：URL中关于主机的完整信息，包括端口以及用户身份认证信息。
+
   Example: `'user:pass@host.com:8080'`
+
+  例如：`'user:pass@host.com:8080'`
 * `auth`: The authentication information portion of a URL.
 
+  `auth`：URL中的用户身份认证信息。
+
   Example: `'user:pass'`
+
+  例如：`'user:pass'`
 * `hostname`: Just the hostname portion of the host.
 
+  `hostname`：主机信息中的主机名称部分。
+
   Example: `'host.com'`
+
+  例如：`'host.com'`
 * `port`: The port number portion of the host.
 
+  `port`：主机信息中的端口部分。
+
   Example: `'8080'`
+
+  例如：`'8080'`
 * `pathname`: The path section of the URL, that comes after the host and before the query, including the initial slash if present.
 
+  `pathname`：URL中的路径部分，这部分信息位于主机信息之后查询字符串之前。如果存在根目录符号`'/'`，也将包含在此信息中。
+
   Example: `'/p/a/t/h'`
+
+  例如：`'/p/a/t/h'`
 * `search`: The 'query string' portion of the URL, including the leading question mark.
 
   Example: `'?query=string'`
