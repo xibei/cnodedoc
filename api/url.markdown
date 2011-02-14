@@ -1,7 +1,10 @@
-## URL
+## URL 统一资源定位符模块
 
 This module has utilities for URL resolution and parsing.
 Call `require('url')` to use it.
+
+此模块包含用于解析和分析URL的工具。
+可通过调用`require('url')`
 
 Parsed URL objects have some or all of the following fields, depending on
 whether or not they exist in the URL string. Any parts that are not in the URL
