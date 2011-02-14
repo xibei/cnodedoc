@@ -1,6 +1,8 @@
-## TTY
+## TTY 终端模块
 
 Use `require('tty')` to access this module.
+
+可通过`require('tty')`调用访问此模块。
 
 
 ### tty.open(path, args=[])
@@ -18,6 +20,7 @@ object.
 Returns `true` or `false` depending on if the `fd` is associated with a
 terminal.
 
+当`fd`关联到一个终端时返回`true`，否则返回`false`。
 
 ### tty.setRawMode(mode)
 
