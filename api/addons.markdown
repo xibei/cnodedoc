@@ -35,8 +35,7 @@ knowledge of several libraries:
  - Internal Node libraries. Most importantly is the `node::ObjectWrap`
    class which you will likely want to derive from.
 
- - 内部Node库。在该库中，大部分类是我们可能用于进行派生
-  的`node::ObjectWrap`基类。
+ - 内部Node库。在该库中，大部分类是我们可能用于进行派生的`node::ObjectWrap`基类。
 
  - Others. Look in `deps/` for what else is available.
 
@@ -46,8 +45,7 @@ Node statically compiles all its dependencies into the executable. When
 compiling your module, you don't need to worry about linking to any of these
 libraries.
 
-Node已将所有依赖关系静态地编译成可执行文件，因此我们在编译自
-己的组件时不需要担心和这些类库的连接问题。
+Node已将所有依赖关系静态地编译成可执行文件，因此我们在编译自己的组件时不需要担心和这些类库的连接问题。
 
 To get started let's make a small Addon which does the following except in
 C++:
@@ -76,8 +74,7 @@ This source code needs to be built into `hello.node`, the binary Addon. To
 do this we create a file called `wscript` which is python code and looks
 like this:
 
-这些源码会编译成`hello.node`，二进制的Addon。为此我们用python编
-写如下的名为`wscript`的文件：
+这些源码会编译成一个二进制的Addon文件`hello.node`。为此我们用python编写如下的名为`wscript`的文件：
 
     srcdir = '.'
     blddir = 'build'
@@ -98,23 +95,20 @@ like this:
 Running `node-waf configure build` will create a file
 `build/default/hello.node` which is our Addon.
 
-运行`node-waf configure build`，我们就创建了Addon实例`build/default/hello.node`
+运行`node-waf configure build`，我们就创建了一个Addon实例`build/default/hello.node`
 
 `node-waf` is just [WAF](http://code.google.com/p/waf), the python-based build system. `node-waf` is
 provided for the ease of users.
 
-`node-waf`就是[WAF](http://code.google.com/p/waf),，一种基于python的编译系统，
-而`node-waf`更加易于使用。
+`node-waf`就是[WAF](http://code.google.com/p/waf),，一种基于python的编译系统，而`node-waf`更加易于使用。
 
 All Node addons must export a function called `init` with this signature:
 
-另外，在Node中任何的Addon必须使用输出一个含有如下签名的名
-为 `init`的函数：
+另外，在Node中任何的Addon必须使用输出一个含有如下签名的名为`init`的函数：
 
     extern 'C' void init (Handle<Object> target)
 
 For the moment, that is all the documentation on addons. Please see
 <http://github.com/ry/node_postgres> for a real example.
 
-到此为止，这里呈现了关于addon的所有文档，另外，在
-<http://github.com/ry/node_postgres>中还提供了一个Addon的实例。
+到此为止，这里呈现了关于addon的所有文档，另外，在<http://github.com/ry/node_postgres>中还提供了一个Addon的实例。
