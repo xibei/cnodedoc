@@ -155,7 +155,7 @@ This event is emitted after a new connection has been successfully
 handshaked. The argument is a duplex instance of `stream.Stream`. It has all
 the common stream methods and events.
 
-当一个新的连接成功完成握手过程后此事件被激发。参数是一个双工的`stream.Stream`实例对象，此对象具有流对象的所有公共的方法和事件。
+当一个新的连接成功完成握手过程后此事件被触发。参数是一个双工的`stream.Stream`实例对象，此对象具有流对象的所有公共的方法和事件。
 
 `cleartextStream.authorized` is a boolean value which indicates if the
 client has verified by one of the supplied cerificate authorities for the
@@ -191,7 +191,7 @@ Stops the server from accepting new connections. This function is
 asynchronous, the server is finally closed when the server emits a `'close'`
 event.
 
-关闭服务器，停止接受新的连接请求。此函数是异步的，当服务器激发一个`'close'`事件时才真正被关闭。
+关闭服务器，停止接受新的连接请求。此函数是异步的，当服务器触发一个`'close'`事件时才真正被关闭。
 
 
 #### server.maxConnections
