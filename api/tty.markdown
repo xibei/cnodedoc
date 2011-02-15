@@ -32,14 +32,20 @@ terminal.
 `mode` should be `true` or `false`. This sets the properies of the current
 process's stdin fd to act either as a raw device or default.
 
+`mode`参数可以设为`true`或`false`。这将当前进程的标准输入文件描述符
+设置为原始设备方式，或默认方式。
+
 
 ### tty.setWindowSize(fd, row, col)
 
 `ioctl`s the window size settings to the file descriptor.
+
+使用`ioctl`设置文件描述符对应的终端窗口大小（行数与列数）。
 
 
 ### tty.getWindowSize(fd)
 
 Returns `[row, col]` for the TTY associated with the file descriptor.
 
+返回文件描述符所对应的终端的窗口大小`[row, col]`（行数与列数）。
 
