@@ -4,24 +4,32 @@ A stream is an abstract interface implemented by various objects in Node.
 For example a request to an HTTP server is a stream, as is stdout. Streams
 are readable, writable, or both. All streams are instances of `EventEmitter`.
 
-## Readable Stream
+在Node中，流是一个由各种对象实现的抽象接口。例如请求HTTP服务器的request是一个流，类似于标准输出。流可以是可读的，可写的，或者既可读又可写。所有流都是`EventEmitter`的实例。
+
+## Readable Stream 可读流
 
 A `Readable Stream` has the following methods, members, and events.
 
-### Event: 'data'
+一个`可读的流`具有下述的方法、成员、及事件。
+
+### Event: 'data' 事件：'data'
 
 `function (data) { }`
 
 The `'data'` event emits either a `Buffer` (by default) or a string if
 `setEncoding()` was used.
 
-### Event: 'end'
+`'data'`事件的参数默认情况下是一个`Buffer`缓冲区对象。如果使用了`setEncoding()` 则参数为一个字符串。
+
+### Event: 'end' 事件：'end'
 
 `function () { }`
 
 Emitted when the stream has received an EOF (FIN in TCP terminology).
 Indicates that no more `'data'` events will happen. If the stream is also
 writable, it may be possible to continue writing.
+
+
 
 ### Event: 'error'
 
