@@ -138,39 +138,53 @@ NOTE: If the source stream does not support `pause()` and `resume()`, this funct
 adds simple definitions which simply emit `'pause'` and `'resume'` events on
 the source stream.
 
-## Writable Stream
+注意：如果来源流不支持`pause()`和`resume()`方法，此函数将在来源流对象上增加这两个方法的简单的定义，内容为触发`'pause'`和`'resume'`事件。
+
+## Writable Stream 可写流
 
 A `Writable Stream` has the following methods, members, and events.
 
-### Event: 'drain'
+一个`可写流`具有下列方法、成员、和事件。
+
+### Event: 'drain' 事件：'drain'
 
 `function () { }`
 
 Emitted after a `write()` method was called that returned `false` to
 indicate that it is safe to write again.
 
-### Event: 'error'
+发生在`write()`方法被调用并返回`false`之后。此事件被触发说明内核缓冲区已空，再次写入是安全的。
+
+### Event: 'error' 事件：'error'
 
 `function (exception) { }`
 
 Emitted on error with the exception `exception`.
 
-### Event: 'close'
+发生错误时被触发，回调函数接收一个异常参数`exception`。
+
+### Event: 'close' 事件：'close'
 
 `function () { }`
 
 Emitted when the underlying file descriptor has been closed.
 
-### Event: 'pipe'
+底层文件描述符被关闭时被触发。
+
+### Event: 'pipe' 事件：'pipe'
 
 `function (src) { }`
 
 Emitted when the stream is passed to a readable stream's pipe method.
 
+当此可写流作为参数传给一个可读流的pipe方法时被触发。
+
 ### stream.writable
 
 A boolean that is `true` by default, but turns `false` after an `'error'`
 occurred or `end()` / `destroy()` was called.
+
+一个布尔值，默认值为`true`。在`'error'`事件被触发之后，或`end()` / `destroy()`方法被调用后此属性被设为`false`。
 
 ### stream.write(string, encoding='utf8', [fd])
 
@@ -180,29 +194,44 @@ indicate that the kernel buffer is full, and the data will be sent out in
 the future. The `'drain'` event will indicate when the kernel buffer is
 empty again. The `encoding` defaults to `'utf8'`.
 
+使用指定编码`encoding`将字符串`string`写入到流中。如果字符串被成功写入内核缓冲区，此方法返回`true`。如果内核缓冲区已满，此方法返回`false`，数据将在以后被送出。当内核缓冲区再次被清空后'drain'`事件将被触发。`encoding`参数默认为`'utf8'`。
+
 If the optional `fd` parameter is specified, it is interpreted as an integral
 file descriptor to be sent over the stream. This is only supported for UNIX
 streams, and is silently ignored otherwise. When writing a file descriptor in
 this manner, closing the descriptor before the stream drains risks sending an
 invalid (closed) FD.
 
+如果指定了可选参数`fd`，它将被作为一个文件描述符通过流传送。此功能仅被Unix流所支持，对于其他流此操作将被忽略而没有任何提示。当使用此方法传送一个文件描述符时，如果在流没有清空前关闭此文件描述符，将造成传送一个无效（已关闭）FD的风险。
+
 ### stream.write(buffer)
 
 Same as the above except with a raw buffer.
 
+除了用一个原始的缓冲区对象替代字符串之外，其他同上。
+
 ### stream.end()
 
 Terminates the stream with EOF or FIN.
+
+使用EOF或FIN结束一个流的输出。
 
 ### stream.end(string, encoding)
 
 Sends `string` with the given `encoding` and terminates the stream with EOF
 or FIN. This is useful to reduce the number of packets sent.
 
+以指定的字符编码`encoding`传送一个字符串`string`，然后使用EOF或FIN结束流的输出。这对降低数据包传输量有所帮助。
+
 ### stream.end(buffer)
 
 Same as above but with a `buffer`.
 
+除了用一个缓冲区对象`buffer`替代字符串之外，其他同上。
+
 ### stream.destroy()
 
 Closes the underlying file descriptor. Stream will not emit any more events.
+
+关闭底层文件描述符。在此流上将不会再触发任何事件。
+
