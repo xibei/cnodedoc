@@ -10,9 +10,7 @@ Parsed URL objects have some or all of the following fields, depending on
 whether or not they exist in the URL string. Any parts that are not in the URL
 string will not be in the parsed object. Examples are shown for the URL
 
-解析后的URL对象包含下述部分或全部字段。具体包含哪些字段取决于解析前
-的URL字符串中是否存在这些字段。在原始的URL字符串中不存在的字段在解
-析后的对象中也不会包含。以下面这个URL为例：
+解析后的URL对象包含下述部分或全部字段。具体包含哪些字段取决于解析前的URL字符串中是否存在这些字段。在原始的URL字符串中不存在的字段在解析后的对象中也不会包含。以下面这个URL为例：
 
 `'http://user:pass@host.com:8080/p/a/t/h?query=string#hash'`
 
@@ -96,8 +94,7 @@ URL模块提供了如下方法：
 Take a URL string, and return an object.  Pass `true` as the second argument to also parse
 the query string using the `querystring` module.
 
-以一个 URL字符串为参数，返回一个解析后的对象。如设置第二个参数为`true`，
-则会使用`querystring`模块解析URL中的查询字符串。
+以一个 URL字符串为参数，返回一个解析后的对象。如设置第二个参数为`true`，则会使用`querystring`模块解析URL中的查询字符串。
 
 ### url.format(urlObj)
 
