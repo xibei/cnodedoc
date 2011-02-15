@@ -1,12 +1,20 @@
-## TLS (SSL)
+## TLS (SSL) 传输层安全（安全套接层）模块
 
 Use `require('tls')` to access this module.
+
+使用`require('tls')`访问此模块。
 
 The `tls` module uses OpenSSL to provide Transport Layer Security and/or
 Secure Socket Layer: encrypted stream communication.
 
+`tls`模块使用OpenSSL提供传输层安全协议和（或）安全套接层协议：加密的
+流通信。
+
 TLS/SSL is a public/private key infrastructure. Each client and each
 server must have a private key. A private key is created like this
+
+TLS/SSL基于公钥/私钥的非对称加密体系，每一个客户端与服务器都需要拥有
+一个私有密钥。私有密钥可用如下方式生成：
 
     openssl genrsa -out ryans-key.pem 1024
 
@@ -15,16 +23,26 @@ keys signed by a Certificate Authority or self-signed. The first step to
 getting a certificate is to create a "Certificate Signing Request" (CSR)
 file. This is done with:
 
+所有服务器和某些客户端需要拥有一份数字证书。数字证书是由某个证书授权
+中心使用其公钥签名授予的，或者也可以是自签名的。要获得一份数字证书，首
+先需要生成一个“证书签名请求”（CSR）文件。方法如下：
+
     openssl req -new -key ryans-key.pem -out ryans-csr.pem
 
 To create a self-signed certificate with the CSR, do this:
+
+要使用CSR文件生成一个自签名的数字证书，方法如下：
 
     openssl x509 -req -in ryans-csr.pem -signkey ryans-key.pem -out ryans-cert.pem
 
 Alternatively you can send the CSR to a Certificate Authority for signing.
 
+你也可以将CSR文件发给一家证书授权中心以获得签名。
+
 (TODO: docs on creating a CA, for now interested users should just look at
 `test/fixtures/keys/Makefile` in the Node source code)
+
+（有待补充：关于如何创建证书授权中心的文档。感兴趣的用户可以直接浏览Node源代码中的`test/fixtures/keys/Makefile`文件）
 
 
 ### s = tls.connect(port, [host], [options], callback)
