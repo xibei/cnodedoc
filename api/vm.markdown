@@ -16,9 +16,7 @@ JavaScript代码可以编译并立即执行，也可以编译后存储，在以�
 `vm.runInThisContext()` compiles `code` as if it were loaded from `filename`,
 runs it and returns the result. Running code does not have access to local scope. `filename` is optional.
 
-`vm.runInThisContext()`编译并执行`code`代码，返回执行结果。运行的代码
-不具有访问本地作用域的权限。`code`代码被视作从`filename`文件中读取的，
-`filename`参数是可选的。
+`vm.runInThisContext()`编译并执行`code`代码，返回执行结果。运行的代码不具有访问本地作用域的权限。`code`代码被视作从`filename`文件中读取的，`filename`参数是可选的。
 
 Example of using `vm.runInThisContext` and `eval` to run the same code:
 
@@ -42,14 +40,12 @@ Example of using `vm.runInThisContext` and `eval` to run the same code:
 `vm.runInThisContext` does not have access to the local scope, so `localVar` is unchanged.
 `eval` does have access to the local scope, so `localVar` is changed.
 
-`vm.runInThisContext`没有访问本地作用域的权限，所以`localVar`变量的值没有被修改。`eval`
-具有访问本地作用域的权限，因此`localVar`变量的值被修改了。
+`vm.runInThisContext`没有访问本地作用域的权限，所以`localVar`变量的值没有被修改。`eval`具有访问本地作用域的权限，因此`localVar`变量的值被修改了。
 
 In case of syntax error in `code`, `vm.runInThisContext` emits the syntax error to stderr
 and throws.an exception.
 
-当`code`代码中存在语法错误时，`vm.runInThisContext`将错误输出到标准错误，同时抛出一个
-异常。
+当`code`代码中存在语法错误时，`vm.runInThisContext`将错误输出到标准错误，同时抛出一个异常。
 
 
 ### vm.runInNewContext(code, [sandbox], [filename])
@@ -59,15 +55,12 @@ then runs it and returns the result. Running code does not have access to local 
 the object `sandbox` will be used as the global object for `code`.
 `sandbox` and `filename` are optional.
 
-`vm.runInNewContext`编译并在`沙箱`中执行`code`代码，返回执行结果。`sandbox`对象
-是代码可以访问的一个全局对象，代码不具有访问本地作用域的权限。`code`代码被视作从`filename`
-文件中读取的，`sandbox`参数和`filename`参数是可选的。
+`vm.runInNewContext`编译并在`沙箱`中执行`code`代码，返回执行结果。`sandbox`对象是代码可以访问的一个全局对象，代码不具有访问本地作用域的权限。`code`代码被视作从`filename`文件中读取的，`sandbox`参数和`filename`参数是可选的。
 
 Example: compile and execute code that increments a global variable and sets a new one.
 These globals are contained in the sandbox.
 
-例子：编译并执行一段代码，这段代码增大一个全局变量的数值，并设置一个新的全局变量。
-这些全局变量均存在于沙箱中。
+例子：编译并执行一段代码，这段代码增大一个全局变量的数值，并设置一个新的全局变量。这些全局变量均存在于沙箱中。
 
     var util = require('util'),
         vm = require('vm'),
@@ -85,14 +78,12 @@ Note that running untrusted code is a tricky business requiring great care.  To 
 global variable leakage, `vm.runInNewContext` is quite useful, but safely running untrusted code
 requires a separate process.
 
-注意运行不可靠的代码是需要非常小心的危险操作。`vm.runInNewContext`对防止全局变量泄露非
-常有帮助，但最好还是在一个独立的进程中运行不可靠的代码。
+注意运行不可靠的代码是需要非常小心的危险操作。`vm.runInNewContext`对防止全局变量泄露非常有帮助，但最好还是在一个独立的进程中运行不可靠的代码。
 
 In case of syntax error in `code`, `vm.runInThisContext` emits the syntax error to stderr
 and throws an exception.
 
-当`code`代码中存在语法错误时，`vm.runInThisContext`将错误输出到标准错误，同时抛出一个
-异常。
+当`code`代码中存在语法错误时，`vm.runInThisContext`将错误输出到标准错误，同时抛出一个异常。
 
 
 ### vm.createScript(code, [filename])
