@@ -67,11 +67,7 @@ paused until the `drain` event occurs on the `writableStream`. `callback` gets
 an error as its only argument and is called when `writableStream` is closed or
 when an error occurs.
 
-从`readableStream`参数所指定的可读流中读取数据，并将其写入到`writableStream`
-参数所指定的可写流中。当`writeableStream.write(data)`函数调用返回为`false`时，
-`readableStream`流将被暂停，直到在`writableStream`流上发生`drain`事件。当`writableStream`
-流关闭或发生一个错误时，`callback`回调函数被调用。此回调函数只接受一个参数
-用以指明所发生的错误。
+从`readableStream`参数所指定的可读流中读取数据，并将其写入到`writableStream`参数所指定的可写流中。当`writeableStream.write(data)`函数调用返回为`false`时，`readableStream`流将被暂停，直到在`writableStream`流上发生`drain`事件。当`writableStream`流关闭或发生一个错误时，`callback`回调函数被调用。此回调函数只接受一个参数用以指明所发生的错误。
 
 
 ### util.inherits(constructor, superConstructor)
@@ -81,15 +77,12 @@ Inherit the prototype methods from one
 into another.  The prototype of `constructor` will be set to a new
 object created from `superConstructor`.
 
-将一个[构造函数](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/constructor)
-的原型方法继承到另一个构造函数中。`constructor`构造函数的原型
-将被设置为使用`superConstructor`构造函数所创建的一个新对象。
+将一个[构造函数](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/constructor)的原型方法继承到另一个构造函数中。`constructor`构造函数的原型将被设置为使用`superConstructor`构造函数所创建的一个新对象。
 
 As an additional convenience, `superConstructor` will be accessible
 through the `constructor.super_` property.
 
-此函数带来的额外的方便是，可以通过`constructor.super_`属性来
-访问`superConstructor`构造函数。
+此函数带来的额外的方便是，可以通过`constructor.super_`属性来访问`superConstructor`构造函数。
 
     var util = require("util");
     var events = require("events");
