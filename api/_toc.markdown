@@ -2,7 +2,7 @@
 ## 目录
 
 * [Synopsis](synopsis.html)
-* [概要](synopsis.html)
+概要
 
 * [Globals](globals.html)
 * [全局变量](globals.html)
