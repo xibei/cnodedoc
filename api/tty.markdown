@@ -16,8 +16,7 @@ Returns an array `[slaveFD, childProcess]`. `slaveFD` is the file descriptor
 of the slave end of the pseudo terminal. `childProcess` is a child process
 object.
 
-返回一个数组 `[slaveFD, childProcess]`。`slaveFD` 是这个伪终端的从设备
-文件描述符，`childProcess`是一个子进程对象。
+返回一个数组 `[slaveFD, childProcess]`。`slaveFD` 是这个伪终端的从设备文件描述符，`childProcess`是一个子进程对象。
 
 
 ### tty.isatty(fd)
@@ -32,8 +31,7 @@ terminal.
 `mode` should be `true` or `false`. This sets the properies of the current
 process's stdin fd to act either as a raw device or default.
 
-`mode`参数可以设为`true`或`false`。这将当前进程的标准输入文件描述符
-设置为原始设备方式，或默认方式。
+`mode`参数可以设为`true`或`false`。这将当前进程的标准输入文件描述符设置为原始设备方式，或默认方式。
 
 
 ### tty.setWindowSize(fd, row, col)
