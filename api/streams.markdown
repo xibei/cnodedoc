@@ -100,11 +100,17 @@ After the write queue is drained, close the file descriptor.
 
 This is a `Stream.prototype` method available on all `Stream`s.
 
+这是`Stream.prototype`（Stream原型对象）的一个方法，对所有`Stream`流对象有效。
+
 Connects this read stream to `destination` WriteStream. Incoming
 data on this stream gets written to `destination`. The destination and source
 streams are kept in sync by pausing and resuming as necessary.
 
+用于将这个可读流和`destination`目标可写流连接起来，传入这个流中的数据将会写入到`destination`流中。通过在必要时暂停和恢复流，来源流和目的流得以保持同步。
+
 Emulating the Unix `cat` command:
+
+模拟Unix系统的`cat`命令：
 
     process.stdin.resume();
     process.stdin.pipe(process.stdout);
@@ -114,7 +120,11 @@ By default `end()` is called on the destination when the source stream emits
 `end`, so that `destination` is no longer writable. Pass `{ end: false }` as
 `options` to keep the destination stream open.
 
+默认情况下，当来源流的`end`事件触发时目的流的`end()`方法会被调用，此时`destination`目的流将不再可写入。要在这种情况下保持目的流仍然可写入，可将`options`参数设为`{ end: false }`。
+
 This keeps `process.stdout` open so that "Goodbye" can be written at the end.
+
+这使`process.stdout`保持打开状态，因此"Goodbye"可以在end事件发生后被写入。
 
     process.stdin.resume();
 
