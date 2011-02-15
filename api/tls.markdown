@@ -185,6 +185,12 @@ server. If `cleartextStream.authorized` is false, then
 failed. Implied but worth mentioning: depending on the settings of the TLS
 server, you unauthorized connections may be accepted.
 
+`cleartextStream.authorized`是一个布尔值，用以表明客户端是否通过了
+服务器所指定的可信任证书授权中心的验证。如果`cleartextStream.authorized`
+值为false，则可以从`cleartextStream.authorizationError`中获得验证失败
+的原因。这意味着：未经验证的连接是有可能被接受的，这依赖于TLS服
+务器的具体设置。
+
 
 #### server.listen(port, [host], [callback])
 
@@ -192,10 +198,18 @@ Begin accepting connections on the specified `port` and `host`.  If the
 `host` is omitted, the server will accept connections directed to any
 IPv4 address (`INADDR_ANY`).
 
+开始在指定的端口`port`和主机名`host`上接受连接。如果没有设置`host`参数，
+服务器将接受到达所有IPv4地址（`INADDR_ANY`）的连接。
+
 This function is asynchronous. The last parameter `callback` will be called
 when the server has been bound.
 
+此函数是异步的。最后一个参数`callback`所指定的回调函数会在服务器绑定
+完成后被调用。
+
 See `net.Server` for more information.
+
+更多信息参见`net.Server`。
 
 
 #### server.close()
@@ -204,11 +218,19 @@ Stops the server from accepting new connections. This function is
 asynchronous, the server is finally closed when the server emits a `'close'`
 event.
 
+关闭服务器，停止接受新的连接请求。此函数是异步的，当服务器激发
+一个`'close'`事件时才真正被关闭。
+
 
 #### server.maxConnections
 
 Set this property to reject connections when the server's connection count gets high.
 
+服务器最大连接数量。服务器会拒绝超过此数量限制的连接，以防止同时
+建立的连接数过多。
+
 #### server.connections
 
 The number of concurrent connections on the server.
+
+服务器并发连接数量。
