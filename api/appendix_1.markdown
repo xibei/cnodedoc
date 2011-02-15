@@ -5,7 +5,7 @@ There are many third party modules for Node. At the time of writing, August
 2010, the master repository of modules is
 [the wiki page](http://github.com/ry/node/wiki/modules).
 
-Node中包含许多第三方组件。截至撰写时（2010.8），在[the wiki page](http://github.com/ry/node/wiki/modules)有大部分优秀的第三方Node组件。
+Node中包含许多第三方组件。截至撰写时（2010.8），在[the wiki page](http://github.com/ry/node/wiki/modules)有许多优秀的第三方Node组件。
 
 This appendix is intended as a SMALL guide to new-comers to help them
 quickly find what are considered to be quality modules. It is not intended
