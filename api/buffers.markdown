@@ -5,12 +5,12 @@ Pure Javascript is Unicode friendly but not nice to binary data.  When
 dealing with TCP streams or the file system, it's necessary to handle octet
 streams. Node has several strategies for manipulating, creating, and
 consuming octet streams.
-纯Javascript语言是Unicode友好性的，但是难以表述成二进制代码。在处理TCP流和文件系统时经常需要操作字节流。Node提供了用于操作、创建、以及消耗（consuming）字节流的一些列机制。
+纯Javascript语言是Unicode友好性的，但是难以表述成二进制代码。在处理TCP流和文件系统时经常需要操作字节流。Node提供了一些列机制，用于操作、创建、以及消耗（consuming）字节流。
 
 Raw data is stored in instances of the `Buffer` class. A `Buffer` is similar
 to an array of integers but corresponds to a raw memory allocation outside
 the V8 heap. A `Buffer` cannot be resized.
-在实例化的`Buffer`类中存储了原始数据。相比整数数组，`Buffer`对应了在V8堆（the V8 heap）外的原始存储空间分配。而且，一旦创建了`Buffer`实例，其存储空间无法改变。
+在实例化的`Buffer`类中存储了原始数据。相比整数数组，`Buffer`对应了在V8堆（the V8 heap）外的原始存储空间分配。但是，一旦创建了`Buffer`实例，其存储空间无法改变。
 
 The `Buffer` object is global.
 另外，`Buffer`是一个全局对象。
