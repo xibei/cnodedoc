@@ -110,4 +110,4 @@ Expects `block` not to throw an error, see assert.throws for details.
 Tests if value is not a false value, throws if it is a true value. Useful when
 testing the first argument, `error` in callbacks.
 
-测试实际值是出错，当没有出错时抛出信息。常用于测试第一个参数（the first argument），回调中的`error`。
+测试实际值是出错，当没有出错时抛出信息。常用于第一个参数（the first argument），回调中的`error`的测试。
