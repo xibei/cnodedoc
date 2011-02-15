@@ -29,15 +29,17 @@ Emitted when the stream has received an EOF (FIN in TCP terminology).
 Indicates that no more `'data'` events will happen. If the stream is also
 writable, it may be possible to continue writing.
 
+当流中接收到EOF（TCP中为FIN）时此事件被触发，表示不会再发生任何`'data'`事件。如果流同时也是可写的，那它还可以继续写入。
 
-
-### Event: 'error'
+### Event: 'error' 事件：'error'
 
 `function (exception) { }`
 
 Emitted if there was an error receiving data.
 
-### Event: 'close'
+接收数据的过程中发生任何错误时，此事件被触发。
+
+### Event: 'close' 事件：'close'
 
 `function () { }`
 
@@ -45,38 +47,54 @@ Emitted when the underlying file descriptor has been closed. Not all streams
 will emit this.  (For example, an incoming HTTP request will not emit
 `'close'`.)
 
-### Event: 'fd'
+当底层的文件描述符被关闭时触发此事件，并不是所有流都会触发这个事件。（例如，一个连接进来的HTTP请求就不会触发`'close'`事件。）
+
+### Event: 'fd' 事件：'fd'
 
 `function (fd) { }`
 
 Emitted when a file descriptor is received on the stream. Only UNIX streams
 support this functionality; all others will simply never emit this event.
 
+当在流中接收到一个文件描述符时触发此事件。只有UNIX流支持这个功能，其他类型的流均不会触发此事件。
+
 ### stream.readable
 
 A boolean that is `true` by default, but turns `false` after an `'error'`
 occured, the stream came to an `'end'`, or `destroy()` was called.
 
+这是一个布尔值，默认值为`true`。当`'error'`事件、`'end'`事件发生后，或者`destroy()`被调用后，这个属性将变为`false`。
+
 ### stream.setEncoding(encoding)
 Makes the data event emit a string instead of a `Buffer`. `encoding` can be
 `'utf8'`, `'ascii'`, or `'base64'`.
+
+调用此方法会影响`'data'`事件的回调函数参数。默认参数为`Buffer`缓冲区对象，调用此方法后参数为一个字符串。`encoding`参数可以是`'utf8'`、`'ascii'`、或`'base64'`。
 
 ### stream.pause()
 
 Pauses the incoming `'data'` events.
 
+暂停`'data'`事件的触发。
+
 ### stream.resume()
 
 Resumes the incoming `'data'` events after a `pause()`.
+
+恢复被`pause()`调用暂停的`'data'`事件触发。
 
 ### stream.destroy()
 
 Closes the underlying file descriptor. Stream will not emit any more events.
 
+关闭底层的文件描述符。流将不会再触发任何事件。
+
 
 ### stream.destroySoon()
 
 After the write queue is drained, close the file descriptor.
+
+在写队列清空后（所有写操作完成后），关闭文件描述符。
 
 ### stream.pipe(destination, [options])
 
