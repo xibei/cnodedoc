@@ -1,15 +1,20 @@
 ## Child Processes
+##子进程
 
 Node provides a tri-directional `popen(3)` facility through the `ChildProcess`
 class.
+在Node里，`ChildProcess`类提供了一个3向的机制 `popen(3)` 。
 
 It is possible to stream data through the child's `stdin`, `stdout`, and
 `stderr` in a fully non-blocking way.
+子进程类中的`stdin`， `stdout`，和`stderr` 可以使数据流完全非阻塞式地（non-blocking way）流动（stream）
 
 To create a child process use `require('child_process').spawn()`.
+调用`require('child_process').spawn()`可以创建一个子进程（child process） 
 
 Child processes always have three streams associated with them. `child.stdin`,
 `child.stdout`, and `child.stderr`.
+`child.stdin`，`child.stdout`，和 `child.stderr`等3个流总是伴随着子进程。
 
 `ChildProcess` is an `EventEmitter`.
 
