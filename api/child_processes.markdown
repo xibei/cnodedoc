@@ -3,20 +3,25 @@
 
 Node provides a tri-directional `popen(3)` facility through the `ChildProcess`
 class.
+
 在Node里，`ChildProcess`类提供了一个3向的机制 `popen(3)` 。
 
 It is possible to stream data through the child's `stdin`, `stdout`, and
 `stderr` in a fully non-blocking way.
+
 子进程类中的`stdin`， `stdout`，和`stderr` 可以使数据流完全非阻塞式地（non-blocking way）流动（stream）
 
 To create a child process use `require('child_process').spawn()`.
+
 调用`require('child_process').spawn()`可以创建一个子进程（child process） 
 
 Child processes always have three streams associated with them. `child.stdin`,
 `child.stdout`, and `child.stderr`.
+
 `child.stdin`，`child.stdout`，和 `child.stderr`等3个流总是伴随着子进程。
 
 `ChildProcess` is an `EventEmitter`.
+
 `ChildProcess` 是一种 `EventEmitter`。
 
 ### Event:  'exit'
@@ -27,30 +32,36 @@ This event is emitted after the child process ends. If the process terminated
 normally, `code` is the final exit code of the process, otherwise `null`. If
 the process terminated due to receipt of a signal, `signal` is the string name
 of the signal, otherwise `null`.
+
 当子进程结束时，（Node）发射出如下事件。如果进程正常终结，那么进程的最终出口码（ final exit code）为`code`，否则为`null`。如果进程的终结取决于信号的获取（receipt of a signal），那么`signal`为string型的信号名称，否则为`null`。
 
 See `waitpid(2)`.
+
 可见`waitpid(2)`。
 
 ### child.stdin
 
 A `Writable Stream` that represents the child process's `stdin`.
 Closing this stream via `end()` often causes the child process to terminate.
+
 它是一个`Writable Stream`（可写流），是子进程中的`stdin`。调用`end()`来关闭这个流通常会终结整个进程。
 
 ### child.stdout
 
 A `Readable Stream` that represents the child process's `stdout`.
+
 它是一个`Readable Stream`（可读流），是子进程中的`stdout`。
 
 ### child.stderr
 
 A `Readable Stream` that represents the child process's `stderr`.
+
 它是一个`Readable Stream`（可读流），是子进程中的`stderr`。
 
 ### child.pid
 
 The PID of the child process.
+
 它是子进程的PID（进程编号）。
 
 Example:
@@ -70,6 +81,7 @@ If omitted, `args` defaults to an empty Array.
 创建一个新进程，参数包括给定的`command`，命令行参数`args`。缺省下，`args`默认为一个空数组，
 
 The third argument is used to specify additional options, which defaults to:
+
 第三个参数用于指定附件的选项，默认如下：
 
     { cwd: undefined,
@@ -83,9 +95,11 @@ Use `env` to specify environment variables that will be visible to the new proce
 With `customFds` it is possible to hook up the new process' [stdin, stout, stderr] to
 existing streams; `-1` means that a new stream should be created. `setsid`,
 if set true, will cause the subprocess to be run in a new session.
+
 `cwd` 可以使当前目录从发出进程的路径转向指定的工作目录。`env`可以指定哪些环境变量在新进程中是可见的。`customFds`可以使新进程中的[stdin, stout, stderr]和现有进程进行挂接（hook up）。`-1`可以建立一个新的流。如果设置`setsid`为true，该子进程将转入到一个新会话（session）中运行。
 
 Example of running `ls -lh /usr`, capturing `stdout`, `stderr`, and the exit code:
+
 例：运行`ls -lh /usr`命令，捕获`stdout`，`stderr`和出口码：
 
     var util   = require('util'),
@@ -106,6 +120,7 @@ Example of running `ls -lh /usr`, capturing `stdout`, `stderr`, and the exit cod
 
 
 Example: A very elaborate way to run 'ps ax | grep ssh'
+
 例：运行'ps ax | grep ssh'命令详细解释（elaborate way）：
 
     var util   = require('util'),
@@ -157,6 +172,7 @@ Example of checking for failed exec:
 
 
 See also: `child_process.exec()`
+
 同可参见：`child_process.exec()`
 
 
@@ -164,6 +180,8 @@ See also: `child_process.exec()`
 
 High-level way to execute a command as a child process, buffer the
 output, and return it all in a callback.
+
+用高层次的方法（High-level way）运行如下命令，要求：作为子进程运行，缓存输出，并且全部在callback中返回。
 
     var util   = require('util'),
         exec  = require('child_process').exec,
@@ -183,7 +201,11 @@ will be `null`.  On error, `error` will be an instance of `Error` and `err.code`
 will be the exit code of the child process, and `err.signal` will be set to the
 signal that terminated the process.
 
+callback需要获取`(error, stdout, stderr)`3个参数。成功时，`error`为`null`。错误时`error`为一个`Error`实例，同时，该子进程的出口码为`err.code`，并且`err.signal`成为终结该进程的信号。
+
 There is a second optional argument to specify several options. The default options are
+
+还有一种可选的参数来指定一些选项。默认选项如下：
 
     { encoding: 'utf8',
       timeout: 0,
@@ -197,6 +219,7 @@ if it runs longer than `timeout` milliseconds. The child process is killed with
 `killSignal` (default: `'SIGTERM'`). `maxBuffer` specifies the largest
 amount of data allowed on stdout or stderr - if this value is exceeded then
 the child process is killed.
+如果`timeout`的值超过0，那么当超过`timeout`毫秒后当前子进程将终止。
 
 
 ### child.kill(signal='SIGTERM')
