@@ -3,7 +3,7 @@
 These functions are in the module `'util'`. Use `require('util')` to access
 them.
 
-下列函数属于`'工具'`模块，可通过调用`require('util')`访问它们。
+下列函数属于`'util'`（工具）模块，可使用`require('util')`访问它们。
 
 
 ### util.debug(string)
@@ -11,7 +11,7 @@ them.
 A synchronous output function. Will block the process and
 output `string` immediately to `stderr`.
 
-这是一个同步输出函数，将`string`参数的内容实时输出到`标准错误`。调用此函数时将阻塞当前进程直到输出完成。
+这是一个同步输出函数，将`string`参数的内容实时输出到`stderr`标准错误。调用此函数时将阻塞当前进程直到输出完成。
 
     require('util').debug('message on stderr');
 
@@ -20,7 +20,7 @@ output `string` immediately to `stderr`.
 
 Output with timestamp on `stdout`.
 
-将`string`参数的内容输出到`标准输出`，并加上当前时间戳。
+将`string`参数的内容加上当前时间戳，输出到`stdout`标准输出。
 
     require('util').log('Timestmaped message.');
 
@@ -59,7 +59,7 @@ Example of inspecting all properties of the `util` object:
 
 Experimental
 
-实验性的函数
+实验性的
 
 Read the data from `readableStream` and send it to the `writableStream`.
 When `writableStream.write(data)` returns `false` `readableStream` will be
@@ -67,7 +67,7 @@ paused until the `drain` event occurs on the `writableStream`. `callback` gets
 an error as its only argument and is called when `writableStream` is closed or
 when an error occurs.
 
-从`readableStream`参数所指定的可读流中读取数据，并将其写入到`writableStream`参数所指定的可写流中。当`writeableStream.write(data)`函数调用返回为`false`时，`readableStream`流将被暂停，直到在`writableStream`流上发生`drain`事件。当`writableStream`流关闭或发生一个错误时，`callback`回调函数被调用。此回调函数只接受一个参数用以指明所发生的错误。
+从`readableStream`参数所指定的可读流中读取数据，并将其写入到`writableStream`参数所指定的可写流中。当`writeableStream.write(data)`函数调用返回为`false`时，`readableStream`流将被暂停，直到在`writableStream`流上发生`drain`事件。当`writableStream`流被关闭或发生一个错误时，`callback`回调函数被调用。此回调函数只接受一个参数用以指明所发生的错误。
 
 
 ### util.inherits(constructor, superConstructor)
@@ -82,7 +82,7 @@ object created from `superConstructor`.
 As an additional convenience, `superConstructor` will be accessible
 through the `constructor.super_` property.
 
-此函数带来的额外的方便是，可以通过`constructor.super_`属性来访问`superConstructor`构造函数。
+此方法带来的额外的好处是，可以通过`constructor.super_`属性来访问`superConstructor`构造函数。
 
     var util = require("util");
     var events = require("events");
