@@ -1,13 +1,13 @@
 ## Modules
-
+模块
 Node uses the CommonJS module system.
-
+Node使用CommonJS模块系统。
 Node has a simple module loading system.  In Node, files and modules are in
 one-to-one correspondence.  As an example, `foo.js` loads the module
 `circle.js` in the same directory.
-
+Node有一个简单的模块装载系统，在Node中，文件和模块是一一对应的。例如， foo.js 在相同的目录下加载circle.js模块。
 The contents of `foo.js`:
-
+foo.js的内容为：
     var circle = require('./circle.js');
     console.log( 'The area of a circle of radius 4 is '
                + circle.area(4));
