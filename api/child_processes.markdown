@@ -30,25 +30,31 @@ of the signal, otherwise `null`.
 当子进程结束时，（Node）发射出如下事件。如果进程正常终结，那么进程的最终出口码（ final exit code）为`code`，否则为`null`。如果进程的终结取决于信号的获取（receipt of a signal），那么`signal`为string型的信号名称，否则为`null`。
 
 See `waitpid(2)`.
+可见`waitpid(2)`。
 
 ### child.stdin
 
 A `Writable Stream` that represents the child process's `stdin`.
 Closing this stream via `end()` often causes the child process to terminate.
+它是一个`Writable Stream`（可写流），是子进程中的`stdin`。调用`end()`来关闭这个流通常会终结整个进程。
 
 ### child.stdout
 
 A `Readable Stream` that represents the child process's `stdout`.
+它是一个`Readable Stream`（可读流），是子进程中的`stdout`。
 
 ### child.stderr
 
 A `Readable Stream` that represents the child process's `stderr`.
+它是一个`Readable Stream`（可读流），是子进程中的`stderr`。
 
 ### child.pid
 
 The PID of the child process.
+它是子进程的PID（进程编号）。
 
 Example:
+例如：
 
     var spawn = require('child_process').spawn,
         grep  = spawn('grep', ['ssh']);
@@ -61,6 +67,7 @@ Example:
 
 Launches a new process with the given `command`, with  command line arguments in `args`.
 If omitted, `args` defaults to an empty Array.
+
 
 The third argument is used to specify additional options, which defaults to:
 
