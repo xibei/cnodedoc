@@ -4,13 +4,13 @@ A stream is an abstract interface implemented by various objects in Node.
 For example a request to an HTTP server is a stream, as is stdout. Streams
 are readable, writable, or both. All streams are instances of `EventEmitter`.
 
-在Node中，流是一个由各种对象实现的抽象接口。例如请求HTTP服务器的request是一个流，类似于标准输出。流可以是可读的，可写的，或者既可读又可写。所有流都是`EventEmitter`的实例。
+在Node中，Stream（流）是一个由不同对象实现的抽象接口。例如请求HTTP服务器的request是一个流，类似于stdout（标准输出）。流可以是可读的，可写的，或者既可读又可写。所有流都是`EventEmitter`的实例。
 
 ## Readable Stream 可读流
 
 A `Readable Stream` has the following methods, members, and events.
 
-一个`可读的流`具有下述的方法、成员、及事件。
+一个`可读流`具有下述的方法、成员、及事件。
 
 ### Event: 'data' 事件：'data'
 
@@ -19,7 +19,7 @@ A `Readable Stream` has the following methods, members, and events.
 The `'data'` event emits either a `Buffer` (by default) or a string if
 `setEncoding()` was used.
 
-`'data'`事件的参数默认情况下是一个`Buffer`缓冲区对象。如果使用了`setEncoding()` 则参数为一个字符串。
+`'data'`事件的回调函数参数默认情况下是一个`Buffer`对象。如果使用了`setEncoding()` 则参数为一个字符串。
 
 ### Event: 'end' 事件：'end'
 
@@ -29,7 +29,7 @@ Emitted when the stream has received an EOF (FIN in TCP terminology).
 Indicates that no more `'data'` events will happen. If the stream is also
 writable, it may be possible to continue writing.
 
-当流中接收到EOF（TCP中为FIN）时此事件被触发，表示不会再发生任何`'data'`事件。如果流同时也是可写的，那它还可以继续写入。
+当流中接收到EOF（TCP中为FIN）时此事件被触发，表示流的读取已经结束，不会再发生任何`'data'`事件。如果流同时也是可写的，那它还可以继续写入。
 
 ### Event: 'error' 事件：'error'
 
@@ -47,7 +47,7 @@ Emitted when the underlying file descriptor has been closed. Not all streams
 will emit this.  (For example, an incoming HTTP request will not emit
 `'close'`.)
 
-当底层的文件描述符被关闭时触发此事件，并不是所有流都会触发这个事件。（例如，一个连接进来的HTTP请求就不会触发`'close'`事件。）
+当底层的文件描述符被关闭时触发此事件，并不是所有流都会触发这个事件。（例如，一个连接进入的HTTP request流就不会触发`'close'`事件。）
 
 ### Event: 'fd' 事件：'fd'
 
@@ -63,13 +63,13 @@ support this functionality; all others will simply never emit this event.
 A boolean that is `true` by default, but turns `false` after an `'error'`
 occured, the stream came to an `'end'`, or `destroy()` was called.
 
-这是一个布尔值，默认值为`true`。当`'error'`事件、`'end'`事件发生后，或者`destroy()`被调用后，这个属性将变为`false`。
+这是一个布尔值，默认值为`true`。当`'error'`事件或`'end'`事件发生后，或者`destroy()`被调用后，这个属性将变为`false`。
 
 ### stream.setEncoding(encoding)
 Makes the data event emit a string instead of a `Buffer`. `encoding` can be
 `'utf8'`, `'ascii'`, or `'base64'`.
 
-调用此方法会影响`'data'`事件的回调函数参数。默认参数为`Buffer`缓冲区对象，调用此方法后参数为一个字符串。`encoding`参数可以是`'utf8'`、`'ascii'`、或`'base64'`。
+调用此方法会影响`'data'`事件的回调函数参数形式，默认为`Buffer`对象，调用此方法后为字符串。`encoding`参数可以是`'utf8'`、`'ascii'`、或`'base64'`。
 
 ### stream.pause()
 
@@ -87,7 +87,7 @@ Resumes the incoming `'data'` events after a `pause()`.
 
 Closes the underlying file descriptor. Stream will not emit any more events.
 
-关闭底层的文件描述符。流将不会再触发任何事件。
+关闭底层的文件描述符。流上将不会再触发任何事件。
 
 
 ### stream.destroySoon()
@@ -100,7 +100,7 @@ After the write queue is drained, close the file descriptor.
 
 This is a `Stream.prototype` method available on all `Stream`s.
 
-这是`Stream.prototype`（Stream原型对象）的一个方法，对所有`Stream`流对象有效。
+这是`Stream.prototype`（Stream原型对象）的一个方法，对所有`Stream`对象有效。
 
 Connects this read stream to `destination` WriteStream. Incoming
 data on this stream gets written to `destination`. The destination and source
@@ -120,7 +120,7 @@ By default `end()` is called on the destination when the source stream emits
 `end`, so that `destination` is no longer writable. Pass `{ end: false }` as
 `options` to keep the destination stream open.
 
-默认情况下，当来源流的`end`事件触发时目的流的`end()`方法会被调用，此时`destination`目的流将不再可写入。要在这种情况下保持目的流仍然可写入，可将`options`参数设为`{ end: false }`。
+默认情况下，当来源流的`end`事件触发时目的流的`end()`方法会被调用，此时`destination`目的流将不再可写入。要在这种情况下为了保持目的流仍然可写入，可将`options`参数设为`{ end: false }`。
 
 This keeps `process.stdout` open so that "Goodbye" can be written at the end.
 
@@ -138,7 +138,7 @@ NOTE: If the source stream does not support `pause()` and `resume()`, this funct
 adds simple definitions which simply emit `'pause'` and `'resume'` events on
 the source stream.
 
-注意：如果来源流不支持`pause()`和`resume()`方法，此函数将在来源流对象上增加这两个方法的简单的定义，内容为触发`'pause'`和`'resume'`事件。
+注意：如果来源流不支持`pause()`和`resume()`方法，此函数将在来源流对象上增加这两个方法的简单定义，内容为触发`'pause'`和`'resume'`事件。
 
 ## Writable Stream 可写流
 
@@ -208,7 +208,7 @@ invalid (closed) FD.
 
 Same as the above except with a raw buffer.
 
-除了用一个原始的缓冲区对象替代字符串之外，其他同上。
+除了用一个Buffer对象替代字符串之外，其他同上。
 
 ### stream.end()
 
@@ -227,7 +227,7 @@ or FIN. This is useful to reduce the number of packets sent.
 
 Same as above but with a `buffer`.
 
-除了用一个缓冲区对象`buffer`替代字符串之外，其他同上。
+除了用一个`buffer`对象替代字符串之外，其他同上。
 
 ### stream.destroy()
 
