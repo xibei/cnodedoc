@@ -67,9 +67,10 @@ Example:
 
 Launches a new process with the given `command`, with  command line arguments in `args`.
 If omitted, `args` defaults to an empty Array.
-
+创建一个新进程，参数包括给定的`command`，命令行参数`args`。缺省下，`args`默认为一个空数组，
 
 The third argument is used to specify additional options, which defaults to:
+第三个参数用于指定附件的选项，默认如下：
 
     { cwd: undefined,
       env: process.env,
@@ -82,8 +83,10 @@ Use `env` to specify environment variables that will be visible to the new proce
 With `customFds` it is possible to hook up the new process' [stdin, stout, stderr] to
 existing streams; `-1` means that a new stream should be created. `setsid`,
 if set true, will cause the subprocess to be run in a new session.
+`cwd` 可以使当前目录从发出进程的路径转向指定的工作目录。`env`可以指定哪些环境变量在新进程中是可见的。`customFds`可以使新进程中的[stdin, stout, stderr]和现有进程进行挂接（hook up）。`-1`可以建立一个新的流。如果设置`setsid`为true，该子进程将转入到一个新会话（session）中运行。
 
 Example of running `ls -lh /usr`, capturing `stdout`, `stderr`, and the exit code:
+例：运行`ls -lh /usr`命令，捕获`stdout`，`stderr`和出口码：
 
     var util   = require('util'),
         spawn = require('child_process').spawn,
@@ -103,6 +106,7 @@ Example of running `ls -lh /usr`, capturing `stdout`, `stderr`, and the exit cod
 
 
 Example: A very elaborate way to run 'ps ax | grep ssh'
+例：运行'ps ax | grep ssh'命令详细解释（elaborate way）：
 
     var util   = require('util'),
         spawn = require('child_process').spawn,
@@ -140,6 +144,7 @@ Example: A very elaborate way to run 'ps ax | grep ssh'
 
 
 Example of checking for failed exec:
+例：运行错误检测：
 
     var spawn = require('child_process').spawn,
         child = spawn('bad_command');
@@ -152,6 +157,8 @@ Example of checking for failed exec:
 
 
 See also: `child_process.exec()`
+同可参见：`child_process.exec()`
+
 
 ### child_process.exec(command, [options], callback)
 
