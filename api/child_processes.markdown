@@ -17,6 +17,7 @@ Child processes always have three streams associated with them. `child.stdin`,
 `child.stdin`，`child.stdout`，和 `child.stderr`等3个流总是伴随着子进程。
 
 `ChildProcess` is an `EventEmitter`.
+`ChildProcess` 是一种 `EventEmitter`。
 
 ### Event:  'exit'
 
@@ -26,6 +27,7 @@ This event is emitted after the child process ends. If the process terminated
 normally, `code` is the final exit code of the process, otherwise `null`. If
 the process terminated due to receipt of a signal, `signal` is the string name
 of the signal, otherwise `null`.
+当子进程结束时，（Node）发射出如下事件。如果进程正常终结，那么进程的最终出口码（ final exit code）为`code`，否则为`null`。如果进程的终结取决于信号的获取（receipt of a signal），那么`signal`为string型的信号名称，否则为`null`。
 
 See `waitpid(2)`.
 
