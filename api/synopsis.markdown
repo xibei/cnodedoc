@@ -3,7 +3,7 @@
 An example of a [web server](http.html) written with Node which responds with 'Hello
 World':
 
-下边是一个用Node编写的对所有请求简单返回'Hello World‘的[web服务器]（http.html）例子：
+下边是一个用Node编写的对所有请求简单返回'Hello World‘的[web服务器](http.html)例子：
 
     var http = require('http');
 
