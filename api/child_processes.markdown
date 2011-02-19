@@ -96,7 +96,7 @@ With `customFds` it is possible to hook up the new process' [stdin, stout, stder
 existing streams; `-1` means that a new stream should be created. `setsid`,
 if set true, will cause the subprocess to be run in a new session.
 
-`cwd` 可以使当前目录从发出进程的路径转向指定的工作目录。`env`可以指定哪些环境变量在新进程中是可见的。`customFds`可以使新进程中的[stdin, stout, stderr]和现有进程进行挂接（hook up）。`-1`可以建立一个新的流。如果设置`setsid`为true，该子进程将转入到一个新会话（session）中运行。
+参数`cwd` 可以使当前目录从发出进程的路径转向指定的工作目录。参数`env`可以指定哪些环境变量在新进程中是可见的。参数`customFds`可以使新进程中的[stdin, stout, stderr]和现有进程进行挂接（hook up）。参数`-1`可以建立一个新的流。如果设置参数`setsid`为true，该子进程将转入到一个新会话（session）中运行。
 
 Example of running `ls -lh /usr`, capturing `stdout`, `stderr`, and the exit code:
 
@@ -121,7 +121,7 @@ Example of running `ls -lh /usr`, capturing `stdout`, `stderr`, and the exit cod
 
 Example: A very elaborate way to run 'ps ax | grep ssh'
 
-例：运行'ps ax | grep ssh'命令详细解释（elaborate way）：
+例：运行'ps ax | grep ssh'命令的详细说明（elaborate way）：
 
     var util   = require('util'),
         spawn = require('child_process').spawn,
@@ -159,6 +159,7 @@ Example: A very elaborate way to run 'ps ax | grep ssh'
 
 
 Example of checking for failed exec:
+
 例：运行错误检测：
 
     var spawn = require('child_process').spawn,
@@ -219,13 +220,16 @@ if it runs longer than `timeout` milliseconds. The child process is killed with
 `killSignal` (default: `'SIGTERM'`). `maxBuffer` specifies the largest
 amount of data allowed on stdout or stderr - if this value is exceeded then
 the child process is killed.
-如果`timeout`的值超过0，那么当超过`timeout`毫秒后当前子进程将终止。
+
+如果参数`timeout`的值超过0，那么当超过`timeout`毫秒后当前子进程将终止。同时子进程以`killSignal` (默认为： `'SIGTERM'`)终止。 参数`maxBuffer`制定了stdout或stderr流最大数据空间，一旦超过该值，子进程将会终止。
 
 
 ### child.kill(signal='SIGTERM')
 
 Send a signal to the child process. If no argument is given, the process will
 be sent `'SIGTERM'`. See `signal(7)` for a list of available signals.
+
+给子进程发送信号。如果没有指定参数，（Node）将会发送`'SIGTERM'`信号。在`signal(7)` 中可查阅一些列可用的信号。
 
     var spawn = require('child_process').spawn,
         grep  = spawn('grep', ['ssh']);
@@ -240,4 +244,8 @@ be sent `'SIGTERM'`. See `signal(7)` for a list of available signals.
 Note that while the function is called `kill`, the signal delivered to the child
 process may not actually kill it.  `kill` really just sends a signal to a process.
 
+注意：当调用`kill`方法的时候，发送的信号并不会真正终止子进程。`kill`仅仅是向该进程发送一个信号。
+
 See `kill(2)`
+
+参见`kill(2)`
