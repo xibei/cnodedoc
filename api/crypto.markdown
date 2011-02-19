@@ -50,14 +50,14 @@ which can be used to generate hash digests.
 of OpenSSL on the platform. Examples are `'sha1'`, `'md5'`, `'sha256'`, `'sha512'`, etc.
 On recent releases, `openssl list-message-digest-algorithms` will display the available digest algorithms.
 
-参数`algorithm`依赖于已有的算法，需要系统内版本的OpenSSL的支持。例如：`'sha1'`, `'md5'`, `'sha256'`, `'sha512'`等。在近期发行的版本中，openssl list-message-digest-algorithms`会显示这些可用的数字算法。
+参数`algorithm`依赖于已有的算法，需要系统内版本的OpenSSL的支持。例如：`'sha1'`, `'md5'`, `'sha256'`, `'sha512'`等。在近期发行的版本中，`openssl list-message-digest-algorithms`会显示这些可用的数字算法。
 
 ### hash.update(data)
 
 Updates the hash content with the given `data`.
 This can be called many times with new data as it is streamed.
 
-升级指定`data`的hash码内容。
+更新指定`data`的hash码内容。
 在数据流传输期间，会经常调用该方法。
 
 ### hash.digest(encoding='binary')
@@ -84,18 +84,26 @@ Creates and returns a hmac object, a cryptographic hmac with the given algorithm
 Update the hmac content with the given `data`.
 This can be called many times with new data as it is streamed.
 
+对给定的`data`更新hmac内容。
+在数据流传输期间，会经常调用该方法。
+
 ### hmac.digest(encoding='binary')
 
 Calculates the digest of all of the passed data to the hmac.
 The `encoding` can be `'hex'`, `'binary'` or `'base64'`.
 
+把所有传送来的数据（digest ）进行hmac计算。参数`encoding`（编码方式）可以为`'hex'`, `'binary'` 或者`'base64'`。
 
 ### crypto.createCipher(algorithm, key)
 
 Creates and returns a cipher object, with the given algorithm and key.
 
+使用指定的算法和键值创建并返回一个cipher对象。
+
 `algorithm` is dependent on OpenSSL, examples are `'aes192'`, etc.
 On recent releases, `openssl list-cipher-algorithms` will display the available cipher algorithms.
+
+`algorithm`依赖于OpenSSL，例如，`'aes192'`等。在最近的发行版中，`openssl list-cipher-algorithms`会显示可用的cipher的算法。
 
 ### cipher.update(data, input_encoding='binary', output_encoding='binary')
 
