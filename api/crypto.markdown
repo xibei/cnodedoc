@@ -1,23 +1,42 @@
 ## Crypto
+## 加密
 
 Use `require('crypto')` to access this module.
+
+使用`require('crypto')`调用加密模块。
 
 The crypto module requires OpenSSL to be available on the underlying platform.
 It offers a way of encapsulating secure credentials to be used as part
 of a secure HTTPS net or http connection.
 
+保密模块在底层平台上需要使用OpenSSL协议。它提供了一种安全认证的封装方式，该方式常作为HTTPS安全网络以及普通HTTP连接的一部分。
+
 It also offers a set of wrappers for OpenSSL's hash, hmac, cipher, decipher, sign and verify methods.
+
+该模块还提供了了一套基于OpenSSL的hash（哈希编码），hmac（），cipher（编码），decipher（解码），sign（登录）以及verify（验证）等方法的封装。
 
 ### crypto.createCredentials(details)
 
 Creates a credentials object, with the optional details being a dictionary with keys:
 
+创建一个凭证（credentials）对象，它可选参数details为一个带键值的字典（with the optional details being a dictionary with keys）：
+
 * `key` : a string holding the PEM encoded private key
+
+* `key`：为字符串型，PEM编码的私有键。
+
 * `cert` : a string holding the PEM encoded certificate
+
+* `cert` ：为字符串型，PEM编码的认证证书。
+
 * `ca` : either a string or list of strings of PEM encoded CA certificates to trust.
+
+* `ca`：可以是字符串，也可以是字符串队列，PEM编码的CA认证证书。
 
 If no 'ca' details are given, then node.js will use the default publicly trusted list of CAs as given in
 <http://mxr.mozilla.org/mozilla/source/security/nss/lib/ckfw/builtins/certdata.txt>.
+
+如果没有给出'ca'详细内容，那么node.js将会使用默认的公开受信任列表，该表位于<http://mxr.mozilla.org/mozilla/source/security/nss/lib/ckfw/builtins/certdata.txt>。
 
 
 ### crypto.createHash(algorithm)
