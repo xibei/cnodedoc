@@ -36,13 +36,15 @@ Creates a credentials object, with the optional details being a dictionary with 
 If no 'ca' details are given, then node.js will use the default publicly trusted list of CAs as given in
 <http://mxr.mozilla.org/mozilla/source/security/nss/lib/ckfw/builtins/certdata.txt>.
 
-如果没有给出'ca'详细内容，那么node.js将会使用默认的公开受信任列表，该表位于<http://mxr.mozilla.org/mozilla/source/security/nss/lib/ckfw/builtins/certdata.txt>。
+如果没有给出'ca'的详细内容，那么node.js将会使用默认的公开受信任列表，该表位于<http://mxr.mozilla.org/mozilla/source/security/nss/lib/ckfw/builtins/certdata.txt>。
 
 
 ### crypto.createHash(algorithm)
 
 Creates and returns a hash object, a cryptographic hash with the given algorithm
 which can be used to generate hash digests.
+
+创建并返回一个hash对象，它是一个加密hash对象，由用于生成hash码的指定算法创建
 
 `algorithm` is dependent on the available algorithms supported by the version
 of OpenSSL on the platform. Examples are `'sha1'`, `'md5'`, `'sha256'`, `'sha512'`, etc.
