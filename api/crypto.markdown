@@ -44,29 +44,40 @@ If no 'ca' details are given, then node.js will use the default publicly trusted
 Creates and returns a hash object, a cryptographic hash with the given algorithm
 which can be used to generate hash digests.
 
-创建并返回一个hash对象，它是一个加密hash对象，由用于生成hash码的指定算法创建
+创建并返回一个hash对象，它是一个加密hash对象，由用于生成hash码的指定算法创建。
 
 `algorithm` is dependent on the available algorithms supported by the version
 of OpenSSL on the platform. Examples are `'sha1'`, `'md5'`, `'sha256'`, `'sha512'`, etc.
 On recent releases, `openssl list-message-digest-algorithms` will display the available digest algorithms.
+
+参数`algorithm`依赖于已有的算法，需要系统内版本的OpenSSL的支持。例如：`'sha1'`, `'md5'`, `'sha256'`, `'sha512'`等。在近期发行的版本中，openssl list-message-digest-algorithms`会显示这些可用的数字算法。
 
 ### hash.update(data)
 
 Updates the hash content with the given `data`.
 This can be called many times with new data as it is streamed.
 
+升级指定`data`的hash码内容。
+在数据流传输期间，会经常调用该方法。
+
 ### hash.digest(encoding='binary')
 
 Calculates the digest of all of the passed data to be hashed.
 The `encoding` can be `'hex'`, `'binary'` or `'base64'`.
 
+把所有传送来的数据（ digest ）进行hash计算。参数`encoding`（编码方式）可以为`'hex'`, `'binary'` 或者`'base64'`。
 
 ### crypto.createHmac(algorithm, key)
 
 Creates and returns a hmac object, a cryptographic hmac with the given algorithm and key.
 
+创建并返回一个hmac对象，该加密的hmac对象使用指定的算法和键值生成。
+
 `algorithm` is dependent on the available algorithms supported by OpenSSL - see createHash above.
 `key` is the hmac key to be used.
+
+参数`algorithm`依赖于已有的算法，需要系统内版本的OpenSSL的支持。可见上稳重的createHash。
+`key`为需使用的hmac键值。
 
 ### hmac.update(data)
 
