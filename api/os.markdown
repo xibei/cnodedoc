@@ -4,7 +4,7 @@ Use `require('os')` to access this module.
 
 ## os 模块
 
- 可以通过`require('os')`访问这个os 模块
+可以通过`require('os')`访问这个os 模块
 
 ### os.hostname()
 
