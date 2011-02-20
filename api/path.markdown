@@ -106,11 +106,13 @@ Examples:
 
 你也可以将这个方法理解为Shell中的一组`cd`命令。
 
-    如 path.resolve('foo/bar', '/tmp/file/', '..', 'a/../subfile')
+如 
+
+    path.resolve('foo/bar', '/tmp/file/', '..', 'a/../subfile')
 
 就类似于：
 
-cd foo/bar
+    cd foo/bar
     cd /tmp/file/
     cd ..
     cd a/../subfile
