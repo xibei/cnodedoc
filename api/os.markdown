@@ -65,9 +65,9 @@ Returns the amount of free system memory in bytes.
 
 ### os.cpus()
 
-该方法返回一个对象数组，该数组包含了关于系统每个CPU/CPU核心的信息：模式（Mode），速度（以MHz为单位）(Speed)，以及时间（一个包含CPU资源使用率的对象，包括用户(User)，Nice，系统(Sys)，以及中断请求（IRQ）等几个方面的参数。
+Returns an array of objects containing information about each CPU/core installed: model, speed (in MHz), and times (an object containing the number of CPU ticks spent in: user, nice, sys, idle, and irq).
 
-os.cpus以一个示例如下:
+Example inspection of os.cpus:
 
     [ { model: 'Intel(R) Core(TM) i7 CPU         860  @ 2.80GHz',
         speed: 2926,
@@ -136,9 +136,9 @@ os.cpus以一个示例如下:
 
 ### os.cpus()
 
-Returns an array of objects containing information about each CPU/core installed: model, speed (in MHz), and times (an object containing the number of CPU ticks spent in: user, nice, sys, idle, and irq).
+该方法返回一个对象数组，该数组包含了关于系统每个CPU/CPU核心的信息：模式（Mode），速度（以MHz为单位）(Speed)，以及时间（一个包含CPU资源使用率的对象，包括用户(User)，Nice，系统(Sys)，以及中断请求（IRQ）等几个方面的参数。
 
-Example inspection of os.cpus:
+os.cpus以一个示例如下:
 
     [ { model: 'Intel(R) Core(TM) i7 CPU         860  @ 2.80GHz',
         speed: 2926,
