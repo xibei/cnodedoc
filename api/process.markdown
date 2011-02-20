@@ -3,6 +3,10 @@
 The `process` object is a global object and can be accessed from anywhere.
 It is an instance of `EventEmitter`.
 
+## process
+
+ `process`对象是一个全局对象，可以在任何地方访问它。
+它是`EventEmitter`类的一个实例
 
 ### Event: 'exit'
 
@@ -21,6 +25,11 @@ Example of listening for `exit`:
       });
       console.log('About to exit.');
     });
+
+
+### Event: 'exit'
+
+`function () {}`
 
 ### Event: 'uncaughtException'
 
@@ -85,6 +94,9 @@ Example: the definition of `console.log`
 
 A writable stream to stderr. Writes on this stream are blocking.
 
+### process.stderr
+
+process是一个可以与stderr通信的输入输出流，该流中的输出是分块的。
 
 ### process.stdin
 
@@ -103,6 +115,9 @@ Example of opening standard input and listening for both events:
     process.stdin.on('end', function () {
       process.stdout.write('end');
     });
+
+
+### process.stdin
 
 
 ### process.argv
