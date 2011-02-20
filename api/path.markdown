@@ -32,7 +32,7 @@ Example:
 
 示例：
 
- path.normalize('/foo/bar//baz/asdf/quux/..')
+    path.normalize('/foo/bar//baz/asdf/quux/..')
     // returns
     '/foo/bar/baz/asdf'
 
@@ -53,7 +53,7 @@ Example:
 
 示例：
 
-node> require('path').join(
+    node> require('path').join(
     ...   '/foo', 'bar', 'baz/asdf', 'quux', '..')
     '/foo/bar/baz/asdf'
 
@@ -120,7 +120,7 @@ cd foo/bar
 
 示例：
 
- path.resolve('/foo/bar', './baz')
+    path.resolve('/foo/bar', './baz')
     // returns
     '/foo/bar/baz'
 
@@ -148,7 +148,7 @@ Example:
 
 示例：
 
-path.dirname('/foo/bar/baz/asdf/quux')
+    path.dirname('/foo/bar/baz/asdf/quux')
     // returns
     '/foo/bar/baz/asdf'
 
@@ -173,7 +173,7 @@ Example:
 
 示例：
 
- path.basename('/foo/bar/baz/asdf/quux.html')
+    path.basename('/foo/bar/baz/asdf/quux.html')
     // returns
     'quux.html'
 
@@ -204,7 +204,7 @@ Examples:
 
 示例：
 
-path.extname('index.html')
+    path.extname('index.html')
     // returns
     '.html'
 
@@ -227,6 +227,6 @@ with either true or false. Example:
 
 示例：
 
-path.exists('/etc/passwd', function (exists) {
+    path.exists('/etc/passwd', function (exists) {
       util.debug(exists ? "it's there" : "no passwd!");
     });
