@@ -12,33 +12,32 @@ Node引擎中很多对象都会派发事件：例如`net.Server`会在每一次�
 Typically, event names are represented by a camel-cased string, however,
 there aren't any strict restrictions on that, as any string will be accepted.
 
-通常情况下，事件名称用大小写混合表示，不过目前并没有对事件名称作任何的限制，
+通常情况下，事件名称用大小写分隔表示，不过目前并没有对事件名称作任何的限制，
 也就是说任何的字符串都可以被接受。
 
 Functions can then be attached to objects, to be executed when an event
 is emitted. These functions are called _listeners_.
 
-你可以讲函数都绑定到对象上，当事件派发时对应的函数将会执行。即所谓的监听器。
+可以将函数注册给对象，使其在事件触发时执行， 此类函数被称作‘监听器‘。 
 
 ### events.EventEmitter
 
 To access the EventEmitter class, `require('events').EventEmitter`.
 
-如果要访问EventEmitter class这个类，你需要执行`require('events').EventEmitter`.
+通过调用require('events').EventEmitter， 我们可以使用EventEmitter（事件触发器）类。 
 
 When an `EventEmitter` instance experiences an error, the typical action is
 to emit an `'error'` event.  Error events are treated as a special case in node.
 If there is no listener for it, then the default action is to print a stack
 trace and exit the program.
 
-当EventEmitter类的实例在执行过程中遇到了错误，通常会导致派发名为`'error'`的事件。
-出现错误的事件在node中被视为一种特殊情况，如果当前没有监听器进行处理，那么系统将默认
-打印堆栈跟踪的信息并退出程序。
+当事件触发器过程中出现错误时，典型的处理方式是它将触发一个'error'事件。 Error事件的特殊性在于：
+如果没有函数处理这个事件，它将会输出调用堆栈，并随之退出应用程序。
 
 All EventEmitters emit the event `'newListener'` when new listeners are
 added.
 
-当新的事件监听器被添加时，EventEmitters将会派发名为`'newListener'`的事件
+当新的事件监听器被添加时，EventEmitters将会触发名为`'newListener'`的事件
 
 #### emitter.addListener(event, listener)
 #### emitter.on(event, listener)
@@ -83,7 +82,7 @@ Remove a listener from the listener array for the specified event.
 
 Removes all listeners from the listener array for the specified event.
 
-移指定事件的所有监听器从监听器数组中移除
+将指定事件的所有监听器从监听器数组中移除
 
 #### emitter.setMaxListeners(n)
 
@@ -120,4 +119,4 @@ Execute each of the listeners in order with the supplied arguments.
 
 This event is emitted any time someone adds a new listener.
 
-当为事件添加监听器时名为'newListener'的事件将被触发
+任何时候只要新的监听器被添加时该事件就会触发

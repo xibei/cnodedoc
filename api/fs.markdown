@@ -4,17 +4,18 @@ File I/O is provided by simple wrappers around standard POSIX functions.  To
 use this module do `require('fs')`. All the methods have asynchronous and
 synchronous forms.
 
-文件输入输出（I/O）的功能通过封装好的标准POSIX的函数来提供，你可以通过
-执行`require('fs')`语句访问该模块，该模块中的所有方法都提供了异步和同步的形式调用。
+文件的I/O是由标准POSIX函数封装而成。需要使用"require('fs')"操作这个类。
+所有的方法设有异步方式和同步方式。 
 
 The asynchronous form always take a completion callback as its last argument.
 The arguments passed to the completion callback depend on the method, but the
 first argument is always reserved for an exception. If the operation was
 completed successfully, then the first argument will be `null` or `undefined`.
 
-异步形式调用总是会以最后一个参数作为它的回调函数，其中传递给回调函数的参数取决于
-所要调用的方法，但是第一个参数总是会保留作为异常处理，如果操作没有成功的完成的话，
-第一个参数值参数值将变为`null` or `undefined`。
+
+异步形式下的方法其最后一个参数，总是一个完整的回调函数（callback）。这个回调函数有哪些参数，
+就取决于异步方法怎么送入参数，但通常来说，第一个送入的参数是异常对象。
+如果是操作成功的完成了，那么这个异常对象就变为null或者undefined，表示操作正常。
 
 Here is an example of the asynchronous version:
 
@@ -53,7 +54,7 @@ following is prone to error:
 It could be that `fs.stat` is executed before `fs.rename`.
 The correct way to do this is to chain the callbacks.
 
-这样做有可能导致`fs.stat`在`fs.rename`之前执行，所以正确的方法是链式调用。
+这样做有可能导致`fs.stat`在`fs.rename`之前执行，正确的做法是嵌套回传函数。 
 
     fs.rename('/tmp/hello', '/tmp/world', function (err) {
       if (err) throw err;
@@ -67,8 +68,7 @@ In busy processes, the programmer is _strongly encouraged_ to use the
 asynchronous versions of these calls. The synchronous versions will block
 the entire process until they complete--halting all connections.
 
-在繁忙的进程中，强烈鼓励程序员使用异步形式调用，因为同步调用会阻塞整个进程直至方法执行完毕 -- 
-停止掉所有的连接。
+当执行动作繁杂时，强烈建议使用异步方式调用此类。同步方式在其完成之前将会阻挡一切随后的动作，这代表搁置所有连接。 
 
 ### fs.rename(path1, path2, [callback])
 
@@ -101,20 +101,20 @@ Synchronous ftruncate(2).
 Asynchronous chmod(2). No arguments other than a possible exception are given
 to the completion callback.
 
-异步同步调用chmod(2)，修改文件模式，除非回调函数执行过程出现了异常，否则不会传递任何参数。
+异步同步调用chmod(2)，修改文件权限，除非回调函数执行过程出现了异常，否则不会传递任何参数。
 
 ### fs.chmodSync(path, mode)
 
 Synchronous chmod(2).
 
-同步调用chmod(2)，修改文件模式。
+同步调用chmod(2)，修改文件权限。
 
 ### fs.stat(path, [callback])
 
 Asynchronous stat(2). The callback gets two arguments `(err, stats)` where
 `stats` is a `fs.Stats` object. It looks like this:
 
-异步调用stat(2)，查询文件信息，回调函数将返回两个参数`(err, stats)`，
+异步调用stat(2)，读取文件信息，回调函数将返回两个参数`(err, stats)`，
 其中stats是`fs.Stats`的一个对象，如下所示：
 
     { dev: 2049,
@@ -143,7 +143,7 @@ path is a symbolic link, then the link itself is stat-ed, not the file that it
 refers to.
 
 异步形式调用lstat(2)，回调函数返回两个参数`(err, stats)`，其中stats是`fs.Stats`的一个对象，
-lstat()和stat()类似，区别在于当path是一个符号链接时，它指向自己，而不是自己链接的文件？
+lstat()和stat()类似，区别在于当path是一个符号链接时，它指向该连接的属性，而不是所指向文件的属性
 
 ### fs.fstat(fd, [callback])
 
@@ -175,7 +175,7 @@ Synchronous fstat(2). Returns an instance of `fs.Stats`.
 Asynchronous link(2). No arguments other than a possible exception are given to
 the completion callback.
 
-异步同步调用link(2)，除非回调函数执行过程出现了异常，否则不会传递任何参数。
+异步同步调用link(2)，创建符号连接，除非回调函数执行过程出现了异常，否则不会传递任何参数。
 
 ### fs.linkSync(srcpath, dstpath)
 
@@ -225,7 +225,7 @@ Synchronous realpath(2). Returns the resolved path.
 Asynchronous unlink(2). No arguments other than a possible exception are given
 to the completion callback.
 
-异步同步调用unlink(2)，除非回调函数执行过程出现了异常，否则不会传递任何参数。
+异步调用unlink(2)，删除连接或者文件，除非回调函数执行过程出现了异常，否则不会传递任何参数。
 
 ### fs.unlinkSync(path)
 
@@ -265,15 +265,15 @@ Asynchronous readdir(3).  Reads the contents of a directory.
 The callback gets two arguments `(err, files)` where `files` is an array of
 the names of the files in the directory excluding `'.'` and `'..'`.
 
-异步调用readdir(3)，读取文件目录内容，回调函数返回两个参数`(err, files)` ,
-其中files以数组形式返回该目录下的文件列表，但不包括`'.'` 和 `'..'`。
+异步读取目录中的内容(readdir(3))。回调函数的第二个参数是以阵列构成的目录内
+对象的名称('.'与'..'除外)。(err, files) 
 
 ### fs.readdirSync(path)
 
 Synchronous readdir(3). Returns an array of filenames excluding `'.'` and
 `'..'`.
 
-同步调用readdir(3)，以数组形式返回该目录下的文件列表，但不包括`'.'` 和 `'..'`。
+同步读取目录中的内容(readdir(3))。返回以阵列构成的目录内对象名称('.'与'..'除外)。 
 
 ### fs.close(fd, [callback])
 
@@ -293,8 +293,8 @@ Synchronous close(2).
 Asynchronous file open. See open(2). Flags can be 'r', 'r+', 'w', 'w+', 'a',
 or 'a+'. The callback gets two arguments `(err, fd)`.
 
-异步打开文件，参见open(2)，Flags参数可以为'r', 'r+', 'w', 'w+', 'a',
-或者 'a+'，回调函数返回两个参数`(err, fd)`。
+异步开启文件，详阅 open(2)。标签可为'r', 'r+', 'w', 'w+', 'a', 或 'a+'。
+回调函数的第二个参数是指标。(err, fd) 
 
 ### fs.openSync(path, flags, mode=0666)
 
@@ -306,7 +306,7 @@ Synchronous open(2).
 
 Write `buffer` to the file specified by `fd`.
 
-根据`fd`参数将`buffer`内容写入文件。
+根据`fd`参数将`buffer`内容按照指定方式写入文件。
 
 `offset` and `length` determine the part of the buffer to be written.
 
@@ -317,7 +317,8 @@ should be written. If `position` is `null`, the data will be written at the
 current position.
 See pwrite(2).
 
-position指向待写入数据按文件从头部算起的偏移位置，数据将从当前位置开始写入。
+position指向待写入数据按文件从头部算起的偏移位置，若position为空，数据将从当前位置
+开始写入，详阅pwrite(2)
 
 The callback will be given two arguments `(err, written)` where `written`
 specifies how many _bytes_ were written.
@@ -359,7 +360,8 @@ Read data from the file specified by `fd`.
 `position` is an integer specifying where to begin reading from in the file.
 If `position` is `null`, data will be read from the current file position.
 
-`position`表识从哪个位置开始读取文件，如果`position`参数为`null`，数据将从文件当前位置开始读取。
+`position`为一个整形变量，标识从哪个位置开始读取文件，如果`position`参数为`null`，
+数据将从文件当前位置开始读取。
 
 The callback is given the two arguments, `(err, bytesRead)`.
 
@@ -511,8 +513,8 @@ Returns a new ReadStream object (See `Readable Stream`).
 the file instead of the entire file.  Both `start` and `end` are inclusive and
 start at 0.  When used, both the limits must be specified always.
 
-选项中还包括了`start` 和 `end`参数值表示需要读取文件哪块范围的字节数而不是
-读取整个文件，`start` 和 `end`已经包含在内且start默认为0，一旦启用，这两个参数都需要设置。
+选项中还包括了`start` 和 `end`参数值表示需要读取文件从`start` 到 `end`这个范围字节内容而不是
+读取整个文件，`start` 和 `end`包含在选项中并且start默认为0，一旦启用，这两个参数都需要设置。
 
 An example to read the last 10 bytes of a file which is 100 bytes long:
 
