@@ -3,8 +3,8 @@
 Datagram sockets are available through `require('dgram')`.  Datagrams are most commonly
 handled as IP/UDP messages but they can also be used over Unix domain sockets.
 
-通过执行`require('dgram')`用户数据报套接字功能就可以使用了。数据报通常以IP/UDP消息的形式处理，
-同时它也可用于Unix域的套接字接口
+要使用数据包SOCKET需要调用require('dgram')，数据报一般用来处理IP/UDP信息，
+但是数据报也可用在UNIX DOMAIN SOCKETS上 
 
 ### Event: 'message'
 
@@ -13,8 +13,8 @@ handled as IP/UDP messages but they can also be used over Unix domain sockets.
 Emitted when a new datagram is available on a socket.  `msg` is a `Buffer` and `rinfo` is
 an object with the sender's address information and the number of bytes in the datagram.
 
-当一个新的数据报载套接字上可用时派发.`msg`参数指向数据缓冲区，`rinfo`为一个对象，
-它包含了发送者的地址信息以及数据表的自己大小。
+当一个SOCKET接收到一个新的数据包的时候触发此事件，msg是缓冲区变量,rinfo是一个包含了发送者
+地址信息以及数据报字节长度的对象
 
 ### Event: 'listening'
 
@@ -23,8 +23,8 @@ an object with the sender's address information and the number of bytes in the d
 Emitted when a socket starts listening for datagrams.  This happens as soon as UDP sockets
 are created.  Unix domain sockets do not start listening until calling `bind()` on them.
 
-当套接字开始监听数据时派发。它发生在UDP套接字创建完毕的时候，不一样的是，Unix域套接字
-直到调用`bind()`函数后才会开始监听。
+当一个SOCKET开始监听数据报的时候触发，当UDP SOCKET建立后就会触发这个事件。而UNIX DOMAIN SOCKET
+直到在SOCKET上调用了bind()方法才会触发这个消息.
 
 ### Event: 'close'
 
@@ -33,18 +33,18 @@ are created.  Unix domain sockets do not start listening until calling `bind()` 
 Emitted when a socket is closed with `close()`.  No new `message` events will be emitted
 on this socket.
 
-当通过调用函数`close()`关闭一个套接字时派发。事件触发后该套接字将不会接收到新的消息事件。
+当一个SOCKET使用close()方法关闭时触发此事件.在此事件之后此SOCKET不会有任何消息事件被触发。
 
 ### dgram.createSocket(type, [callback])
 
 Creates a datagram socket of the specified types.  Valid types are:
 `udp4`, `udp6`, and `unix_dgram`.
 
-根据制定的类型创建数据报套接字，有效地类型包括：`udp4`, `udp6`, and `unix_dgram`。
+建立一个指定类型的数据报SOCKET,有效类型有:udp4,udp6,unix_dgram 
 
 Takes an optional callback which is added as a listener for `message` events.
 
-接受一个可选的回调函数作为`message`的事件监听器
+callback作为一个可选项，可作为message事件的监听器被加入 
 
 ### dgram.send(buf, offset, length, path, [callback])
 
@@ -54,14 +54,14 @@ by the OS.  It is not safe to re-use `buf` until the callback is invoked.  Note 
 unless the socket is bound to a pathname with `bind()` there is no way to receive messages
 on this socket.
 
-对于Unix域数据报套接字，目的地址对应文件系统路径。提供的回调函数将在`sendto`被系统调用完成后执行。
-在回调函数执行之前重新使用`buf`是不安全的。注意服务器端必须通过`bind()`函数将套接字绑定到文件系统路径上，
-否则该套接字接收不到消息。
+对于unix domain datagram xockets来说,他的目标地址是一个使用文件系统表示的路径名,callback作为
+一个可选项会在系统调用sendto完毕后被触发。除非 callback被触发，否则重复使用buf是很不安全的。
+要注意除非这个socket已经使用bind()方法绑定到一个路径名上，否则这个 SOCKET无法接收到任何信息。 
 
 
 Example of sending a message to syslogd on OSX via Unix domain socket `/var/run/syslog`:
 
-这是一个向基于OSX的Unix域发送消息的例子，套接字的文件系统路径为`/var/run/syslog`
+下面是一个通过unix domain socket /var/run/syslog发送消息到syslogd的例子： 
 
     var dgram = require('dgram');
     var message = new Buffer("A message to log.");
@@ -73,6 +73,9 @@ Example of sending a message to syslogd on OSX via Unix domain socket `/var/run/
         }
         console.log("Wrote " + bytes + " bytes to socket.");
     });
+    
+从MESSAGE中偏移为0的地方开始，长度为MESSAGE.LENGTH的这些内容通过/var/run/syslog发送系统调用发送后，将调用CALLBACK，
+如果有错误则抛出异常，否则console.log实际发送了多少个字节 
 
 ### dgram.send(buf, offset, length, port, address, [callback])
 
@@ -83,14 +86,14 @@ re-used.  Note that DNS lookups will delay the time that a send takes place, at
 least until the next tick.  The only way to know for sure that a send has taken place
 is to use the callback.
 
-对UDP套接字来说，必须指定目的端口和IP地址，ip地址通过`address`参数以字符串形式提供，
-并且提供的地址是可以被DNS所解析的。可选的回调函数可以用于检测是否发生了DNS错误
-以及`buf`是否被重新使用。注意DNS查询将会延迟send函数发生的时间，而唯一能确定send
-是否发生的方法就是使用回调函数进行检测。
+对于UDPSOCKETS来说，目标端口和IP地址是必须要指定的，可以用字符串来指定地址参数，并且
+这个参数是可以通过DNS解析的，CALLBACK 作为可选项可以检测到任何DNS错误和是否BUF重复使用了。
+请记住DNS查询将会使SEND动作最少延迟到下一个执行时间片发生，如果你想确定SEND方法是否发生，
+使用CALLBACK将是唯一的办法
 
 Example of sending a UDP packet to a random port on `localhost`;
 
-这是一个向本地随机端口发送UDP包的示例。
+下面是一个发送UDP数据包到本机一个随机端口的例子。
 
     var dgram = require('dgram');
     var message = new Buffer("Some bytes");
@@ -105,12 +108,12 @@ For Unix domain datagram sockets, start listening for incoming datagrams on a
 socket specified by `path`. Note that clients may `send()` without `bind()`,
 but no datagrams will be received without a `bind()`.
 
-对于Unix服务器来说，在套接字上开始监听数据必须指定路径`path`。
-注意客户端在执行`send()`时可能没有调用`bind()`函数绑定套接字，这样会导致客户端套接字无法接收到数据
+只有在Unxi DOMAIN DATAGRAM SOCKET中使用，该函数开始在一个指定路径上监听一个SOCKET过来的的数据报。
+要记得，客户端可以在没有调用BIND()方法就直接调用SEND()方法，但是不使用BIND()方法是无法接收到任何信息的。 
 
 Example of a Unix domain datagram server that echoes back all messages it receives:
 
-这是一个Unix域数据报服务端的例子，它将接收到的所有信息原封不动的返回给客户端
+下面是一个使用UNIX DOMAIN 数据包服务器来做接受信息回显的例子： 
 
     var dgram = require("dgram");
     var serverPath = "/tmp/dgram_server_sock";
@@ -129,7 +132,7 @@ Example of a Unix domain datagram server that echoes back all messages it receiv
 
 Example of a Unix domain datagram client that talks to this server:
 
-这是Unix域数据报客户端与服务器端通信的例子
+下面是一个UNIX DOMAIN DATAGRAM 客户端与服务器交互的例子 
 
     var dgram = require("dgram");
     var serverPath = "/tmp/dgram_server_sock";
@@ -155,10 +158,12 @@ Example of a Unix domain datagram client that talks to this server:
 For UDP sockets, listen for datagrams on a named `port` and optional `address`.  If
 `address` is not specified, the OS will try to listen on all addresses.
 
-对UDP套接字来说，套接字将会监听来自端口port和地址address的数据，如果`address`未指定，操作
-系统将尝试监听所有的地址。
+对于UDP SOCKETS，这个方法会在指定端口和可选地址上监听，如果地址没有指定，
+则系统会尝试监听所有有效地址。 
 
 Example of a UDP server listening on port 41234:
+
+下面是一个监听在41234端口的UDP服务器的例子 
 
     var dgram = require("dgram");
 
@@ -185,8 +190,7 @@ Example of a UDP server listening on port 41234:
 Close the underlying socket and stop listening for data on it.  UDP sockets
 automatically listen for messages, even if they did not call `bind()`.
 
-关闭套接字并停止监听该套接字上的数据。
-注意即使没有通过`bind()`进行绑定，UDP套接字也会自动监听所有的消息。
+这个方法关闭非延迟的SOCKET并且停止在其上监听数据。即使没有调用BIND()方法UDP SOCKET也会自动监听消息，
 
 ### dgram.address()
 
@@ -194,8 +198,8 @@ Returns an object containing the address information for a socket.  For UDP sock
 this object will contain `address` and `port`.  For Unix domain sockets, it will contain
 only `address`.
 
-返回包含套接字地址信息的对象。对UDP套接字来说，该对象包含属性`address`和`port`，
-而对Unix域的套接字来说仅包含`address`。
+返回包含SOCKET地址信息的一个对象，对于UDP SOCKETS来说，这个对象将包含地址和端口，
+对于UNIX DOMAIN SOCKETS来说，这个对象仅包含地址 
 
 ### dgram.setBroadcast(flag)
 
@@ -214,14 +218,15 @@ gateway that forwards a packet decrements the TTL.  If the TTL is decremented to
 router, it will not be forwarded.  Changing TTL values is typically done for network
 probes or when multicasting.
 
-设置套接字的`IP_TTL`选项。TTL全称"Time to Live"，原指存活时间，但在这里它指定了数据报
-在网络上允许经过的IP跳数。如果数据报的TTL值到达路由时递减至0，那么它将不会继续传播。
-当进行多路传播或者进行网络预测时通常需要修改TTL值。
+设置IP_TTL这个选项，TTL表示“存活时间”，但是在这个上下文环境中，他也可以指定IP的HOPS（
+每个节点在转发数据包时的消耗。如果 Hop limit 消耗到0，则取消数据包）来确定一个数据包大致允许经过多少节点。
+每经过个路由器或者网关都会减少TTL数值，如果TTL被一个路由器减少到0，这个数据报将不会继续转发，
+修改TTL数值经常用来当网络探针或者作为数据多播使用 
 
 The argument to `setTTL()` is a number of hops between 1 and 255.  The default on most
 systems is 64.
 
-`setTTL()`的参数指明了从1至255的跳数，操作系统的默认值为64。
+ttl用来设置HOPS的数值从1到255，大多数系统缺省会设置为64 
 
 ### dgram.setMulticastTTL(ttl)
 
@@ -250,12 +255,12 @@ packets will also be received on the local interface.
 
 Tells the kernel to join a multicast group with `IP_ADD_MEMBERSHIP` socket option.
 
-该方法告诉内核地址加入到多路传播地址组中，并设置`IP_ADD_MEMBERSHIP`套接字选项
+该方法告诉内核将数据报添加到多路传播地址组中，并设置`IP_ADD_MEMBERSHIP`套接字选项
 
 If `multicastAddress` is not specified, the OS will try to add membership to all valid
 interfaces.
 
-如果`multicastAddress`没有指定，操作系统会尝试将该地址加入到
+如果`multicastAddress`没有指定，操作系统会尝试将该数据报添加到所有有效地有效的接口中
 
 ### dgram.dropMembership(multicastAddress, [multicastInterface])
 
@@ -264,10 +269,10 @@ Opposite of `addMembership` - tells the kernel to leave a multicast group with
 when the socket is closed or process terminates, so most apps will never need to call
 this.
 
-与`addMembership`相反，该方法告诉内核清除套接字的`IP_DROP_MEMBERSHIP`选项。
-当套接字关闭或进程销毁时该操作会自动执行，所以大部分的应用不需要手动调用该方法。
+与`addMembership`相反，该方法告诉系统内核清除套接字的`IP_DROP_MEMBERSHIP`选项。
+由于当套接字关闭或进程销毁时该操作会自动执行，所以大部分的应用不需要手动调用该方法。
 
 If `multicastAddress` is not specified, the OS will try to drop membership to all valid
 interfaces.
 
-如果`multicastAddress`没有指定，操作系统会尝试将所有有效接口
+如果`multicastAddress`没有指定，操作系统会尝试将数据报从所有有效接口中丢弃掉
