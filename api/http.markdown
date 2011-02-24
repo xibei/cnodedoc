@@ -2,7 +2,7 @@
 
 To use the HTTP server and client one must `require('http')`.
 
-è¦ä½¿ç”¨httpæœåŠ¡å’Œå®¢æˆ·ç«¯çš„åŠŸèƒ½ï¼Œä½ å¿…é¡»æ‰§è¡Œ`require('http')`ã€‚
+Èç¹ûÒªÊ¹ÓÃHTTPµÄserverÒÔ¼°clientÄ£¿éÔò±ØĞëÊ¹ÓÃrequire('http')¼ÓÔØhttpÄ£¿é 
 
 The HTTP interfaces in Node are designed to support many features
 of the protocol which have been traditionally difficult to use.
@@ -10,13 +10,12 @@ In particular, large, possibly chunk-encoded, messages. The interface is
 careful to never buffer entire requests or responses--the
 user is able to stream data.
 
-HTTPæ¥å£è¢«è®¾è®¡ä¸ºå¯ä»¥æ”¯æŒè®¸å¤šç‰¹åˆ«çš„åè®®ï¼ŒåŒ…æ‹¬é‚£äº›é€šå¸¸éå¸¸éš¾ä»¥ä½¿ç”¨çš„åè®®ï¼Œç‰¹åˆ«çš„ï¼Œ
-large, possibly chunk-encoded, messagesã€‚è¯¥æ¥å£æ…é‡åˆ°åˆ°ä»ä¸ä½¿ç”¨è¯·æ±‚ç¼“å†²åŒºï¼Œ
-ä¹Ÿå°±æ˜¯è¯´ç”¨æˆ·å¯ä»¥ç›´æ¥æ“ä½œæµæ•°æ®ã€‚
+NODEÖĞµÄHTTP½Ó¿Ú±»Éè¼Æ³ÉÎªÖ§³ÖHTTPĞ­ÒéµÄºÜ¶àÌØĞÔ£¬ÕâĞ©ÌØĞÔÍ¨³£ÄÇÄÑÒÔÕÆ¿Ø£¬ÌØ±ğÊÇ large,possible chunk-encoded(¿é±àÂë),messages¡£ 
+Õâ¸ö½Ó¿ÚÌØÒâ²»»º³åÕû¸öÇëÇó(request)»òÕßÏìÓ¦(responses)Ê¹ÓÃ»§¿ÉÒÔÊ¹ÓÃÁ÷µÄĞÎÊ½²Ù×÷Êı¾İ¡£ 
 
 HTTP message headers are represented by an object like this:
 
-HTTPæ¶ˆæ¯å¤´å¯ä»¥ç”¨ç±»ä¼¼ä¸‹é¢çš„å¯¹è±¡è¡¨ç¤ºï¼š
+ÒÔÏÂÊÇÓÃ¶ÔÏóµÄĞÎÊ½±íÊ¾µÄHTTPĞÅÏ¢Í· 
 
     { 'content-length': '123',
       'content-type': 'text/plain',
@@ -25,22 +24,21 @@ HTTPæ¶ˆæ¯å¤´å¯ä»¥ç”¨ç±»ä¼¼ä¸‹é¢çš„å¯¹è±¡è¡¨ç¤ºï¼š
 
 Keys are lowercased. Values are not modified.
 
-å‚æ•°éƒ½æ˜¯å°å†™ï¼Œå¹¶ä¸”å‚æ•°å€¼æ˜¯ä¸å¯ä»¥è¢«æ›´æ”¹çš„
+ËùÓĞkey¶¼ÊÇĞ¡Ğ´£¬ÊıÖµ²»ÄÜ±»ĞŞ¸Ä 
 
 In order to support the full spectrum of possible HTTP applications, Node's
 HTTP API is very low-level. It deals with stream handling and message
 parsing only. It parses a message into headers and body but it does not
 parse the actual headers or the body.
 
-ä¸ºäº†å°½å¯èƒ½åœ°æ”¯æŒå…¨éƒ¨çš„HTTPåº”ç”¨ï¼ŒNodeçš„HTTPåº”ç”¨ç¨‹åºæ¥å£æ˜¯ä½çº§çš„ï¼Œ
-å®ƒåªè´Ÿè´£å¤„ç†æµå’Œè§£ææ¶ˆæ¯ã€‚å®ƒå°†ä¸€ä¸ªæ¶ˆæ¯è§£æä¸ºæ¶ˆæ¯å¤´å’Œæ¶ˆæ¯ä½“ï¼Œ
-ä½†å¹¶ä¸è§£æå®é™…çš„æ¶ˆæ¯å¤´å’Œæ¶ˆæ¯ä½“ï¼Ÿ
+ÎªÁËÖ§³Ö¾¡¿ÉÄÜ¶àµÄHTTPÓ¦ÓÃ£¬NODEµÄHTTP API·Ç³£µ×²ã¡£ ÆäÖ»´¦Àíµ½Á÷(stream)Ïà¹ØµÄ²Ù×÷ÒÔ¼°ĞÅÏ¢½âÎö¡£
+API½«ĞÅÏ¢½âÎö³ÉÎªĞÅÏ¢Í·ºÍĞÅÏ¢Ìå£¬µ«²¢²»½âÎöÊµ¼ÊµÄĞÅÏ¢Í·ºÍĞÅÏ¢ÌåµÄ¾ßÌåÄÚÈİ¡£
 
 ## http.Server
 
 This is an `EventEmitter` with the following events:
 
-è¿™æ˜¯ä¸€ä¸ªäº‹ä»¶æ´¾å‘å™¨ï¼Œå®ƒåŒ…å«å¦‚ä¸‹äº‹ä»¶ï¼š
+´ËÄ£¿é»á´¥·¢ÒÔÏÂÊÂ¼ş 
 
 ### Event: 'request'
 
@@ -49,7 +47,7 @@ This is an `EventEmitter` with the following events:
  `request` is an instance of `http.ServerRequest` and `response` is
  an instance of `http.ServerResponse`
  
-  `request`æ˜¯`http.ServerRequest`çš„ä¸€ä¸ªå®ä¾‹ï¼Œè€Œ`response`æ˜¯`http.ServerResponse`çš„ä¸€ä¸ªå®ä¾‹
+`request`ÊÇ`http.ServerRequest`µÄÒ»¸öÊµÀı£¬¶ø`response`ÊÇ`http.ServerResponse`µÄÒ»¸öÊµÀı
  
 ### Event: 'connection'
 
@@ -59,8 +57,8 @@ This is an `EventEmitter` with the following events:
  `net.Stream`. Usually users will not want to access this event. The
  `stream` can also be accessed at `request.connection`.
  
- å½“ä¸€ä¸ªæ–°çš„TCPæµå»ºç«‹æ—¶ï¼Œ`stream`æ˜¯`net.Stream`ç±»çš„ä¸€ä¸ªå¯¹è±¡ï¼Œé€šå¸¸ç”¨æˆ·
-ä¸å¸Œæœ›ä½¿ç”¨æ­¤äº‹ä»¶ï¼Œ `stream`ä¹Ÿå¯ä»¥é€šè¿‡`request.connection`è®¿é—®åˆ°ã€‚
+µ±Ò»¸öĞÂµÄTCP stream½¨Á¢ºó·¢³ö´ËÏûÏ¢¡£streamÊÇÒ»¸önet.StreamµÄ¶ÔÏó£¬
+Í¨³£ÓÃ»§²»»á·ÃÎÊ/Ê¹ÓÃÕâ¸öÊÂ¼ş¡£²ÎÊıstreamÒ²¿ÉÒÔÔÚrequest.connectionÖĞ·ÃÎÊµ½. 
 
 ### Event: 'close'
 
@@ -68,7 +66,7 @@ This is an `EventEmitter` with the following events:
 
  Emitted when the server closes.
  
- å½“æœåŠ¡å™¨å…³é—­æ—¶æ´¾å‘äº‹ä»¶
+µ±·şÎñÆ÷¹Ø±ÕµÄÊ±ºò´¥·¢´ËÊÂ¼ş¡£ 
 
 ### Event: 'request'
 
@@ -77,7 +75,7 @@ This is an `EventEmitter` with the following events:
 Emitted each time there is request. Note that there may be multiple requests
 per connection (in the case of keep-alive connections).
 
-æ¯æ¬¡è¯·æ±‚åˆ°è¾¾æ—¶æ´¾å‘äº‹ä»¶ï¼Œæ³¨æ„å¯èƒ½åŒä¸€ä¸ªè¿æ¥ä¼šæœ‰å¤šä¸ªè¯·æ±‚ï¼ˆå¦‚æœæ˜¯ä¿æŒæ´»åŠ¨çš„è¿æ¥ï¼‰
+Ã¿¸öÇëÇó·¢ÉúµÄÊ±ºò¾ù»á±»´¥·¢¡£Çë¼Ç×¡£¬Ã¿¸öÁ¬½Ó¿ÉÄÜ»áÓĞ¶à¸öÇëÇó(ÔÚkeep-aliveÁ¬½ÓÇé¿öÏÂ) 
 
 ### Event: 'checkContinue'
 
@@ -87,21 +85,21 @@ Emitted each time a request with an http Expect: 100-continue is received.
 If this event isn't listened for, the server will automatically respond
 with a 100 Continue as appropriate.
 
-æ¯å½“è¯·æ±‚æœŸæœ›æ¥æ”¶åˆ°100-continueæ—¶æ´¾å‘ï¼Œå¦‚æœè¯¥äº‹ä»¶æœªè¢«ç›‘å¬ï¼ŒæœåŠ¡å™¨ä¼šè‡ªåŠ¨
-è¿”å›100-continueç»™å®¢æˆ·ç«¯ã€‚
+Ã¿µ±ÇëÇóÆÚÍû½ÓÊÕµ½100-continueÊ±ÅÉ·¢£¬Èç¹û¸ÃÊÂ¼şÎ´±»¼àÌı£¬·şÎñÆ÷»á×Ô¶¯
+·µ»Ø100-continue¸ø¿Í»§¶Ë¡£
 
 Handling this event involves calling `response.writeContinue` if the client
 should continue to send the request body, or generating an appropriate HTTP
 response (e.g., 400 Bad Request) if the client should not continue to send the
 request body.
 
-è¯¥äº‹ä»¶çš„å¤„ç†æ¶‰åŠä¸¤ç§æƒ…å†µï¼Œå¦‚æœå®¢æˆ·ç«¯åº”å½“ç»§ç»­å‘é€è¯·æ±‚ä½“ï¼Œé‚£ä¹ˆéœ€è¦è°ƒç”¨response.writeContinueï¼Œ
-è€Œå¦‚æœå®¢æˆ·ç«¯ä¸åº”è¯¥ç»§ç»­å‘é€è¯·æ±‚æ­£æ–‡ï¼Œé‚£ä¹ˆåº”è¯¥äº§ç”Ÿä¸€ä¸ªé€‚å½“çš„HTTPååº”ï¼ˆå¦‚400é”™è¯¯è¯·æ±‚ï¼‰ã€‚
+¸ÃÊÂ¼şµÄ´¦ÀíÉæ¼°Á½ÖÖÇé¿ö£¬Èç¹û¿Í»§¶ËÓ¦µ±¼ÌĞø·¢ËÍÇëÇóÌå£¬ÄÇÃ´ĞèÒªµ÷ÓÃresponse.writeContinue£¬
+¶øÈç¹û¿Í»§¶Ë²»Ó¦¸Ã¼ÌĞø·¢ËÍÇëÇóÕıÎÄ£¬ÄÇÃ´Ó¦¸Ã²úÉúÒ»¸öÊÊµ±µÄHTTP·´Ó¦£¨Èç400´íÎóÇëÇó£©¡£
 
 Note that when this event is emitted and handled, the `request` event will
 not be emitted.
 
-æ³¨æ„å¦‚æœè¯¥äº‹ä»¶è¢«æ´¾å‘å¹¶å¤„ç†çš„è¯ï¼Œé‚£ä¹ˆå°†ä¸å†æ´¾å‘`request`äº‹ä»¶ã€‚
+×¢ÒâÈç¹û¸ÃÊÂ¼ş±»ÅÉ·¢²¢´¦ÀíµÄ»°£¬ÄÇÃ´½«²»ÔÙÅÉ·¢`request`ÊÂ¼ş¡£
 
 ### Event: 'upgrade'
 
@@ -111,15 +109,24 @@ Emitted each time a client requests a http upgrade. If this event isn't
 listened for, then clients requesting an upgrade will have their connections
 closed.
 
-å½“æ¯æ¬¡å®¢æˆ·ç«¯è¯·æ±‚åˆ·æ–°æ—¶æ´¾å‘ï¼Œå¦‚æœè¯¥äº‹ä»¶æ²¡æœ‰è¢«ç›‘å¬ï¼Œé‚£ä¹ˆå®¢æˆ·ç«¯åˆ·æ–°è¯·æ±‚
+Ã¿µ±Ò»¸ö¿Í»§¶ËÇëÇóÒ»¸öhttp upgradeÊ±ºò·¢³ö´ËÏûÏ¢¡£Èç¹ûÕâ¸öÊÂ¼şÃ»ÓĞ¼àÌı£¬
+ÄÇÃ´ÇëÇóupgradeµÄ¿Í»§¶Ë¶ÔÓ¦µÄÁ¬½Ó½«±»¹Ø±Õ¡£ 
 
 * `request` is the arguments for the http request, as it is in the request event.
+²ÎÊı¡°request¡±´ú±íÒ»¸öhttpÇëÇó£¬ºÍ'request'ÊÂ¼şµÄ²ÎÊıÒâÒåÏàÍ¬¡£
+
 * `socket` is the network socket between the server and client.
+socketÊÇÔÚ·şÎñÆ÷Óë¿Í»§¶ËÖ®¼äÁ¬½ÓÓÃµÄÍøÂçsocket 
+
 * `head` is an instance of Buffer, the first packet of the upgraded stream, this may be empty.
+headÊÇBufferµÄÒ»¸öÊµÀı,ÊÇupgraded stream(Éı¼¶°æstream....Ó¦µ±¾ÍÊÇhttp upgrade)Ëù·¢³öµÄµÚÒ»¸ö°ü£¬Õâ¸ö²ÎÊı¿ÉÒÔÎª¿Õ¡£ 
 
 After this event is emitted, the request's socket will not have a `data`
 event listener, meaning you will need to bind to it in order to handle data
 sent to the server on that socket.
+
+µ±´ËÊÂ¼ş±»´¥·¢ºó£¬¸ÃÇëÇóËùÊ¹ÓÃµÄsocket²¢²»»áÓĞÒ»¸öÊı¾İÊÂ¼şµÄ¼àÌıÕß,ÕâÒâÎ¶×ÅÄãÈç¹ûĞèÒª
+´¦ÀíÍ¨¹ıÕâ¸öSOCKET·¢ËÍµ½·şÎñÆ÷¶ËµÄÊı¾İµÄ»°ÔòĞèÒª×Ô¼º°ó¶¨Êı¾İÊÂ¼ş¼àÌıÆ÷ 
 
 ### Event: 'clientError'
 
@@ -127,18 +134,18 @@ sent to the server on that socket.
 
 If a client connection emits an 'error' event - it will forwarded here.
 
-å¦‚æœå®¢æˆ·ç«¯è¿æ¥æ—¶å‡ºç°äº†é”™è¯¯ï¼Œå°†ä¼šè½¬åˆ°è¿™ä¸ªäº‹ä»¶ã€‚
+Èç¹ûÒ»¸ö¿Í»§¶ËÁ¬½ÓµÄ'error'ÊÂ¼ş±»´¥·¢£¬´Ëº¯Êı½«±»Ö´ĞĞ¡£ 
 
 ### http.createServer(requestListener)
 
 Returns a new web server object.
 
-è¿”å›ä¸€ä¸ªæ–°çš„webæœåŠ¡å¯¹è±¡ã€‚
+·µ»ØÒ»¸öĞÂµÄweb server¶ÔÏó¡£ 
 
 The `requestListener` is a function which is automatically
 added to the `'request'` event.
 
-`requestListener`æ˜¯ä¸€ä¸ªè‡ªåŠ¨ä¼šæ³¨å†Œåˆ°`'request'`äº‹ä»¶ä¸Šçš„å‡½æ•°
+requestListenerÊÇÒ»¸ö»áÈ¥×Ô¶¯¼àÌı'request'ÊÂ¼şµÄº¯Êı¡£ 
 
 ### server.listen(port, [hostname], [callback])
 
@@ -146,45 +153,43 @@ Begin accepting connections on the specified port and hostname.  If the
 hostname is omitted, the server will accept connections directed to any
 IPv4 address (`INADDR_ANY`).
 
-å¼€å§‹åœ¨æŒ‡å®šçš„ç«¯å£å’Œä¸»æœºåä¸Šæ¥å—è¿æ¥ï¼Œå¦‚æœå¿½ç•¥äº†ä¸»æœºåï¼ŒæœåŠ¡å™¨ç«¯å°†æ¥å—æ¥è‡ª
-IPv4åœ°å€çš„ä»»ä½•ä¸€ä¸ªè¿æ¥(`INADDR_ANY`)ã€‚
+ÔÚÖ¸¶¨¶Ë¿ÚºÍÖ÷»úÃûÉÏ½ÓÊÜÁ¬½Ó¡£Èç¹ûhostnameÃ»ÓĞĞ´,Õâ¸ö·şÎñÆ÷½«Ö±½ÓÔÚ´Ë»úÆ÷µÄ
+ËùÓĞIPV4µØÖ·ÉÏ½ÓÊÜÁ¬½Ó(INADDR_ANY). 
 
 To listen to a unix socket, supply a filename instead of port and hostname.
 
-ç›‘å¬ä¸€ä¸ªunixçš„å¥—æ¥å­—çš„è¯ï¼Œéœ€è¦æä¾›æ–‡ä»¶åå–ä»£ç«¯å£å·å’Œä¸»æœºåã€‚
+Èç¹ûÒªÔÚUNIX SOCKETÉÏ¼àÌıµÄ»°£¬ÔòĞèÒªÌá¹©Ò»¸öÎÄ¼şÃûÀ´Ìæ»»¶Ë¿ÚºÍÖ÷»úÃû. 
 
 This function is asynchronous. The last parameter `callback` will be called
 when the server has been bound to the port.
 
-è¯¥å‡½æ•°æ˜¯å¼‚æ­¥çš„ï¼Œæœ€åä¸€ä¸ªå‚æ•°`callback`æ˜¯å›è°ƒå‡½æ•°ï¼Œå½“æœåŠ¡ç«¯ç»‘å®šåˆ°ç«¯å£åå°†è¢«è°ƒç”¨ã€‚
+Õâ¸ö·½·¨ÊÇÒ»¸öÒì²½µÄ·½·¨£¬×÷Îª×îºóÒ»¸ö²ÎÊıµÄ»Øµ÷·½·¨½«ÔÚ·şÎñÆ÷ÒÑ¾­ÔÚ´Ë¶Ë¿ÚÉÏ°ó¶¨ºÃºó±»µ÷ÓÃ. 
 
 ### server.listen(path, [callback])
 
 Start a UNIX socket server listening for connections on the given `path`.
 
-å¯åŠ¨UNIXå¥—æ¥å­—æœåŠ¡ç«¯ï¼Œç›‘å¬æŒ‡å®š`path`çš„æ‰€æœ‰è¿æ¥ã€‚
+½¨Á¢Ò»¸öUNIX SOCKET·şÎñÆ÷²¢ÔÚÖ¸¶¨Â·¾¶¼àÌı¡£ 
 
 This function is asynchronous. The last parameter `callback` will be called
 when the server has been bound.
 
-è¯¥å‡½æ•°æ˜¯å¼‚æ­¥çš„ï¼Œæœ€åä¸€ä¸ªå‚æ•°`callback`æ˜¯å›è°ƒå‡½æ•°ï¼Œå½“æœåŠ¡ç«¯ç»‘å®šåˆ°ç«¯å£åå°†è¢«è°ƒç”¨ã€‚
+Õâ¸ö·½·¨ÊÇÒ»¸öÒì²½µÄ·½·¨£¬×÷Îª×îºóÒ»¸ö²ÎÊıµÄ»Øµ÷·½·¨½«ÔÚ·şÎñÆ÷ÒÑ¾­ÔÚ´Ë¶Ë¿ÚÉÏ°ó¶¨ºÃºó±»µ÷ÓÃ¡£ 
 
 ### server.close()
 
-Stops the server from accepting new connections.
-
-åœæ­¢æœåŠ¡æ¥å—æ–°çš„è¿æ¥ã€‚
+Ê¹´Ë·şÎñÆ÷Í£Ö¹½ÓÊÜÈÎºÎĞÂÁ¬½Ó¡£ 
 
 ## http.ServerRequest
 
 This object is created internally by a HTTP server -- not by
 the user -- and passed as the first argument to a `'request'` listener.
 
-è¯¥å¯¹è±¡ç”±HTTPæœåŠ¡å™¨å†…éƒ¨åˆ›å»ºï¼Œè€Œä¸æ˜¯ç”±ç”¨æˆ·åˆ›å»ºï¼Œå¹¶å°†å…¶ä¼ é€’åˆ°`'request'`ç›‘å¬å™¨ä¸­çš„ç¬¬ä¸€ä¸ªå‚æ•°ã€‚
+Õâ¸ö¶ÔÏóÍ¨³£ÓÉHTTP SERVER½¨Á¢¶ø·ÇÓÃ»§ÊÖ¶¯½¨Á¢£¬²¢ÇÒ»á×÷Îª´«µİ¸ø 'request'ÊÂ¼ş¼àÌıÆ÷µÚÒ»¸ö²ÎÊı
 
 This is an `EventEmitter` with the following events:
 
-è¿™æ˜¯ä¸€ä¸ªäº‹ä»¶æ´¾å‘å™¨ï¼Œå®ƒåŒ…å«å¦‚ä¸‹äº‹ä»¶ï¼š
+´Ë¶ÔÏóµÄ¿ÉÒÔ´¥·¢ÒÔÏÂÊÂ¼ş£º 
 
 ### Event: 'data'
 
@@ -192,15 +197,15 @@ This is an `EventEmitter` with the following events:
 
 Emitted when a piece of the message body is received.
 
-å½“æ¶ˆæ¯æ­£æ–‡è¢«æ¥æ”¶åˆ°æ—¶è§¦å‘ã€‚
+µ±½ÓÊÕµ½ĞÅÏ¢ÌåÖĞµÄÒ»²¿·ÖÊ±ºò»á·¢³ödataÊÂ¼ş¡£ 
 
 Example: A chunk of the body is given as the single
 argument. The transfer-encoding has been decoded.  The
 body chunk is a string.  The body encoding is set with
 `request.setBodyEncoding()`.
 
-ä¾‹å¦‚ï¼šæ¶ˆæ¯ä½“çš„éƒ¨åˆ†ä½œä¸ºä¸€ä¸ªç‹¬ç«‹å‚æ•°ï¼Œåœ¨ä¼ è¾“ç¼–ç è¿‡åå°†è¢«è§£ç ä¸ºä¸€ä¸ªå­—ç¬¦ä¸²ï¼Œ
-æ¶ˆæ¯ä½“çš„ç¼–ç å¯ä»¥é€šè¿‡`request.setBodyEncoding()`è®¾ç½®ã€‚
+ÀıÈç:´ú±íÏûÏ¢ÌåµÄÊı¾İ¿é½«×÷ÎªÎ¨Ò»µÄ²ÎÊı´«µİ¸ø»Øµ÷º¯Êı¡£Õâ¸öÊ±ºòÊı¾İÒÑ¾­°´ÕÕ´«Êä±àÂë
+½øĞĞÁË½âÂë£¨²»ÊÇ×Ö·û¼¯±àÂë£©¡£ÏûÏ¢Ìå±¾ÉíÊÇÒ»¸ö×Ö·û´®£¬¿ÉÒÔÊ¹ÓÃrequest.setBodyEncoding()·½·¨Éè¶¨ÏûÏ¢ÌåµÄ±àÂë¡£ 
 
 ### Event: 'end'
 
@@ -209,21 +214,21 @@ body chunk is a string.  The body encoding is set with
 Emitted exactly once for each message. No arguments.  After
 emitted no other events will be emitted on the request.
 
-æ¯ä¸ªæ¶ˆæ¯åªä¼šæ´¾å‘ä¸€æ¬¡è¯¥äº‹ä»¶ï¼Œå¦‚æœäº‹ä»¶æ´¾å‘åå°†ä¸ä¼šæœ‰ä»»ä½•äº‹ä»¶ä»è¿™ä¸ªè¯·æ±‚æ´¾å‘å‡ºå»ã€‚
+Ã¿´ÎÍêÈ«½ÓÊÕÍêĞÅÏ¢ºó¶¼»á´¥·¢Ò»´Î¡£Ã»ÓĞ²ÎÊı£¬µ±Õâ¸öÊÂ¼ş·¢³öºó£¬½«²»»áÔÙ´¥·¢ÆäËûÊÂ¼ş¡£ 
 
 ### request.method
 
 The request method as a string. Read only. Example:
 `'GET'`, `'DELETE'`.
 
-ä»¥å­—ç¬¦ä¸²å½¢å¼è¿”å›è¯·æ±‚çš„æ–¹æ³•ï¼Œè¯¥å€¼æ˜¯åªè¯»çš„ï¼Œä¾‹å¦‚ï¼š`'GET'`, `'DELETE'`ã€‚
+request.methodÊÇÒ»¸öÖ»¶Á×Ö·û´®¡£ÀıÈç'GET','DELETE' 
 
 ### request.url
 
 Request URL string. This contains only the URL that is
 present in the actual HTTP request. If the request is:
 
-è¯·æ±‚URLä¸²,å®ƒä»…åŒ…å«å®é™…HTTPè¯·æ±‚çš„åœ°å€ï¼Œå¦‚æœè¯·æ±‚æ˜¯è¿™æ ·çš„ï¼š
+´ú±íËùÇëÇóµÄURL×Ö·û´®.Ëû½ö°üÀ¨Êµ¼ÊµÄHTTPÇëÇóÖĞµÄURLµØÖ·¡£Èç¹ûÕâ¸öÇëÇóÊÇ 
 
     GET /status?name=ryan HTTP/1.1\r\n
     Accept: text/plain\r\n
@@ -231,14 +236,14 @@ present in the actual HTTP request. If the request is:
 
 Then `request.url` will be:
 
-é‚£ä¹ˆ`request.url`ä¸º
+Ôòrequest.url Ó¦µ±ÊÇ 
 
     '/status?name=ryan'
 
 If you would like to parse the URL into its parts, you can use
 `require('url').parse(request.url)`.  Example:
 
-å¦‚æœä½ æƒ³å°†URLéƒ¨åˆ†è§£æå‡ºæ¥ï¼Œä½ å¯ä»¥ä½¿ç”¨`require('url').parse(request.url)`ï¼Œä¾‹å¦‚ï¼š
+Èç¹ûÄãÏëÒª½âÎöÕâ¸öURLÖĞµÄ¸÷¸ö²¿·Ö£¬ÄãÓ¦µ±Ê¹ÓÃ require('url').parse(request.url). 
 
     node> require('url').parse('/status?name=ryan')
     { href: '/status?name=ryan',
@@ -250,8 +255,8 @@ If you would like to extract the params from the query string,
 you can use the `require('querystring').parse` function, or pass
 `true` as the second argument to `require('url').parse`.  Example:
 
-å¦‚ä½ æƒ³å°†æŸ¥è¯¢å­—ç¬¦ä¸²è§£æä¸ºå‚æ•°å½¢å¼ï¼Œå¯ä»¥ä½¿ç”¨`require('querystring').parse`å‡½æ•°ï¼Œ
-æˆ–è€…å°†`require('url').parse`å‡½æ•°çš„ç¬¬äºŒä¸ªå‚æ•°ç½®ä¸ºtrueã€‚
+Èç¹ûÄãÏë´Ó²éÑ¯×Ö·û´®ÖĞÌá³öÕâĞ©²ÎÊı£¬Äã¿ÉÒÔÊ¹ÓÃrequire('querystring').parse·½·¨,
+»òÕß´«Ò»¸ötrue×÷ÎªµÚ¶ş¸ö²ÎÊı¸ørequire('url').parse·½·¨¡£ 
 
     node> require('url').parse('/status?name=ryan', true)
     { href: '/status?name=ryan',
@@ -265,13 +270,13 @@ you can use the `require('querystring').parse` function, or pass
 
 Read only.
 
-åªè¯»ã€‚
+Ö»¶Á¡£
 
 ### request.trailers
 
 Read only; HTTP trailers (if present). Only populated after the 'end' event.
 
-åªè¯»ï¼ŒHTTPå°¾éƒ¨ï¼ˆå¦‚æœå­˜åœ¨çš„è¯ï¼‰ï¼Œåªæœ‰åœ¨endäº‹ä»¶æ´¾å‘åè¯¥å€¼æ‰ä¼šè¢«å¡«å……ã€‚
+Ö»¶Á£¬HTTPÎ²²¿£¨Èç¹û´æÔÚµÄ»°£©£¬Ö»ÓĞÔÚendÊÂ¼şÅÉ·¢ºó¸ÃÖµ²Å»á±»Ìî³ä¡£
 
 ### request.httpVersion
 
@@ -280,50 +285,46 @@ The HTTP protocol version as a string. Read only. Examples:
 Also `request.httpVersionMajor` is the first integer and
 `request.httpVersionMinor` is the second.
 
-ä»¥å­—ç¬¦ä¸²å½¢å¼è¿”å›HTTPåè®®çš„ç‰ˆæœ¬ï¼Œåªè¯»ï¼Œä¾‹å¦‚ï¼š`'1.1'`, `'1.0'`ã€‚
-ä¹Ÿå¯ä»¥ä½¿ç”¨`request.httpVersionMajor`ï¼Œå®ƒæ˜¯ç‰ˆæœ¬å·çš„ç¬¬ä¸€ä½ï¼Œ
-`request.httpVersionMinor`å¯¹åº”ç‰ˆæœ¬å·çš„ç¬¬äºŒä½ã€‚
+ÕâÊÇHTTPĞ­Òé°æ±¾£¨×Ö·û´®ĞÎÊ½)£¬Ö»¶Á¡£ÀıÈç'1.1','1.0'¡£request.httpVersionMajorÊÇµÚÒ»¸öÊı×Ö£¬
+request.httpVersionMinorÊÇµÚ¶ş¸öÊı×Ö¡£ 
 
 ### request.setEncoding(encoding=null)
 
 Set the encoding for the request body. Either `'utf8'` or `'binary'`. Defaults
 to `null`, which means that the `'data'` event will emit a `Buffer` object..
 
-è®¾ç½®è¯·æ±‚æ­£æ–‡çš„ç¼–ç æ ¼å¼ï¼Œå¯ä»¥æ˜¯`'utf8'` æˆ–è€… `'binary'`ï¼Œé»˜è®¤å€¼ä¸º`null`ï¼Œ
-ä¹Ÿå°±æ˜¯è¯´`'data'`äº‹ä»¶ä¼šäº§ç”Ÿä¸€ä¸ª`Buffer`å¯¹è±¡ï¼Ÿ
+ÉèÖÃ´ËÇëÇóµÄ°üÌåµÄ×Ö¼¯±àÂë,'utf8'»òÕß'binary'¡£È±Ê¡ÖµÊÇnull£¬Õâ±íÊ¾'data'ÊÂ¼şµÄ²ÎÊı½«»áÊÇÒ»¸öBuffer¶ÔÏó¡£ 
 
 ### request.pause()
 
 Pauses request from emitting events.  Useful to throttle back an upload.
 
-åœæ­¢è¯¥è¯·æ±‚æ´¾å‘äº‹ä»¶ï¼Œåœ¨éœ€è¦åœæ­¢ä¸Šä¼ æ—¶éå¸¸æœ‰ç”¨ã€‚
+ÔİÍ£´Ërequest´¥·¢ÊÂ¼ş.¶ÔÓÚ¿ØÖÆÉÏ´«·Ç³£ÓĞÓÃ¡£ 
 
 ### request.resume()
 
 Resumes a paused request.
 
-æ¢å¤ä¸€ä¸ªæš‚åœçš„è¯·æ±‚ã€‚
+»Ö¸´Ò»¸öÔİÍ£µÄrequest¡£ 
 
 ### request.connection
 
 The `net.Stream` object associated with the connection.
 
-`net.Stream`å¯¹è±¡å’Œè¿æ¥ç›¸å…³è”ã€‚
+request.connectionÊÇÒ»¸ö´ú±íµ±Ç°Á¬½ÓµÄnet.Stream¶ÔÏó¡£ 
 
 With HTTPS support, use request.connection.verifyPeer() and
 request.connection.getPeerCertificate() to obtain the client's
 authentication details.
 
-æœ‰äº†HTTPSçš„æ”¯æŒï¼Œä½¿ç”¨request.connection.verifyPeer() å’Œ
-request.connection.getPeerCertificate()å¯ä»¥è·å¾—å®¢æˆ·ç«¯çš„éªŒè¯ä¿¡æ¯ã€‚
+¶ÔÓÚHTTPS£¬Ê¹ÓÃrequest.connection.verifyPeer() ºÍ request.connection.getPeerCertificate()À´»ñµÃ¿Í»§¶Ë£¨ä¯ÀÀÆ÷£©µÄÈÏÖ¤ÏêÇé¡£ 
 
 ## http.ServerResponse
 
 This object is created internally by a HTTP server--not by the user. It is
 passed as the second parameter to the `'request'` event. It is a `Writable Stream`.
 
-è¯¥å¯¹è±¡ç”±HTTPæœåŠ¡å™¨å†…éƒ¨åˆ›å»ºï¼Œè€Œä¸æ˜¯ç”±ç”¨æˆ·åˆ›å»ºï¼Œå®ƒå°†ä¼ é€’ç»™`'request'`äº‹ä»¶ç›‘å¬å‡½æ•°çš„
-ç¬¬äºŒä¸ªå‚æ•°ï¼Œè¡¨ç¤ºå¯å†™å…¥çš„æµ`Writable Stream`
+Õâ¸ö¶ÔÏóÒ»°ãÓÉHTTP·şÎñÆ÷½¨Á¢¶ø·ÇÓÃ»§×Ô¼ºÊÖ¶¯½¨Á¢¡£Ëü×÷Îª'request'ÊÂ¼şµÄµÚ¶ş¸ö²ÎÊı£¬ÕâÊÇÒ»¸ö¿ÉĞ´Á÷¡£
 
 ### response.writeContinue()
 
@@ -331,7 +332,7 @@ Sends a HTTP/1.1 100 Continue message to the client, indicating that
 the request body should be sent. See the the `checkContinue` event on
 `Server`.
 
-å‘é€HTTP/1.1 100 Continueç»§ç»­æ¶ˆæ¯ç»™å®¢æˆ·ç«¯ï¼Œè¯´æ˜è¯·æ±‚ä½“åº”å½“è¢«å‘é€ï¼Œå‚è§æœåŠ¡å™¨`Server`ä¸­çš„`checkContinue`äº‹ä»¶ã€‚
+·¢ËÍHTTP/1.1 100 Continue¼ÌĞøÏûÏ¢¸ø¿Í»§¶Ë£¬ËµÃ÷ÇëÇóÌåÓ¦µ±±»·¢ËÍ£¬²Î¼û·şÎñÆ÷`Server`ÖĞµÄ`checkContinue`ÊÂ¼ş¡£
 
 ### response.writeHead(statusCode, [reasonPhrase], [headers])
 
@@ -340,8 +341,8 @@ status code, like `404`. The last argument, `headers`, are the response headers.
 Optionally one can give a human-readable `reasonPhrase` as the second
 argument.
 
-å‘é€ä¸€ä¸ªå“åº”å¤´ç»™æŸä¸ªè¯·æ±‚ï¼ŒçŠ¶æ€ç ä¸º3ä½çš„HTTPçŠ¶æ€ç ï¼Œå°±åƒ`404`ï¼Œæœ€åä¸€ä¸ªå‚æ•°`headers`æ ‡è¯†å“åº”å¤´éƒ¨ä¿¡æ¯ï¼Œ
-ç¬¬äºŒä¸ªå‚æ•°`reasonPhrase`ä¸ºå¯é€‰é¡¹ï¼Œå¯ä»¥ç»™å‡ºæ˜“äºäººç†è§£çš„çŠ¶æ€æè¿°ä¿¡æ¯ã€‚
+Õâ¸ö·½·¨µÄÊÇÓÃÀ´·¢ËÍÒ»¸öÏìÓ¦±¨ÎÄÍ·¸ø±¾´ÎµÄÇëÇó·½£¬µÚÒ»¸ö²ÎÊı×´Ì¬ÂëÊÇÓÉÒ»¸ö3Î»Êı×ÖËù¹¹³ÉµÄHTTP×´Ì¬£¬
+±ÈÈç404Ö®ÀàµÄ¡£×îºóÒ»¸ö²ÎÊıheadersÊÇÏìÓ¦Í·¾ßÌåÄÚÈİ.Ò²¿ÉÒÔÊ¹ÓÃÒ»¸ö·½±ãÈËÃÇÖ±¹ÛÁË½âµÄreasonPhrase×÷ÎªµÚ¶ş¸ö²ÎÊı¡£ 
 
 Example:
 
@@ -353,12 +354,12 @@ Example:
 This method must only be called once on a message and it must
 be called before `response.end()` is called.
 
-è¯¥æ–¹æ³•å¯¹åº”æŸä¸ªæ¶ˆæ¯åªèƒ½è¢«è°ƒç”¨ä¸€æ¬¡ï¼Œå¹¶ä¸”å®ƒå¿…é¡»åœ¨`response.end()`å‡½æ•°ä¹‹å‰
+ÔÚÒ»´ÎÍêÕûĞÅÏ¢½»»¥ÖĞ´Ë·½·¨Ö»ÄÜµ÷ÓÃÒ»´Î£¬²¢ÇÒ±ØĞëÔÚµ÷ÓÃresponse.end()Ö®Ç°µ÷ÓÃ¡£ 
 
 If you call `response.write()` or `response.end()` before calling this, the
 implicit/mutable headers will be calculated and call this function for you.
 
-å¦‚æœä½ åœ¨`response.write()` æˆ–è€… `response.end()`ä¹‹åè°ƒç”¨writeHeadï¼Œé‚£ä¹ˆå°†è¿”å›éšå¼çš„å¤´éƒ¨ä¿¡æ¯ä¸”æ˜¯ä¸å¯é¢„æœŸçš„ã€‚
+Èç¹ûÄãÔÚ`response.write()` »òÕß `response.end()`Ö®ºóµ÷ÓÃwriteHead£¬ÄÇÃ´½«·µ»ØÒşÊ½µÄÍ·²¿ĞÅÏ¢ÇÒÊÇ²»¿ÉÔ¤ÆÚµÄ¡£
 
 ### response.statusCode
 
@@ -366,11 +367,11 @@ When using implicit headers (not calling `response.writeHead()` explicitly), thi
 controlls the status code that will be send to the client when the headers get
 flushed.
 
-å¦‚æœæ²¡æœ‰æ˜¾ç¤ºæŒ‡æ˜å¤´éƒ¨ä¿¡æ¯ï¼ˆæ²¡æœ‰æ˜ç¡®è°ƒç”¨ï¼‰ï¼Œè¿™ä¸ªå±æ€§å°†æ§åˆ¶å½“å¤´éƒ¨åˆ·æ–°æ—¶è¿”å›ç»™å®¢æˆ·ç«¯çš„çŠ¶æ€ç ã€‚
+Èç¹ûÃ»ÓĞÏÔÊ¾Ö¸Ã÷Í·²¿ĞÅÏ¢£¨Ã»ÓĞÃ÷È·µ÷ÓÃ£©£¬Õâ¸öÊôĞÔ½«¿ØÖÆµ±Í·²¿Ë¢ĞÂÊ±·µ»Ø¸ø¿Í»§¶ËµÄ×´Ì¬Âë¡£
 
 Example:
 
-ä¾‹å¦‚ï¼š
+ÀıÈç£º
 
     response.statusCode = 404;
 
@@ -380,12 +381,12 @@ Sets a single header value for implicit headers.  If this header already exists
 in the to-be-sent headers, it's value will be replaced.  Use an array of strings
 here if you need to send multiple headers with the same name.
 
-æ˜¾ç¤ºè®¾ç½®å¤´éƒ¨ä¿¡æ¯å‚æ•°ï¼Œå¦‚æœå·²ç»è®¾ç½®äº†å¯¹åº”çš„å¤´éƒ¨ä¿¡æ¯ï¼Œé‚£ä¹ˆè¯¥å€¼å°†è¢«æ›¿æ¢ï¼Œå¦‚æœä½ æƒ³å‘é€ç›¸åŒåå­—çš„å¤šä¸ªå¤´éƒ¨ä¿¡æ¯ï¼Œ
-å¯ä»¥ä½¿ç”¨å­—ç¬¦ä¸²æ•°ç»„çš„å½¢å¼è®¾ç½®
+ÏÔÊ¾ÉèÖÃÍ·²¿ĞÅÏ¢²ÎÊı£¬Èç¹ûÒÑ¾­ÉèÖÃÁË¶ÔÓ¦µÄÍ·²¿ĞÅÏ¢£¬ÄÇÃ´¸ÃÖµ½«±»Ìæ»»£¬Èç¹ûÄãÏë·¢ËÍÏàÍ¬Ãû×ÖµÄ¶à¸öÍ·²¿ĞÅÏ¢£¬
+¿ÉÒÔÊ¹ÓÃ×Ö·û´®Êı×éµÄĞÎÊ½ÉèÖÃ
 
 Example:
 
-ä¾‹å¦‚ï¼š
+ÀıÈç£º
 
     response.setHeader("Content-Type", "text/html");
 
@@ -400,8 +401,8 @@ Reads out a header that's already been queued but not sent to the client.  Note
 that the name is case insensitive.  This can only be called before headers get
 implicitly flushed.
 
-è¯»å–å°šæœªå‘é€ç»™å®¢æˆ·ç«¯ä¸”å·²ç»åœ¨é˜Ÿåˆ—ä¸­çš„å¤´éƒ¨ï¼Œæ³¨æ„å‚æ•°åä¸åŒºåˆ†å¤§å°å†™ï¼Œè¯¥æ–¹æ³•åªæœ‰åœ¨
-å¤´éƒ¨ä¿¡æ¯æ²¡æœ‰éšå¼åˆ·æ–°å‰è°ƒç”¨ã€‚
+¶ÁÈ¡ÉĞÎ´·¢ËÍ¸ø¿Í»§¶ËÇÒÒÑ¾­ÔÚ¶ÓÁĞÖĞµÄÍ·²¿£¬×¢Òâ²ÎÊıÃû²»Çø·Ö´óĞ¡Ğ´£¬¸Ã·½·¨Ö»ÓĞÔÚ
+Í·²¿ĞÅÏ¢Ã»ÓĞÒşÊ½Ë¢ĞÂÇ°µ÷ÓÃ¡£
 
 Example:
 
@@ -411,7 +412,7 @@ Example:
 
 Removes a header that's queued for implicit sending.
 
-ç§»é™¤éšå¼å‘é€çš„å¤´éƒ¨ä¿¡æ¯ã€‚
+ÒÆ³ıÒşÊ½·¢ËÍµÄÍ·²¿ĞÅÏ¢¡£
 
 Example:
 
@@ -423,24 +424,24 @@ Example:
 If this method is called and `response.writeHead()` has not been called, it will
 switch to implicit header mode and flush the implicit headers.
 
-å¦‚æœåœ¨`response.writeHead()`æ²¡æœ‰è°ƒç”¨çš„æ—¶å€™è°ƒç”¨è¯¥å‡½æ•°ï¼Œå°†ä¼šåˆ‡æ¢å¤´éƒ¨ä¿¡æ¯çš„æ¨¡å¼å¹¶åˆ·æ–°å¤´éƒ¨ä¿¡æ¯ã€‚
+Èç¹ûÔÚ`response.writeHead()`Ã»ÓĞµ÷ÓÃµÄÊ±ºòµ÷ÓÃ¸Ãº¯Êı£¬½«»áÇĞ»»Í·²¿ĞÅÏ¢µÄÄ£Ê½²¢Ë¢ĞÂÍ·²¿ĞÅÏ¢¡£ 
 
 This sends a chunk of the response body. This method may
 be called multiple times to provide successive parts of the body.
 
-è¯¥æ–¹æ³•å¯ä»¥å¤šæ¬¡è°ƒç”¨ï¼Œæä¾›æ–¹æ³•å°†æ¶ˆæ¯ä½“åˆ†ä¸ºå„ä¸ªéƒ¨åˆ†å‘é€ã€‚
+Ëü¸ºÔğ·¢ËÍÏìÓ¦±¨ÎÄÖĞµÄ²¿·ÖÊı¾İ£¬Èç¹ûÒª·¢ËÍÒ»¸ö±¨ÎÄÌåµÄ¶à¸ö²¿·Ö£¬Ôò¿ÉÒÔ¶à´Îµ÷ÓÃ´Ë·½·¨¡£ 
 
 `chunk` can be a string or a buffer. If `chunk` is a string,
 the second parameter specifies how to encode it into a byte stream.
 By default the `encoding` is `'utf8'`.
 
-`chunk`å¯ä»¥æ˜¯å­—ç¬¦ä¸²æˆ–è€…ç¼“å†²åŒºï¼Œå¦‚æœ`chunk`æ˜¯å­—ç¬¦ä¸²ï¼Œç¬¬äºŒä¸ªå‚æ•°å°†æŒ‡å®š
-å¦‚ä½•å°†å…¶ç¼–ç ä¸ºå­—èŠ‚æµï¼Œé»˜è®¤ç¼–ç å€¼ä¸º`'utf8'`
+²ÎÊıchunk¿ÉÒÔÊÇÒ»¸ö×Ö·û´®»òÕßÒ»¸öbuffer¡£Èç¹ûchunkÊÇÒ»¸ö×Ö·û´®£¬ÔòµÚ¶ş¸ö²ÎÊıÖ¸¶¨ÈçºÎ½«
+Õâ¸ö×Ö·û´®±àÂë³É×Ö½ÚÁ÷£¬È±Ê¡Çé¿öÏÂ£¬±àÂëÎª'utf8'¡£ 
 
 **Note**: This is the raw HTTP body and has nothing to do with
 higher-level multi-part body encodings that may be used.
 
-æ³¨æ„ï¼šè¿™æ˜¯åŸå§‹çš„HTTPæ­£æ–‡ï¼Œä¹Ÿå°±æ˜¯æ— æ³•å¯¹å®ƒè¿›è¡Œæ›´é«˜çº§çš„ç¼–ç 
+×¢Òâ:ÕâÊÇÒ»¸öÔ­Ê¼¸ñÊ½http±¨ÎÄÌå£¬ºÍ¸ß²ãĞ­ÒéÖĞµÄ¶à¶ÎÏûÏ¢Ìå±àÂë¸ñÊ½({'Transfer-Encoding':'chunked'})ÎŞ¹Ø¡£ 
 
 The first time `response.write()` is called, it will send the buffered
 header information and the first body to the client. The second time
@@ -448,27 +449,27 @@ header information and the first body to the client. The second time
 data, and sends that separately. That is, the response is buffered up to the
 first chunk of body.
 
-ç¬¬ä¸€æ¬¡è°ƒç”¨`response.write()`æ—¶å°†å‘å®¢æˆ·ç«¯å‘é€å¤´éƒ¨ä¿¡æ¯ä»¥åŠæ­£æ–‡ä½“çš„ç¬¬ä¸€éƒ¨åˆ†ï¼Œ
-è€Œç¬¬äºŒæ¬¡è°ƒç”¨`response.write()`ï¼ŒNodeä¼šå‡è®¾ä½ è¦åˆ†åˆ«åœ°æ“ä½œæ•°æ®æµä¹Ÿå°±æ˜¯è¯´å“åº”
-åªä¼šç¼“å†²åˆ°æ­£æ–‡ä½“çš„ç¬¬ä¸€éƒ¨åˆ†
+µÚÒ»´Îµ÷ÓÃresponse.write()Ê±£¬´Ë·½·¨»á½«ÒÑ¾­»º³åµÄÏûÏ¢Í·ºÍµÚÒ»¿éÏûÏ¢Ìå·¢ËÍ¸ø¿Í»§¡£ 
+µ±µÚ¶ş´Îµ÷ÓÃresponse.write()µÄÊ±ºò£¬node½«¼Ù¶¨ÄãÏëÒªÒÔÁ÷µÄĞÎÊ½·¢ËÍÊı¾İ£¨·Ö±ğ·¢ËÍÃ¿Ò»¸öÊı¾İ¿é²¢²»×ö»º´æ£©¡£ 
+ÕâÑù£¬ÆäÊµresponse¶ÔÏóÖ»ÊÇ»º´æÏûÏ¢ÌåµÄµÚÒ»¸öÊı¾İ¿é¡£ 
 
 ### response.addTrailers(headers)
 
 This method adds HTTP trailing headers (a header but at the end of the
 message) to the response.
 
-è¯¥æ–¹æ³•æ·»åŠ HTTPå°¾éšçš„å¤´éƒ¨ä¿¡æ¯ï¼ˆå¤´éƒ¨ä¿¡æ¯ä¼šåœ¨æ¶ˆæ¯çš„å°¾éƒ¨ï¼‰åˆ°å“åº”ä¸­
+¸Ã·½·¨Ìí¼ÓHTTPÎ²ËæµÄÍ·²¿ĞÅÏ¢£¨Í·²¿ĞÅÏ¢»áÔÚÏûÏ¢µÄÎ²²¿£©µ½ÏìÓ¦ÖĞ
 
 Trailers will **only** be emitted if chunked encoding is used for the
 response; if it is not (e.g., if the request was HTTP/1.0), they will
 be silently discarded.
 
-å°¾éƒ¨ä¿¡æ¯åªæœ‰å½“chunkedçš„ç¼–ç ç”¨äºå“åº”æ—¶æ‰èƒ½ç”Ÿæ•ˆï¼Œå¦åˆ™å®ƒä»¬å°†ä¼šè¢«æŠ›å¼ƒæ‰
+Î²²¿ĞÅÏ¢Ö»ÓĞµ±chunkedµÄ±àÂëÓÃÓÚÏìÓ¦Ê±²ÅÄÜÉúĞ§£¬·ñÔòËüÃÇ½«»á±»Å×Æúµô
 
 Note that HTTP requires the `Trailer` header to be sent if you intend to
 emit trailers, with a list of the header fields in its value. E.g.,
 
-æ³¨æ„å¦‚æœä½ æƒ³æ´¾å‘å°¾éƒ¨ä¿¡æ¯ç‰ˆéœ€è¦æ·»åŠ `Trailer`åˆ°HTTPå¤´çš„å‚æ•°åˆ—è¡¨ä¸­
+×¢ÒâÈç¹ûÄãÏëÅÉ·¢Î²²¿ĞÅÏ¢°æĞèÒªÌí¼Ó`Trailer`µ½HTTPÍ·µÄ²ÎÊıÁĞ±íÖĞ
 
     response.writeHead(200, { 'Content-Type': 'text/plain',
                               'Trailer': 'TraceInfo' });
@@ -484,49 +485,49 @@ has been sent; that server should consider this message complete.
 The method, `response.end()`, MUST be called on each
 response.
 
-è¯¥æ–¹æ³•å‘ä¿¡å·é«˜é€ŸæœåŠ¡å™¨æ‰€æœ‰çš„å“åº”å¤´å’Œå“åº”ä½“å·²ç»å‘é€å®Œæ¯•ï¼›æœåŠ¡å™¨ä¼šè®¤ä¸ºæ¶ˆæ¯
-å·²ç»å®Œæˆï¼Œ`response.end()`å¿…é¡»è¢«æ¯ä¸ªå“åº”è¯·æ±‚è°ƒç”¨
+Õâ¸ö·½·¨»á¸æËß·şÎñÆ÷´ËÏìÓ¦µÄËùÓĞ±¨ÎÄÍ·¼°±¨ÎÄÌåÒÑ¾­·¢³ö£»·şÎñÆ÷ÔÚ´Ëµ÷ÓÃºóÈÏÎªÕâÌõĞÅÏ¢ÒÑ¾­·¢ËÍÍê±Ï£»
+Õâ¸ö·½·¨±ØĞë¶ÔÃ¿¸öÏìÓ¦µ÷ÓÃÒ»´Î¡£ 
 
 If `data` is specified, it is equivalent to calling `response.write(data, encoding)`
 followed by `response.end()`.
 
-å¦‚æœè®¾ç½®äº†`data`ï¼Œé‚£ä¹ˆç­‰ä»·äºè°ƒç”¨`response.write(data, encoding)`ä¹‹åå†è°ƒç”¨`response.end()`
+Èç¹ûÖ¸¶¨data²ÎÊı£¬Ëû¾ÍÏàµ±ÓÚµ÷ÓÃÁËresponse.write(data, encoding)È»ºó¸ú×Åµ÷ÓÃÁËresponse.end()¡£ 
 
 ## http.request(options, callback)
 
 Node maintains several connections per server to make HTTP requests.
 This function allows one to transparently issue requests.
 
-Nodeå¯ä»¥ä¸ºæ¯ä¸ªæœåŠ¡å™¨ç»´æŠ¤å¤šä¸ªè¿æ¥å»å“åº”HTTPè¯·æ±‚ï¼Œè¿™ä¸ªå‡½æ•°å¯ä»¥è®©ä½ å‘é€ä¸€ä¸ªè¯·æ±‚
+Node¿ÉÒÔÎª·şÎñÆ÷Î¬»¤¶à¸öÁ¬½ÓµÄHTTPÇëÇó£¬Í¨¹ıÕâ¸ö·½·¨¿ÉÒÔÏò·şÎñÆ÷·¢ËÍÇëÇó
 
 Options:
 
-é€‰é¡¹ï¼š
+Ñ¡Ïî£º
 
 - `host`: A domain name or IP address of the server to issue the request to.
-          è¯·æ±‚çš„åŸŸåæˆ–è€…æœåŠ¡å™¨çš„IPåœ°å€
+          ÇëÇóµÄÓòÃû»òÕß·şÎñÆ÷µÄIPµØÖ·
           
 - `port`: Port of remote server.
-          è¿œç«¯æœåŠ¡å™¨çš„ç«¯å£
+          Ô¶¶Ë·şÎñÆ÷µÄ¶Ë¿Ú
           
 - `method`: A string specifing the HTTP request method. Possible values:
   `'GET'` (default), `'POST'`, `'PUT'`, and `'DELETE'`.
-          æŒ‡å®šHTTPè¯·æ±‚çš„æ–¹æ³•ç±»å‹ç±»å‹ï¼Œå¯é€‰çš„å€¼æœ‰ï¼š`'GET'` (default), 
-          `'POST'`, `'PUT'`, and `'DELETE'`ã€‚
+          Ö¸¶¨HTTPÇëÇóµÄ·½·¨ÀàĞÍÀàĞÍ£¬¿ÉÑ¡µÄÖµÓĞ£º`'GET'` (default), 
+          `'POST'`, `'PUT'`, and `'DELETE'`¡£
   
 - `path`: Request path. Should include query string and fragments if any.
    E.G. `'/index.html?page=12'`
-          è¯·æ±‚åœ°å€ï¼Œå¦‚æœéœ€è¦å¯ä»¥åŒ…å«æŸ¥è¯¢å­—ç¬¦ä¸²ç‰‡æ®µ
+          ÇëÇóµØÖ·£¬Èç¹ûĞèÒª¿ÉÒÔ°üº¬²éÑ¯×Ö·û´®Æ¬¶Î
    
 - `headers`: An object containing request headers.
-          ä¸€ä¸ªåŒ…å«è¯·æ±‚å¤´çš„å¯¹è±¡
+          Ò»¸ö°üº¬ÇëÇóÍ·µÄ¶ÔÏó
 
 `http.request()` returns an instance of the `http.ClientRequest`
 class. The `ClientRequest` instance is a writable stream. If one needs to
 upload a file with a POST request, then write to the `ClientRequest` object.
 
-`http.request()`å‡½æ•°è¿”å›`http.ClientRequest`ç±»çš„ä¸€ä¸ªå®ä¾‹ï¼Œ`ClientRequest`å¯¹è±¡
-æ˜¯ä¸€ä¸ªå¯å†™å…¥çš„æµï¼Œå¦‚æœä½ éœ€è¦ç”¨POSTæ–¹æ³•è¯·æ±‚ä¸Šä¼ ä¸€ä¸ªæ–‡ä»¶ï¼Œéœ€è¦å°†å…¶å†™å…¥åˆ°`ClientRequest`å¯¹è±¡ä¸­ã€‚
+`http.request()`º¯Êı·µ»Ø`http.ClientRequest`ÀàµÄÒ»¸öÊµÀı£¬`ClientRequest`¶ÔÏó
+ÊÇÒ»¸ö¿ÉĞ´ÈëµÄÁ÷£¬Èç¹ûÄãĞèÒªÓÃPOST·½·¨ÇëÇóÉÏ´«Ò»¸öÎÄ¼ş£¬ĞèÒª½«ÆäĞ´Èëµ½`ClientRequest`¶ÔÏóÖĞ¡£
 
 Example:
 
@@ -555,36 +556,36 @@ Note that in the example `req.end()` was called. With `http.request()` one
 must always call `req.end()` to signify that you're done with the request -
 even if there is no data being written to the request body.
 
-æ³¨æ„è¿™ä¸ªä¾‹å­ä¸­`req.end()`è¢«è°ƒç”¨äº†ï¼Œæ— è®ºè¯·æ±‚ä½“æ˜¯å¦åŒ…å«æ•°æ®ï¼Œæ¯ä¸€æ¬¡è°ƒç”¨`http.request()`
-æœ€åéƒ½éœ€è¦è°ƒç”¨ä¸€æ¬¡`req.end()`æ„å‘³ç€å·²ç»å®Œæˆäº†è¯·æ±‚
+×¢ÒâÕâ¸öÀı×ÓÖĞ`req.end()`±»µ÷ÓÃÁË£¬ÎŞÂÛÇëÇóÌåÊÇ·ñ°üº¬Êı¾İ£¬Ã¿Ò»´Îµ÷ÓÃ`http.request()`
+×îºó¶¼ĞèÒªµ÷ÓÃÒ»´Î`req.end()`±íÊ¾ÒÑ¾­Íê³ÉÁËÇëÇó
 
 If any error is encountered during the request (be that with DNS resolution,
 TCP level errors, or actual HTTP parse errors) an `'error'` event is emitted
 on the returned request object.
 
-å¦‚æœåœ¨è¯·æ±‚è¿‡ç¨‹ä¸­å‡ºç°äº†é”™è¯¯ï¼ˆå¯èƒ½æ˜¯DNSè§£æã€TCPçš„é”™è¯¯ã€æˆ–è€…HTTPè§£æé”™è¯¯ï¼‰ï¼Œ
-åä¸º`'error'`çš„äº‹ä»¶å°†æ´¾å‘åˆ°è¿”å›çš„è¯·æ±‚å¯¹è±¡ä¸­
+Èç¹ûÔÚÇëÇó¹ı³ÌÖĞ³öÏÖÁË´íÎó£¨¿ÉÄÜÊÇDNS½âÎö¡¢TCPµÄ´íÎó¡¢»òÕßHTTP½âÎö´íÎó£©£¬
+ÃûÎª`'error'`µÄÊÂ¼ş½«ÅÉ·¢µ½·µ»ØµÄÇëÇó¶ÔÏóÖĞ
 
 There are a few special headers that should be noted.
 
-è¿™é‡Œæœ‰ä¸€äº›éœ€è¦æ³¨æ„çš„ç‰¹åˆ«çš„å¤´éƒ¨
+ÈçÏÂÏûÏ¢Í·Ó¦µ±×¢Òâ£º 
 
 * Sending a 'Connection: keep-alive' will notify Node that the connection to
   the server should be persisted until the next request.
   
-  å‘é€'Connection: keep-alive'å¤´éƒ¨å°†é€šçŸ¥NodeæœåŠ¡å™¨ç«¯çš„è¿æ¥å°†ä¿æŒåˆ°ä¸‹ä¸€ä¸ªè¿æ¥åˆ°æ¥
+  ·¢ËÍ'Connection: keep-alive'Í·²¿½«Í¨ÖªNode·şÎñÆ÷¶ËµÄÁ¬½Ó½«±£³Öµ½ÏÂÒ»¸öÁ¬½Óµ½À´
 
 * Sending a 'Content-length' header will disable the default chunked encoding.
 
-  å‘é€'Content-length'å¤´éƒ¨å°†ç»„ç»‡é»˜è®¤çš„chunkedç¼–ç 
+  ·¢ËÍ'Content-length'Í·²¿½«×éÖ¯Ä¬ÈÏµÄchunked±àÂë
 
 * Sending an 'Expect' header will immediately send the request headers.
   Usually, when sending 'Expect: 100-continue', you should both set a timeout
   and listen for the `continue` event. See RFC2616 Section 8.2.3 for more
   information.
   
-  å‘é€'Expect'å¤´éƒ¨å°†ç«‹å³å‘é€è¯·æ±‚å¤´éƒ¨ï¼Œé€šå¸¸åœ°ï¼Œå½“å‘é€'Expect: 100-continue'æ—¶ï¼Œ
-  ä½ éœ€è¦ç›‘å¬`continue`äº‹ä»¶çš„åŒæ—¶è®¾ç½®è¶…æ—¶ï¼Œå‚è§RFC2616 8.2.3ç« èŠ‚è·å¾—æ›´å¤šçš„ä¿¡æ¯ã€‚
+  ·¢ËÍ'Expect'Í·²¿½«Á¢¼´·¢ËÍÇëÇóÍ·²¿£¬Í¨³£µØ£¬µ±·¢ËÍ'Expect: 100-continue'Ê±£¬
+  ÄãĞèÒª¼àÌı`continue`ÊÂ¼şµÄÍ¬Ê±ÉèÖÃ³¬Ê±£¬²Î¼ûRFC2616 8.2.3ÕÂ½Ú»ñµÃ¸ü¶àµÄĞÅÏ¢¡£
 
 ## http.get(options, callback)
 
@@ -592,8 +593,8 @@ Since most requests are GET requests without bodies, Node provides this
 convience method. The only difference between this method and `http.request()` is
 that it sets the method to GET and calls `req.end()` automatically.
 
-ç”±äºå¾ˆå¤šGETæ–¹æ³•çš„è¯·æ±‚ä¸ä¼šåŒ…å«æ­£æ–‡ä½“ï¼ŒNodeæä¾›äº†è¿™ä¸ªæ–¹æ³•ä¾¿äºè°ƒç”¨ï¼Œå”¯ä¸€çš„ä¸åŒç‚¹
-æ˜¯è¯¥æ–¹æ³•å°†`http.request()`çš„æ–¹æ³•è®¾ç½®ä¸ºGETå¹¶ä¸”è‡ªåŠ¨åœ¨æœ€åè°ƒç”¨`req.end()`ã€‚
+ÓÉÓÚºÜ¶àGET·½·¨µÄÇëÇó²»»á°üº¬ÕıÎÄÌå£¬NodeÌá¹©ÁËÕâ¸ö·½·¨±ãÓÚµ÷ÓÃ£¬Î¨Ò»µÄ²»Í¬µã
+ÊÇ¸Ã·½·¨½«`http.request()`µÄ·½·¨ÉèÖÃÎªGET²¢ÇÒ×Ô¶¯ÔÚ×îºóµ÷ÓÃ`req.end()`¡£
 
 Example:
 
@@ -618,9 +619,9 @@ an HTTP server. Normally `Agent` instances should not be exposed to user
 code, however in certain situations it's useful to check the status of the
 agent. The `http.getAgent()` function allows you to access the agents.
 
-`http.request()`ä½¿ç”¨ä¸€ä¸ªç‰¹åˆ«çš„`Agent`ä»£ç†æ¥ç®¡ç†æœåŠ¡å™¨ä¸Šçš„å¤šä¸ªè¿æ¥ï¼Œé€šå¸¸`Agent`å¯¹è±¡
-ä¸åº”è¯¥æš´éœ²ç»™ç”¨æˆ·ï¼Œä½†åœ¨æŸäº›ç‰¹å®šçš„æƒ…å†µä¸‹ï¼Œè¯¥å¯¹è±¡å¯¹ç”¨æˆ·æ£€æµ‹ä»£ç†çš„çŠ¶æ€éå¸¸æœ‰ç”¨ï¼Œ`http.getAgent()`
-å‡½æ•°å…è®¸ä½ è®¿é—®è¿™äº›ä»£ç†å¯¹è±¡
+`http.request()`Ê¹ÓÃÒ»¸öÌØ±ğµÄ`Agent`´úÀíÀ´¹ÜÀí·şÎñÆ÷ÉÏµÄ¶à¸öÁ¬½Ó£¬Í¨³£`Agent`¶ÔÏó
+²»Ó¦¸Ã±©Â¶¸øÓÃ»§£¬µ«ÔÚÄ³Ğ©ÌØ¶¨µÄÇé¿öÏÂ£¬¸Ã¶ÔÏó¶ÔÓÃ»§¼ì²â´úÀíµÄ×´Ì¬·Ç³£ÓĞÓÃ£¬`http.getAgent()`
+º¯ÊıÔÊĞíÄã·ÃÎÊÕâĞ©´úÀí¶ÔÏó
 
 ### Event: 'upgrade'
 
@@ -630,11 +631,11 @@ Emitted each time a server responds to a request with an upgrade. If this event
 isn't being listened for, clients receiving an upgrade header will have their
 connections closed.
 
-å½“æœåŠ¡å™¨ç«¯å“åº”è¯·æ±‚å¹¶åˆ·æ–°æ—¶å‡ºå‘ï¼Œå¦‚æœè¯¥äº‹ä»¶æ²¡æœ‰è¢«ç›‘å¬ï¼Œå®¢æˆ·ç«¯å°†æ¥æ”¶åˆ°æ›´æ–°çš„å¤´éƒ¨ï¼Œè¿™æ ·ä¼šå¯¼è‡´è¿æ¥å…³é—­
+µ±·şÎñÆ÷ÏìÓ¦upgradeÇëÇóÊ±´¥·¢´ËÊÂ¼ş£¬Èç¹ûÕâ¸öÏûÏ¢Ã»ÓĞ±»¼àÌı£¬¿Í»§¶Ë½ÓÊÕµ½Ò»¸öupgradeÍ·µÄ»°»áµ¼ÖÂÕâ¸öÁ¬½Ó±»¹Ø±Õ¡£
 
 See the description of the `upgrade` event for `http.Server` for further details.
 
-å‚è§`http.Server`ä¸­çš„å¯¹`upgrade`äº‹ä»¶çš„æè¿°ä½ å¯ä»¥è·å¾—æ›´å¤šä¿¡æ¯
+¿ÉÒÔ²é¿´http.Server¹ØÓÚupgradeÊÂ¼şµÄ½âÊÍÀ´ÁË½â¸ü¶àÄÚÈİ¡£ 
 
 ### Event: 'continue'
 
@@ -644,25 +645,25 @@ Emitted when the server sends a '100 Continue' HTTP response, usually because
 the request contained 'Expect: 100-continue'. This is an instruction that
 the client should send the request body.
 
-å½“æœåŠ¡å™¨å‘é€'100 Continue'ç­”å¤æ—¶è§¦å‘ï¼Œé€šå¸¸æ˜¯å› ä¸ºè¯·æ±‚åŒ…å«'Expect: 100-continue',è¿™è¯´æ˜äº†å®¢æˆ·ç«¯å°†è¦å‘é€è¯·æ±‚ä½“
+µ±·şÎñÆ÷·¢ËÍ'100 Continue'´ğ¸´Ê±´¥·¢£¬Í¨³£ÊÇÒòÎªÇëÇó°üº¬'Expect: 100-continue',ÕâËµÃ÷ÁË¿Í»§¶Ë½«Òª·¢ËÍÇëÇóÌå
 
 ### agent.maxSockets
 
 By default set to 5. Determines how many concurrent sockets the agent can have open.
 
-é»˜è®¤å€¼ä¸º5ï¼Œç¡®å®šèƒ½å¹¶å‘æ”¯æŒå¤šå°‘ä¸ªæ‰“å¼€çš„å¥—æ¥å­—
+Ä¬ÈÏÖµÎª5£¬È·¶¨ÄÜ²¢·¢Ö§³Ö¶àÉÙ¸ö´ò¿ªµÄÌ×½Ó×Ö
 
 ### agent.sockets
 
 An array of sockets currently inuse by the Agent. Do not modify.
 
-å½“å‰ä»£ç†ç®¡ç†çš„å¥—æ¥å­—æ•°ç»„ï¼Œæ— æ³•æ›´æ”¹ï¼Œåªè¯»
+µ±Ç°´úÀí¹ÜÀíµÄÌ×½Ó×ÖÊı×é£¬ÎŞ·¨¸ü¸Ä£¬Ö»¶Á
 
 ### agent.queue
 
 A queue of requests waiting to be sent to sockets.
 
-å¾…å‘é€åˆ°å¥—æ¥å­—çš„è¯·æ±‚é˜Ÿåˆ—
+´ı·¢ËÍµ½Ì×½Ó×ÖµÄÇëÇó¶ÓÁĞ
 
 ## http.ClientRequest
 
@@ -672,17 +673,17 @@ header is still mutable using the `setHeader(name, value)`, `getHeader(name)`,
 `removeHeader(name)` API.  The actual header will be sent along with the first
 data chunk or when closing the connection.
 
-è¿™ä¸ªå¯¹è±¡ç”±å†…éƒ¨åˆ›å»ºï¼Œé€šè¿‡`http.request()`è¿”å›è¯¥å¯¹è±¡ï¼Œå®ƒè¡¨ç¤ºä¸€ä¸ªæ­£åœ¨è¿›è¡Œä¸­ä¸”
-å¤´éƒ¨ä¿¡æ¯å·²ç»å®‰æ’å¥½äº†çš„è¯·æ±‚ï¼Œè¿™æ—¶å€™é€šè¿‡`setHeader(name, value)`, `getHeader(name)`,
-`removeHeader(name)`è¿™äº›APIæ˜¯æ— æ³•æ”¹å˜å¤´éƒ¨ä¿¡æ¯çš„ï¼Œå®é™…çš„å¤´éƒ¨ä¿¡æ¯å°†éšç€chunkçš„ç¬¬ä¸€
-éƒ¨åˆ†æˆ–è€…å…³é—­è¿æ¥æ—¶å‘é€å‡ºå»
+Õâ¸ö¶ÔÏóÓÉÄÚ²¿´´½¨£¬Í¨¹ı`http.request()`·µ»Ø¸Ã¶ÔÏó£¬Ëü±íÊ¾Ò»¸öÕıÔÚ½øĞĞÖĞÇÒ
+Í·²¿ĞÅÏ¢ÒÑ¾­°²ÅÅºÃÁËµÄÇëÇó£¬ÕâÊ±ºòÍ¨¹ı`setHeader(name, value)`, `getHeader(name)`,
+`removeHeader(name)`ÕâĞ©APIÊÇÎŞ·¨¸Ä±äÍ·²¿ĞÅÏ¢µÄ£¬Êµ¼ÊµÄÍ·²¿ĞÅÏ¢½«Ëæ×ÅchunkµÄµÚÒ»
+²¿·Ö»òÕß¹Ø±ÕÁ¬½ÓÊ±·¢ËÍ³öÈ¥
 
 To get the response, add a listener for `'response'` to the request object.
 `'response'` will be emitted from the request object when the response
 headers have been received.  The `'response'` event is executed with one
 argument which is an instance of `http.ClientResponse`.
 
-ä¸ºäº†è·å¾—å“åº”ï¼Œä¸ºè¯·æ±‚å¯¹è±¡å¢åŠ ä¸€ä¸ªå¯¹å“åº”çš„ç›‘å¬å™¨ã€‚
+ÎªÁË»ñµÃÏìÓ¦£¬ÎªÇëÇó¶ÔÏóÔö¼ÓÒ»¸ö¶ÔÏìÓ¦µÄ¼àÌıÆ÷¡£
 
 During the `'response'` event, one can add listeners to the
 response object; particularly to listen for the `'data'` event. Note that
@@ -691,9 +692,9 @@ so there is no need to worry about racing to catch the first part of the
 body. As long as a listener for `'data'` is added during the `'response'`
 event, the entire body will be caught.
 
-åœ¨`'response'`äº‹ä»¶ä¸­ï¼Œå¯ä»¥ç»™å“åº”å¯¹è±¡æ·»åŠ ç›‘å¬å™¨ï¼Œç‰¹åˆ«æ˜¯ç›‘å¬`'data'`äº‹ä»¶ï¼Œ
-æ³¨æ„`'response'`äº‹ä»¶åœ¨æ­£æ–‡ä½“æ¥æ”¶ä¹‹å‰å°±å·²ç»è¢«è°ƒç”¨ï¼Œæ‰€ä»¥ä¸éœ€è¦æ‹…å¿ƒæ•è·ä¸åˆ°æ­£æ–‡ä½“çš„ç¬¬ä¸€éƒ¨åˆ†ï¼Œ
-ä¸€æ—¦åœ¨`'response'`äº‹ä»¶ä¸­æ·»åŠ äº†å¯¹`'data'`çš„ç›‘å¬å™¨ï¼Œé‚£ä¹ˆæ•´ä¸ªæ¶ˆæ¯ä½“å°†è¢«æ•è·
+ÔÚ`'response'`ÊÂ¼şÖĞ£¬¿ÉÒÔ¸øÏìÓ¦¶ÔÏóÌí¼Ó¼àÌıÆ÷£¬ÌØ±ğÊÇ¼àÌı`'data'`ÊÂ¼ş£¬
+×¢Òâ`'response'`ÊÂ¼şÔÚÕıÎÄÌå½ÓÊÕÖ®Ç°¾ÍÒÑ¾­±»µ÷ÓÃ£¬ËùÒÔ²»ĞèÒªµ£ĞÄ²¶»ñ²»µ½ÕıÎÄÌåµÄµÚÒ»²¿·Ö£¬
+Ò»µ©ÔÚ`'response'`ÊÂ¼şÖĞÌí¼ÓÁË¶Ô`'data'`µÄ¼àÌıÆ÷£¬ÄÇÃ´Õû¸öÏûÏ¢Ìå½«±»²¶»ñ
 
     // Good
     request.on('response', function (response) {
@@ -713,11 +714,11 @@ event, the entire body will be caught.
 
 This is a `Writable Stream`.
 
-è¿™æ˜¯ä¸€ä¸ªå¯å†™å…¥çš„æµ
+ÕâÊÇÒ»¸ö`Writable Stream`
 
 This is an `EventEmitter` with the following events:
 
-äº‹ä»¶æ´¾å‘å™¨åŒ…å«å¦‚ä¸‹äº‹ä»¶
+´Ë·½·¨»á´¥·¢ÒÔÏÂÊÂ¼ş
 
 ### Event 'response'
 
@@ -726,7 +727,7 @@ This is an `EventEmitter` with the following events:
 Emitted when a response is received to this request. This event is emitted only once. The
 `response` argument will be an instance of `http.ClientResponse`.
 
-å½“è¯·æ±‚çš„å“åº”åˆ°è¾¾æ—¶è§¦å‘ï¼Œè¯¥äº‹ä»¶ä»…è§¦å‘ä¸€æ¬¡ï¼Œ`response`å‚æ•°æ˜¯`http.ClientResponse`çš„ä¸€ä¸ªå®ä¾‹
+µ±ÇëÇóµÄÏìÓ¦µ½´ïÊ±´¥·¢£¬¸ÃÊÂ¼ş½ö´¥·¢Ò»´Î£¬`response`²ÎÊıÊÇ`http.ClientResponse`µÄÒ»¸öÊµÀı
 
 ### request.write(chunk, encoding='utf8')
 
@@ -736,18 +737,18 @@ server--in that case it is suggested to use the
 `['Transfer-Encoding', 'chunked']` header line when
 creating the request.
 
-å‘é€æ•°æ®ä½“çš„ä¸€éƒ¨åˆ†ï¼Œé€šè¿‡å¤šæ¬¡è°ƒç”¨è¯¥æ–¹æ³•ï¼Œç”¨æˆ·å°±å¯ä»¥æ“ä½œåˆ°è¾¾æœåŠ¡å™¨çš„æµï¼Œå¦‚æœè¿™æ ·çš„è¯å»ºè®®ä½ åœ¨
-åˆ›å»ºè¯·æ±‚æ—¶è®¾ç½®å¤´éƒ¨å‚æ•°`['Transfer-Encoding', 'chunked']`
+·¢ËÍbodyÖĞµÄÒ»¿é¡£ÓÃ»§¿ÉÒÔÍ¨¹ı¶à´Îµ÷ÓÃÕâ¸ö·½·¨½«ÇëÇóÊı¾İ°üÍ¨¹ıÁ÷µÄ·½Ê½·¢ËÍµ½·şÎñÆ÷¡£
+ÔÚÕâ¸öÊ±ºòÎÒÃÇ½¨ÒéÊ¹ÓÃÔÚ½¨Á¢ÇëÇóµÄÊ±ºò°Ñ['Transfer-Encoding', 'chunked']·ÅÔÚÇëÇóÍ·Àï¡£ 
 
 The `chunk` argument should be an array of integers
 or a string.
 
-`chunk`å‚æ•°å¯ä»¥æ˜¯æ•´å½¢æ•°ç»„æˆ–è€…å­—ç¬¦ä¸²
+²ÎÊı'chunk'Ó¦µ±ÊÇÒ»¸öÊı×ÖË÷ÒıµÄÊı×é»ò×Ö·û´®¡£ 
 
 The `encoding` argument is optional and only
 applies when `chunk` is a string.
 
-`encoding`å‚æ•°ä¸ºå¯é€‰é¡¹å¹¶ä¸”ä»…å½“`chunk`è®¾ç½®ä¸ºå­—ç¬¦ä¸²æ—¶è¢«åº”ç”¨
+²ÎÊı'encoding'ÊÇ¿ÉÑ¡µÄ£¬½öÔÚchunkÎª×Ö·û´®µÄÊ±Ê¹ÓÃ¡£ 
 
 
 ### request.end([data], [encoding])
@@ -756,28 +757,30 @@ Finishes sending the request. If any parts of the body are
 unsent, it will flush them to the stream. If the request is
 chunked, this will send the terminating `'0\r\n\r\n'`.
 
-ç»“æŸå‘é€è¯·æ±‚ï¼Œå¦‚æœä»»ä½•ä¸€éƒ¨åˆ†æ•°æ®æ²¡æœ‰è¢«å‘é€ï¼Œé‚£ä¹ˆå®ƒå°†åˆ·æ–°åˆ°æµä¸­ï¼Œ
-å¦‚æœè¯·æ±‚ä¸ºchunkå½¢å¼ï¼Œå°†å‘é€ç»“æŸä¸²`'0\r\n\r\n'`
+Íê³É±¾´ÎÇëÇóµÄ·¢ËÍ¡£Èç¹ûÏûÏ¢ÌåÖĞµÄÈÎºÎÒ»¸ö²¿·ÖÃ»ÓĞÀ´µÃ¼°·¢ËÍ£¬request.end½«°ÑËûÃÇÈ«²¿Ë¢ĞÂµ½Á÷ÖĞ¡£
+Èç¹û±¾´ÎÇëÇóÊÇ·Ö¿éµÄ£¬Õâ¸öº¯Êı½«·¢³ö½áÊø×Ö·û'0\r\n\r\n'¡£ 
 
 If `data` is specified, it is equivalent to calling `request.write(data, encoding)`
 followed by `request.end()`.
 
-å¦‚æœè®¾ç½®äº†`data`ï¼Œç­‰æ•ˆäºå…ˆè°ƒç”¨ `request.write(data, encoding)`å†è°ƒç”¨`request.end()`
+Èç¹ûÊ¹ÓÃ²ÎÊıdata£¬¾ÍµÈÓÚÔÚµ÷ÓÃrequest.write(data, encoding)Ö®ºó½ô½Ó×Åµ÷ÓÃrequest.end()¡£ 
 
 ### request.abort()
 
 Aborts a request.  (New since v0.3.8.)
 
-é˜»æ­¢ä¸€ä¸ªè¯·æ±‚
+×èÖ¹Ò»¸öÇëÇó
 
 ## http.ClientResponse
 
 This object is created when making a request with `http.request()`. It is
 passed to the `'response'` event of the request object.
 
-è¯¥å¯¹è±¡é€šè¿‡`http.request()`å‡½æ•°åˆ›å»ºï¼Œå®ƒå°†è¢«ä¼ é€’è‡³è¯¥è¯·æ±‚å¯¹è±¡çš„`'response'`äº‹ä»¶ä¸­
+Õâ¸ö¶ÔÏóÔÚÊ¹ÓÃhttp.Client·¢ÆğÇëÇóÊ±±»´´½¨£¬Ëü»áÒÔ²ÎÊıµÄĞÎÊ½´«µİ¸ørequest¶ÔÏó'response'ÊÂ¼şµÄÏìÓ¦º¯Êı¡£ 
 
 The response implements the `Readable Stream` interface.
+
+'response'ÊµÏÖÁË¿É¶ÁÁ÷µÄ½Ó¿Ú¡£
 
 ### Event: 'data'
 
@@ -785,7 +788,7 @@ The response implements the `Readable Stream` interface.
 
 Emitted when a piece of the message body is received.
 
-å½“æ¶ˆæ¯ä½“ä¸­çš„ä¸€éƒ¨åˆ†è¢«æ¥æ”¶åˆ°æ—¶è§¦å‘
+µ±½ÓÊÕµ½ÏûÏ¢ÌåÒ»²¿·ÖµÄÊ±ºò´¥·¢¡£ 
 
 ### Event: 'end'
 
@@ -794,13 +797,13 @@ Emitted when a piece of the message body is received.
 Emitted exactly once for each message. No arguments. After
 emitted no other events will be emitted on the response.
 
-å¯¹æ¯æ¬¡æ¶ˆæ¯è¯·æ±‚åªè§¦å‘ä¸€æ¬¡ï¼Œè¯¥äº‹ä»¶è§¦å‘åå°†ä¸ä¼šæœ‰ä»»ä½•å¯¹è±¡åœ¨å“åº”ä¸­è§¦å‘
+¶ÔÃ¿´ÎÏûÏ¢ÇëÇóÖ»´¥·¢Ò»´Î£¬¸ÃÊÂ¼ş´¥·¢ºó½«²»»áÓĞÈÎºÎ¶ÔÏóÔÚÏìÓ¦ÖĞ´¥·¢
 
 ### response.statusCode
 
 The 3-digit HTTP response status code. E.G. `404`.
 
-å“åº”å¤´éƒ¨çš„çŠ¶æ€ç 
+ÏìÓ¦Í·²¿µÄ×´Ì¬Âë
 
 ### response.httpVersion
 
@@ -809,40 +812,40 @@ The HTTP version of the connected-to server. Probably either
 Also `response.httpVersionMajor` is the first integer and
 `response.httpVersionMinor` is the second.
 
-è¿æ¥è‡³æœåŠ¡å™¨ç«¯çš„HTTPç‰ˆæœ¬ï¼Œå¯èƒ½çš„å€¼ä¸º`'1.1'` or `'1.0'`ï¼Œä½ ä¹Ÿ
-å¯ä»¥ä½¿ç”¨`response.httpVersionMajor`è·å¾—ç‰ˆæœ¬å·ç¬¬ä¸€ä½ï¼Œä½¿ç”¨`response.httpVersionMinor`
-è·å¾—ç‰ˆæœ¬å·ç¬¬äºŒä½
+Á¬½ÓÖÁ·şÎñÆ÷¶ËµÄHTTP°æ±¾£¬¿ÉÄÜµÄÖµÎª`'1.1'` or `'1.0'`£¬ÄãÒ²
+¿ÉÒÔÊ¹ÓÃ`response.httpVersionMajor`»ñµÃ°æ±¾ºÅµÚÒ»Î»£¬Ê¹ÓÃ`response.httpVersionMinor`
+»ñµÃ°æ±¾ºÅµÚ¶şÎ»
 
 ### response.headers
 
 The response headers object.
 
-å“åº”å¤´éƒ¨å¯¹è±¡
+ÏìÓ¦Í·²¿¶ÔÏó
 
 ### response.trailers
 
 The response trailers object. Only populated after the 'end' event.
 
-å“åº”å°¾éƒ¨å¯¹è±¡ï¼Œåœ¨'end'äº‹ä»¶å‘ç”Ÿåç”Ÿæˆè¯¥å¯¹è±¡
+ÏìÓ¦Î²²¿¶ÔÏó£¬ÔÚ'end'ÊÂ¼ş·¢ÉúºóÉú³É¸Ã¶ÔÏó
 
 ### response.setEncoding(encoding=null)
 
 Set the encoding for the response body. Either `'utf8'`, `'ascii'`, or `'base64'`.
 Defaults to `null`, which means that the `'data'` event will emit a `Buffer` object..
 
-è®¾ç½®å“åº”ä½“çš„ç¼–ç ï¼Œå¯ä»¥æ˜¯`'utf8'`, `'ascii'`, æˆ–è€… `'base64'`ï¼Œé»˜è®¤å€¼ä¸º`null`ï¼Œ
-ä¹Ÿå°±æ˜¯è¯´`'data'`äº‹ä»¶å°†å‘é€ç¼“å†²åŒºå¯¹è±¡
+ÉèÖÃÏìÓ¦ÌåµÄ±àÂë£¬¿ÉÒÔÊÇ`'utf8'`, `'ascii'`, »òÕß `'base64'`£¬Ä¬ÈÏÖµÎª`null`£¬
+Ò²¾ÍÊÇËµ`'data'`ÊÂ¼ş½«·¢ËÍ»º³åÇø¶ÔÏó
 
 ### response.pause()
 
 Pauses response from emitting events.  Useful to throttle back a download.
 
-åœæ­¢å“åº”æ´¾å‘äº‹ä»¶ï¼Œåœ¨é˜»æ­¢ä¸‹è½½æ—¶ä¼šç”¨åˆ°
+Í£Ö¹ÏìÓ¦ÅÉ·¢ÊÂ¼ş£¬ÔÚ×èÖ¹ÏÂÔØÊ±»áÓÃµ½
 
-åœæ­¢åº”å½“æ´¾å‘äº‹ä»¶ï¼Œå¯¹ä¸­æ–­ä¸‹è½½éå¸¸æœ‰ç”¨ã€‚
+Í£Ö¹Ó¦µ±ÅÉ·¢ÊÂ¼ş£¬¶ÔÖĞ¶ÏÏÂÔØ·Ç³£ÓĞÓÃ¡£
 
 ### response.resume()
 
 Resumes a paused response.
 
-æ¢å¤ä¸€ä¸ªæš‚åœçš„å“åº”
+»Ö¸´Ò»¸öÔİÍ£µÄÏìÓ¦
