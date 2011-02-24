@@ -3,6 +3,11 @@
 This module provides utilities for dealing with query strings.
 It provides the following methods:
 
+## 查询字符串（Query String ）
+
+该模块提为处理查询字符串提供了一些实用的功能。
+该模块提供了如下的方法：
+
 ### querystring.stringify(obj, sep='&', eq='=')
 
 Serialize an object to a query string.
@@ -17,6 +22,9 @@ Example:
     querystring.stringify({foo: 'bar', baz: 'bob'}, ';', ':')
     // returns
     'foo:bar;baz:bob'
+
+### querystring.stringify(obj, sep='&', eq='=')
+
 
 ### querystring.parse(str, sep='&', eq='=')
 
