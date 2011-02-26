@@ -134,7 +134,7 @@ sent to the server on that socket.
 
 If a client connection emits an 'error' event - it will forwarded here.
 
-如果一个客户端连接的'error'事件被触发，此函数将被执行。 
+当客户端连接出现错误时会触发'error'事件
 
 ### http.createServer(requestListener)
 
@@ -145,7 +145,7 @@ Returns a new web server object.
 The `requestListener` is a function which is automatically
 added to the `'request'` event.
 
-requestListener是一个会去自动监听'request'事件的函数。 
+requestListener监听器会自动添加到`'request'`事件中
 
 ### server.listen(port, [hostname], [callback])
 
@@ -285,8 +285,8 @@ The HTTP protocol version as a string. Read only. Examples:
 Also `request.httpVersionMajor` is the first integer and
 `request.httpVersionMinor` is the second.
 
-这是HTTP协议版本（字符串形式)，只读。例如'1.1','1.0'。request.httpVersionMajor是第一个数字，
-request.httpVersionMinor是第二个数字。 
+以字符串形式表示HTTP协议版本。例如'1.1','1.0'。request.httpVersionMajor对应版本号的第一个数字，
+request.httpVersionMinor则对应第二个数字。 
 
 ### request.setEncoding(encoding=null)
 
@@ -317,7 +317,7 @@ With HTTPS support, use request.connection.verifyPeer() and
 request.connection.getPeerCertificate() to obtain the client's
 authentication details.
 
-对于HTTPS，使用request.connection.verifyPeer() 和 request.connection.getPeerCertificate()来获得客户端（浏览器）的认证详情。 
+对于HTTPS，使用request.connection.verifyPeer() 和 request.connection.getPeerCertificate()来获得客户端的认证详情。 
 
 ## http.ServerResponse
 
@@ -332,7 +332,7 @@ Sends a HTTP/1.1 100 Continue message to the client, indicating that
 the request body should be sent. See the the `checkContinue` event on
 `Server`.
 
-发送HTTP/1.1 100 Continue继续消息给客户端，说明请求体应当被发送，参见服务器`Server`中的`checkContinue`事件。
+发送HTTP/1.1 100 Continue消息给客户端，说明请求的消息体将要被发送，参见服务器`Server`中的`checkContinue`事件。
 
 ### response.writeHead(statusCode, [reasonPhrase], [headers])
 
@@ -367,7 +367,7 @@ When using implicit headers (not calling `response.writeHead()` explicitly), thi
 controlls the status code that will be send to the client when the headers get
 flushed.
 
-如果没有显示指明头部信息（没有明确调用），这个属性将控制当头部刷新时返回给客户端的状态码。
+如果没有显示指明消息头部信息（没有明确调用），这个属性将控制当头部刷新时返回给客户端的状态码。
 
 Example:
 
@@ -401,7 +401,7 @@ Reads out a header that's already been queued but not sent to the client.  Note
 that the name is case insensitive.  This can only be called before headers get
 implicitly flushed.
 
-读取尚未发送给客户端且已经在队列中的头部，注意参数名不区分大小写，该方法只有在
+读取尚未发送给客户端且已经排列好的的头部信息，注意参数名不区分大小写，该方法只有在
 头部信息没有隐式刷新前调用。
 
 Example:
@@ -458,13 +458,13 @@ first chunk of body.
 This method adds HTTP trailing headers (a header but at the end of the
 message) to the response.
 
-该方法添加HTTP尾随的头部信息（头部信息会在消息的尾部）到响应中
+该方法添加HTTP Trailers 头（在消息的尾部的http头信息）到响应报文中
 
 Trailers will **only** be emitted if chunked encoding is used for the
 response; if it is not (e.g., if the request was HTTP/1.0), they will
 be silently discarded.
 
-尾部信息只有当chunked的编码用于响应时才能生效，否则它们将会被抛弃掉
+当响应报文使用chunked编码时， Trailers才会触发，否则它们将会被隐式抛弃掉
 
 Note that HTTP requires the `Trailer` header to be sent if you intend to
 emit trailers, with a list of the header fields in its value. E.g.,
@@ -839,8 +839,6 @@ Defaults to `null`, which means that the `'data'` event will emit a `Buffer` obj
 ### response.pause()
 
 Pauses response from emitting events.  Useful to throttle back a download.
-
-停止响应派发事件，在阻止下载时会用到
 
 停止应当派发事件，对中断下载非常有用。
 

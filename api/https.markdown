@@ -3,7 +3,7 @@
 HTTPS is the HTTP protocol over TLS/SSL. In Node this is implemented as a
 separate module.
 
-HTTPS是基于TLS/SSL的HTTP协议，在Node中，它作为一个独立的模块被实现
+HTTPS是基于TLS（Transport Layer Security 传输层安全/SSL（Secure Sockets Layer 安全套接层）的HTTP协议，在Node中，它作为一个独立的模块被实现
 
 ## https.Server
 ## https.createServer
@@ -24,13 +24,15 @@ Example:
       res.end("hello world\n");
     }).listen(8000);
 
+这个例子演示如何创建基于HTTPS的服务器，options对象中的KEY为对应的钥匙文件，cert为对应的证书类型，
+在Node中，钥匙、CA信息都是用pem格式的文件保存的
 
 ## https.request(options, callback)
 
 Makes a request to a secure web server.
 Similar options to `http.request()`.
 
-向安全的web服务器发送请求，参数和`http.request()`类似
+向安全的web服务器发送请求，可选参数和`http.request()`类似
 
 Example:
 
