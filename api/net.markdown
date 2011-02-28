@@ -3,31 +3,37 @@
 The `net` module provides you with an asynchronous network wrapper. It contains
 methods for creating both servers and clients (called streams). You can include
 this module with `require("net");`
+
 'net'模块为您提供了一种异步网络包装器，它包含创建服务端和客户端（称为streams）的方法，您可以通过'require("net")'的方式来使用它。
 ### net.createServer(connectionListener)
 
 Creates a new TCP server. The `connectionListener` argument is
 automatically set as a listener for the `'connection'` event.
+
 创建一个新的TCP服务端，参数connectionListener在connection事件发生时自动设置为监听器。
 
 ### net.createConnection(arguments...)
 
 Construct a new socket object and opens a socket to the given location. When
 the socket is established the `'connect'` event will be emitted.
+
 创建一个新的套接字对象，同时对指定位置打开了一个套接字。当套接字建立后，'connect'事件将被触发。
 
 The arguments for this method change the type of connection:
+
 参数决定了连接的类型
 
 * `net.createConnection(port, [host])`
 
   Creates a TCP connection to `port` on `host`. If `host` is omitted, `localhost`
   will be assumed.
+
 创建一个到主机'host'的'port'端口的TCP连接，如果略了host，将默认为主机为'localhost'
 
 * `net.createConnection(path)`
 
   Creates unix socket connection to `path`
+
 创建连接到'path'的unix套接字。
 
 ---
@@ -35,9 +41,11 @@ The arguments for this method change the type of connection:
 ### net.Server
 
 This class is used to create a TCP or UNIX server.
+
 这个类用于创建一个TCP或UNIX服务端。
 Here is an example of a echo server which listens for connections
 on port 8124:
+
 下面的例子创建了一个在8124端口监听的'echo'服务端。
 
     var net = require('net');
@@ -48,12 +56,14 @@ on port 8124:
     server.listen(8124, 'localhost');
 
 Test this by using `telnet`:
+
 使用'telnet'测试该服务端。
 
     telnet localhost 8124
 
 To listen on the socket `/tmp/echo.sock` the last line would just be
 changed to
+
 为了监听套接字 `/tmp/echo.sock`，最后一行代码需要修改成：
 
     server.listen('/tmp/echo.sock');
@@ -65,18 +75,25 @@ Use `nc` to connect to a UNIX domain socket server:
 
 `net.Server` is an `EventEmitter` with the following events:
 
+`net.Server`是下列事件的 `EventEmitter`:
 #### server.listen(port, [host], [callback])
 
 Begin accepting connections on the specified `port` and `host`.  If the
 `host` is omitted, the server will accept connections directed to any
 IPv4 address (`INADDR_ANY`).
 
+开始接收特定主机‘host'的’port'端口的连接，如果省略了'host'参数，服务端将接收任何指向IPV4地址的连接。
+
 This function is asynchronous. The last parameter `callback` will be called
 when the server has been bound.
+
+该函数是异步的，在服务端被绑定时，最后一个参数'callback'将被调用。
 
 One issue some users run into is getting `EADDRINUSE` errors. Meaning
 another server is already running on the requested port. One way of handling this
 would be to wait a second and the try again. This can be done with
+
+一些用户可能会遇到`EADDRINUSE` 错误，该错误消息的意思是已经有另一个服务运行在请求的端口上，一个解决方法就是等一会再试一下，就像下面的代码这样：
 
     server.on('error', function (e) {
       if (e.code == 'EADDRINUSE') {
@@ -90,6 +107,7 @@ would be to wait a second and the try again. This can be done with
 
 (Note: All sockets in Node are set SO_REUSEADDR already)
 
+（注意：节点上所有的套接字都已经设置成SO_REUSEADDR）
 
 #### server.listen(path, [callback])
 
