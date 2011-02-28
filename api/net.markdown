@@ -3,7 +3,7 @@
 The `net` module provides you with an asynchronous network wrapper. It contains
 methods for creating both servers and clients (called streams). You can include
 this module with `require("net");`
-
+'net'模块为您提供了一种异步网络包装器，它包含创建服务端和客户端（称为streams）的方法，您可以通过'require("net")'的方式来使用它。
 ### net.createServer(connectionListener)
 
 Creates a new TCP server. The `connectionListener` argument is
