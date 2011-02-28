@@ -17,19 +17,23 @@ automatically set as a listener for the `'connection'` event.
 Construct a new socket object and opens a socket to the given location. When
 the socket is established the `'connect'` event will be emitted.
 
-
+创建一个新的套接字对象，同时对指定位置打开了一个套接字。当套接字建立后，'connect'事件将被触发。
 
 The arguments for this method change the type of connection:
+参数决定了连接的类型
 
 * `net.createConnection(port, [host])`
 
   Creates a TCP connection to `port` on `host`. If `host` is omitted, `localhost`
   will be assumed.
 
+创建一个到主机'host'的'port'端口的TCP连接，如果略了host，将默认为主机为'localhost'
+
 * `net.createConnection(path)`
 
   Creates unix socket connection to `path`
 
+创建连接到'path'的unix套接字。
 ---
 
 ### net.Server
