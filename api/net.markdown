@@ -199,7 +199,11 @@ instances implement a duplex Stream interface.  They can be created by the
 user and used as a client (with `connect()`) or they can be created by Node
 and passed to the user through the `'connection'` event of a server.
 
+‘net.Socket’是TCP或UNIX套接字的一切工作个子抽象，它的实例实现了一个双向的流接口。它可以被用户用‘connect()‘方法创建并作为客户端，也可以在服务端发生'connection'事件时由服务端创建并返回给用户。
+
 `net.Socket` instances are EventEmitters with the following events:
+
+`net.Socket` 的实例是下列事件的“事件触发者”:
 
 #### socket.connect(port, [host], [callback])
 #### socket.connect(path, [callback])
@@ -209,14 +213,21 @@ then the socket will be opened as a TCP socket, if `host` is omitted,
 `localhost` will be assumed. If a `path` is given, the socket will be
 opened as a unix socket to that path.
 
+打开一下指定套接字的连接。如果给出了`port` 和 `host`，将作为一个TCP套接字打开，如果省略了`host`，将默认为主机为'localhost'。如果指定了'path'，该套接字将作为一个UNIX套接字打开，并指向‘path'。
+
+
 Normally this method is not needed, as `net.createConnection` opens the
 socket. Use this only if you are implementing a custom Socket or if a
 Socket is closed and you want to reuse it to connect to another server.
+
+通常情况下该方法并不需要，使用 `net.createConnection` 就可以打开套接字。只有在你实现一个客户化的套接字，或者套接字已经关闭并且你想重新使用它连接到另一个服务端时才需要使用。
 
 This function is asynchronous. When the `'connect'` event is emitted the
 socket is established. If there is a problem connecting, the `'connect'`
 event will not be emitted, the `'error'` event will be emitted with
 the exception.
+
+ 
 
 The `callback` paramenter will be added as an listener for the 'connect'
 event.
