@@ -113,15 +113,23 @@ would be to wait a second and the try again. This can be done with
 
 Start a UNIX socket server listening for connections on the given `path`.
 
+启动一个UNIX套接字服务，监听指定的‘path'上的连接。
+
 This function is asynchronous. The last parameter `callback` will be called
 when the server has been bound.
+
+该函数是异步的，在服务端被绑定时，最后一个参数'callback'将被调用。
 
 #### server.listenFD(fd)
 
 Start a server listening for connections on the given file descriptor.
 
+启动一个服务，监听指定的文件描述符上的连接。
+
 This file descriptor must have already had the `bind(2)` and `listen(2)` system
 calls invoked on it.
+
+文件描述符必须已经具有 `bind(2)` 和`listen(2)` 系统调用。
 
 #### server.close()
 
@@ -129,11 +137,16 @@ Stops the server from accepting new connections. This function is
 asynchronous, the server is finally closed when the server emits a `'close'`
 event.
 
+关闭服务，停止接收新的连接。该函数是异步的，当服务发出`'close'`事件时该服务被最终关闭。
+
 
 #### server.address()
 
 Returns the bound address of the server as seen by the operating system.
 Useful to find which port was assigned when giving getting an OS-assigned address
+返回操作系统下可以看到的服务绑定地址.
+用于在操作系统分配地址时查看哪些端口已经被分配。
+
 
 Example:
 
@@ -152,9 +165,13 @@ Example:
 
 Set this property to reject connections when the server's connection count gets high.
 
+设置该属性的值，以便当服务端达到最大连接数时不再接受新的连接。
+
 #### server.connections
 
 The number of concurrent connections on the server.
+
+服务端当前的连接数。
 
 #### Event: 'connection'
 
@@ -163,11 +180,15 @@ The number of concurrent connections on the server.
 Emitted when a new connection is made. `socket` is an instance of
 `net.Socket`.
 
+当一个新的连接建立时触发。`socket` 是`net.Socket`的一个实例.
+
 #### Event: 'close'
 
 `function () {}`
 
 Emitted when the server closes.
+
+当服务端关闭时触发。
 
 ---
 
