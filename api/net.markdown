@@ -352,9 +352,9 @@ returns 4 for IP version 4 addresses, and returns 6 for IP version 6 addresses.
 #### net.isIPv4(input)
 
 Returns true if input is a version 4 IP address, otherwise returns false.
-
+如果input是一个IPV4地址则返回true，否则返回false.
 
 #### net.isIPv6(input)
 
 Returns true if input is a version 6 IP address, otherwise returns false.
-
+如果input是一个IPV6地址则返回true，否则返回false.
