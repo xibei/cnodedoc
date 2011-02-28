@@ -35,9 +35,10 @@ The arguments for this method change the type of connection:
 ### net.Server
 
 This class is used to create a TCP or UNIX server.
-
+这个类用于创建一个TCP或UNIX服务端。
 Here is an example of a echo server which listens for connections
 on port 8124:
+下面的例子创建了一个在8124端口监听的'echo'服务端。
 
     var net = require('net');
     var server = net.createServer(function (c) {
@@ -47,15 +48,18 @@ on port 8124:
     server.listen(8124, 'localhost');
 
 Test this by using `telnet`:
+使用'telnet'测试该服务端。
 
     telnet localhost 8124
 
 To listen on the socket `/tmp/echo.sock` the last line would just be
 changed to
+为了监听套接字 `/tmp/echo.sock`，最后一行代码需要修改成：
 
     server.listen('/tmp/echo.sock');
 
 Use `nc` to connect to a UNIX domain socket server:
+使用'nc'命令连接到一个子UNIX域的套接字服务端。
 
     nc -U /tmp/echo.sock
 
