@@ -5,6 +5,7 @@ includable in other programs.  REPL provides a way to interactively run
 JavaScript and see the results.  It can be used for debugging, testing, or
 just trying things out.
 
+
 By executing `node` without any arguments from the command-line you will be
 dropped into the REPL. It has simplistic emacs line-editing.
 
@@ -25,6 +26,8 @@ This will start the REPL in canonical terminal settings which will allow you to 
 For example, you could add this to your bashrc file:
 
     alias node="env NODE_NO_READLINE=1 rlwrap node"
+
+## REPL
 
 
 ### repl.start(prompt='> ', stream=process.stdin)
