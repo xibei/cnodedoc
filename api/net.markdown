@@ -355,6 +355,7 @@ This member is only present in server-side connections.
 Emitted when a socket connection successfully is established.
 See `connect()`.
 
+当一个套接字连接成功建立时触发，参考 `connect()`。
 #### Event: 'data'
 
 `function (data) { }`
@@ -363,11 +364,15 @@ Emitted when data is received.  The argument `data` will be a `Buffer` or
 `String`.  Encoding of data is set by `socket.setEncoding()`.
 (See the section on `Readable Socket` for more information.)
 
+当收到数据时触发，参数`data`将是一个缓冲（`Buffer`）或者字符串（`String`）。数据的编码方式通过`socket.setEncoding()`设置。（ 更多信息请参考章节`Readable Socket`）
+
 #### Event: 'end'
 
 `function () { }`
 
 Emitted when the other end of the socket sends a FIN packet.
+
+当其它套接的末尾发送一个FIN数据包时触发。
 
 By default (`allowHalfOpen == false`) the socket will destroy its file
 descriptor  once it has written out its pending write queue.  However, by
@@ -383,14 +388,19 @@ caveat that the user is required to `end()` their side now.
 Emitted if the socket times out from inactivity. This is only to notify that
 the socket has been idle. The user must manually close the connection.
 
+当套接字不活动超时情况下触发，它只是用来通知那个套接字已经进入休眠，用户必须手动的关闭该连接。
+
 See also: `socket.setTimeout()`
 
+参考: `socket.setTimeout()`
 
 #### Event: 'drain'
 
 `function () { }`
 
 Emitted when the write buffer becomes empty. Can be used to throttle uploads.
+
+当缓冲区变空时触发，可以被用来调节上传。
 
 #### Event: 'error'
 
@@ -399,12 +409,16 @@ Emitted when the write buffer becomes empty. Can be used to throttle uploads.
 Emitted when an error occurs.  The `'close'` event will be called directly
 following this event.
 
+当有错误发生时触发， `'close'` 事件随之被调用。
+
 #### Event: 'close'
 
 `function (had_error) { }`
 
 Emitted once the socket is fully closed. The argument `had_error` is a boolean
 which says if the socket was closed due to a transmission error.
+
+当连接字完全被关闭时触发，参数`had_error`是一个布尔型变量， 用来说明连接字是否由于一个传播的错误而关闭。
 
 ---
 
@@ -415,13 +429,16 @@ which says if the socket was closed due to a transmission error.
 Tests if input is an IP address. Returns 0 for invalid strings,
 returns 4 for IP version 4 addresses, and returns 6 for IP version 6 addresses.
 
+测试输入是否是一个IP地址，如果是一个有效的地址，返回0；如果是IP4地址，返回4；如果是IP6地址，返回6。
 
 #### net.isIPv4(input)
 
 Returns true if input is a version 4 IP address, otherwise returns false.
+
 如果input是一个IPV4地址则返回true，否则返回false.
 
 #### net.isIPv6(input)
 
 Returns true if input is a version 6 IP address, otherwise returns false.
+
 如果input是一个IPV6地址则返回true，否则返回false.
