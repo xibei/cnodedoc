@@ -227,11 +227,13 @@ socket is established. If there is a problem connecting, the `'connect'`
 event will not be emitted, the `'error'` event will be emitted with
 the exception.
 
+这个函数是异步函数。当发生 `'connect'`事件时套接字被建立，如果有连接问题， `'connect'`事件不会被触发，`'error'` 事件将在异常情况下被触发。
  
 
 The `callback` paramenter will be added as an listener for the 'connect'
 event.
 
+参数'callback'将作为 'connect'事件的监听器被增加进来。
 
 #### socket.bufferSize
 
@@ -257,16 +259,22 @@ Users who experience large or growing `bufferSize` should attempt to
 Sets the encoding (either `'ascii'`, `'utf8'`, or `'base64'`) for data that is
 received.
 
+设置接收到的数据的编码(either `'ascii'`, `'utf8'`, or `'base64'`) 方式。
+
 #### socket.setSecure()
 
 This function has been removed in v0.3. It used to upgrade the connection to
 SSL/TLS. See the TLS for the new API.
+
+该函数在v0.3版本已经被废弃，用来将连接升级到SSL/TLS。参考TLS中新的API说明。
 
 
 #### socket.write(data, [encoding], [callback])
 
 Sends data on the socket. The second parameter specifies the encoding in the
 case of a string--it defaults to UTF8 encoding.
+
+向套接字发送数据，第二个参数指定在发送字符串数据时的编码方式，默认的是UTF8编码。
 
 Returns `true` if the entire data was flushed successfully to the kernel
 buffer. Returns `false` if all or part of the data was queued in user memory.
