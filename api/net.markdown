@@ -280,8 +280,13 @@ Returns `true` if the entire data was flushed successfully to the kernel
 buffer. Returns `false` if all or part of the data was queued in user memory.
 `'drain'` will be emitted when the buffer is again free.
 
+在所有数据被成功的写入系统内核缓冲区时返回`true`，在全部或部分数据进入用户内存的队列时返回`false`。
+当缓冲区再次变空时，`'drain'` 事件将被触发。
+
 The optional `callback` parameter will be executed when the data is finally
 written out - this may not be immediately.
+
+可选参数`callback` 将在数据最终被写出时执行-可能不是立即执行。
 
 #### socket.write(data, [encoding], [fileDescriptor], [callback])
 
@@ -289,41 +294,63 @@ For UNIX sockets, it is possible to send a file descriptor through the
 socket. Simply add the `fileDescriptor` argument and listen for the `'fd'`
 event on the other end.
 
+对于UNIX套接字，可以通过套接字发送一个文件描述符，简单在另一端增加参数 `fileDescriptor`并为`'fd'`事件增加监听器。
 
 #### socket.end([data], [encoding])
 
 Half-closes the socket. I.E., it sends a FIN packet. It is possible the
 server will still send some data.
 
+发送一个FIN数据包，半关闭套接字，该套接字仍有可能发送一些数据。
+
 If `data` is specified, it is equivalent to calling `socket.write(data, encoding)`
 followed by `socket.end()`.
+
+如果指定了`data` ，等同于依次调用`socket.write(data, encoding)`和`socket.end()`。
+
 
 #### socket.destroy()
 
 Ensures that no more I/O activity happens on this socket. Only necessary in
 case of errors (parse error or so).
 
+确保该套接字上没有活动的I/O操作，仅在发生错误的情况下需要。
+
 #### socket.pause()
 
 Pauses the reading of data. That is, `'data'` events will not be emitted.
 Useful to throttle back an upload.
 
+暂停读取数据，`'data'`将不会被触发，用于调节回退一个上传。
+
 #### socket.resume()
 
 Resumes reading after a call to `pause()`.
+
+用于在调用`pause()`后，恢复读取数据。
 
 #### socket.setTimeout(timeout, [callback])
 
 Sets the socket to timeout after `timeout` milliseconds of inactivity on
 the socket. By default `net.Socket` do not have a timeout.
 
+设置套接字不活动时间超过`timeout` 毫秒后进入超时状态。默认情况下`net.Socket`不会超时。
+
+
 When an idle timeout is triggered the socket will receive a `'timeout'`
 event but the connection will not be severed. The user must manually `end()`
 or `destroy()` the socket.
 
+当超时的情况下，套接字会接收到一个`'timeout'`事件，但是连接当不会被断开，用户必须手动的`end()`或`destroy()`该套接字。
+
+
 If `timeout` is 0, then the existing idle timeout is disabled.
 
+如果 `timeout`设置成0，已经存在的闲置超时将被禁用。
+
 The optional `callback` parameter will be added as a one time listener for the `'timeout'` event.
+
+可选参数`callback` 将作为了一个时间监听器添加到 `'timeout'` 事件。
 
 #### socket.setNoDelay(noDelay=true)
 
