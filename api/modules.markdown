@@ -64,6 +64,7 @@ return the built in HTTP module, even if there is a file by that name.
 ### File Modules
 
 文件模块
+
 If the exact filename is not found, then node will attempt to load the
 required filename with the added extension of `.js`, and then `.node`.
 `.js` files are interpreted as JavaScript text files, and `.node` files
@@ -75,19 +76,28 @@ A module prefixed with `'/'` is an absolute path to the file.  For
 example, `require('/home/marco/foo.js')` will load the file at
 `/home/marco/foo.js`.
 
+模块中的前缀`'/'`是一个指向文件的绝对路径，例如`require('/home/marco/foo.js')`将加载文件`/home/marco/foo.js`。
+
 A module prefixed with `'./'` is relative to the file calling `require()`.
 That is, `circle.js` must be in the same directory as `foo.js` for
 `require('./circle')` to find it.
 
+模块中的前缀`'./'` 是指向文件的相对路径，称为`require()`。也就是说为了使`require('./circle')` 能找到`circle.js`，它必须位于与`foo.js` 相同的路径之下，
+
 Without a leading '/' or './' to indicate a file, the module is either a
 "core module" or is loaded from a `node_modules` folder.
 
+如果标明一个文件时没有一个引导 '/' 或 './'，该模块或位于“core module”，或者已经从 `node_modules`目录中加载了。
+
 ### Loading from `node_modules` Folders
+
+从 `node_modules` 目录中加载
 
 If the module identifier passed to `require()` is not a native module,
 and does not begin with `'/'`, `'../'`, or `'./'`, then node starts at the
 parent directory of the current module, and adds `/node_modules`, and
 attempts to load the module from that location.
+
 
 If it is not found there, then it moves to the parent directory, and so
 on, until either the module is found, or the root of the tree is
