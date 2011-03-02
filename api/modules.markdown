@@ -98,14 +98,19 @@ and does not begin with `'/'`, `'../'`, or `'./'`, then node starts at the
 parent directory of the current module, and adds `/node_modules`, and
 attempts to load the module from that location.
 
+如果传递到 `require()`的模块标识符不是一个本地模块，并且不是以`'/'`、`'../'` 或 `'./'`开头，node从当前模块的父目录开始，加上目录`/node_modules`，并试图从该位置加载该模块。
 
 If it is not found there, then it moves to the parent directory, and so
 on, until either the module is found, or the root of the tree is
 reached.
 
+如果在那里没有找到，就转移到上一级目录，依此类推，直到找到该模块，或到达目录树的根结点。
+
 For example, if the file at `'/home/ry/projects/foo.js'` called
 `require('bar.js')`, then node would look in the following locations, in
 this order:
+
+例如，如果在文件 `'/home/ry/projects/foo.js'`中调用 `require('bar.js')，node将会依次查找以下位置：
 
 * `/home/ry/projects/node_modules/bar.js`
 * `/home/ry/node_modules/bar.js`
@@ -115,14 +120,22 @@ this order:
 This allows programs to localize their dependencies, so that they do not
 clash.
 
+这允许程序本地化他们的依赖关系，并不会发生冲突。
+
 #### Optimizations to the `node_modules` Lookup Process
+
+优化 `node_modules` 的查找过程。
 
 When there are many levels of nested dependencies, it is possible for
 these file trees to get fairly long.  The following optimizations are thus
 made to the process.
 
+如果有很多级的嵌套信赖，文件树会变得相当的长，下面是对这一过程的一些优化。
+
 First, `/node_modules` is never appended to a folder already ending in
 `/node_modules`.
+
+
 
 Second, if the file calling `require()` is already inside a `node_modules`
 heirarchy, then the top-most `node_modules` folder is treated as the
