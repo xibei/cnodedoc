@@ -135,16 +135,20 @@ made to the process.
 First, `/node_modules` is never appended to a folder already ending in
 `/node_modules`.
 
-
+首先， `/node_modules`不要添加到以 `/node_modules`结尾的目录上。
 
 Second, if the file calling `require()` is already inside a `node_modules`
 heirarchy, then the top-most `node_modules` folder is treated as the
 root of the search tree.
 
+其次，如果调用`require()`的文件已经位于一个`node_modules`层次中，最上级的`node_modules`目录将被作为搜索的根。
+
 For example, if the file at
 `'/home/ry/projects/foo/node_modules/bar/node_modules/baz/quux.js'`
 called `require('asdf.js')`, then node would search the following
 locations:
+
+例如，如果文件`'/home/ry/projects/foo/node_modules/bar/node_modules/baz/quux.js'`调用`require('asdf.js')`，node会在下面的位置进行搜索：
 
 * `/home/ry/projects/foo/node_modules/bar/node_modules/baz/node_modules/asdf.js`
 * `/home/ry/projects/foo/node_modules/bar/node_modules/asdf.js`
@@ -152,14 +156,20 @@ locations:
 
 ### Folders as Modules
 
+目录作为模块
+
 It is convenient to organize programs and libraries into self-contained
 directories, and then provide a single entry point to that library.
 There are three ways in which a folder may be passed to `require()` as
 an argument.
 
+很方便将程序或库组织成自包含的目录，并提供一个单独的条目指向那个库。有三种方式可以将一个子目录作为参数传递给 `require()` 。
+
 The first is to create a `package.json` file in the root of the folder,
 which specifies a `main` module.  An example package.json file might
 look like this:
+
+首先在目录的根下创建一个名为`package.json`的文件，它指定了一个`main` 模块。一个package.jso文件的例子如下面所示：
 
     { "name" : "some-library",
       "main" : "./lib/some-library.js" }
@@ -168,17 +178,25 @@ If this was in a folder at `./some-library`, then
 `require('./some-library')` would attempt to load
 `./some-library/lib/some-library.js`.
 
+如果它位于`./some-library`下面的一个目录中，`require('./some-library')`将试图加载文件`./some-library/lib/some-library.js`。
+
 This is the extent of Node's awareness of package.json files.
+
+这是Node对package.json文件的意识扩展。
 
 If there is no package.json file present in the directory, then node
 will attempt to load an `index.js` or `index.node` file out of that
 directory.  For example, if there was no package.json file in the above
 example, then `require('./some-library')` would attempt to load:
 
+如果在目录中没有package.json文件，node将试图在该路径外加载`index.js` 或 `index.node`文件。例如，在上面的例子中没有 package.json文件，`require('./some-library')`将试图加载：
+
 * `./some-library/index.js`
 * `./some-library/index.node`
 
 ### Caching
+
+缓存
 
 Modules are cached after the first time they are loaded.  This means
 (among other things) that every call to `require('foo')` will get
