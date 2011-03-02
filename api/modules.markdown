@@ -1,9 +1,11 @@
 ## Modules
-模块
+
+
 Node uses the CommonJS module system.
 Node has a simple module loading system.  In Node, files and modules are in
 one-to-one correspondence.  As an example, `foo.js` loads the module
 `circle.js` in the same directory.
+
 Node使用CommonJS模块系统。Node有一个简单的模块装载系统，在Node中，文件和模块是一一对应的。例如， foo.js 在相同的目录下加载circle.js模块。
 
 The contents of `foo.js`:
@@ -29,30 +31,46 @@ circle.js的内容为：
 The module `circle.js` has exported the functions `area()` and
 `circumference()`.  To export an object, add to the special `exports`
 object.
+
 circle.js模块包括area()和circumference()两个函数，为了输出一个对象，需增加特殊的exports对像。
 Variables
+
 变量
+
 local to the module will be private. In this example the variable `PI` is
 private to `circle.js`.
+
 本地的模块是私有的。在上面的例子中，PI在circle.js中就是私有的。
+
 ### Core Modules
+
 核心模块
+
 Node has several modules compiled into the binary.  These modules are
 described in greater detail elsewhere in this documentation.
+
 Node有一些编译成字节码的模块。这些模块在这篇文档的其他地方有详细描述。
+
 The core modules are defined in node's source in the `lib/` folder.
+
 核心模块在node's源代码中的lib文件夹下。
+
 Core modules are always preferentially loaded if their identifier is
 passed to `require()`.  For instance, `require('http')` will always
 return the built in HTTP module, even if there is a file by that name.
+
 核心查勘块总是被优先加载，如果它们的标识符在require()中声明。例如，require('http')将总是返回在HTTP模块的建立，即使这里有一个文件有这个名字。
+
 ### File Modules
+
 文件模块
 If the exact filename is not found, then node will attempt to load the
 required filename with the added extension of `.js`, and then `.node`.
 `.js` files are interpreted as JavaScript text files, and `.node` files
 are interpreted as compiled addon modules loaded with `dlopen`.
+
 如果没有找到正确的文件名，node将会尝试装载需要的扩展名为.js的文件，然后node.js文件翻译为JavaScript文本文件，.node文件被解释并且插入装载dlopen模块。
+
 A module prefixed with `'/'` is an absolute path to the file.  For
 example, `require('/home/marco/foo.js')` will load the file at
 `/home/marco/foo.js`.
