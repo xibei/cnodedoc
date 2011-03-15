@@ -61,7 +61,7 @@ support this functionality; all others will simply never emit this event.
 ### stream.readable
 
 A boolean that is `true` by default, but turns `false` after an `'error'`
-occured, the stream came to an `'end'`, or `destroy()` was called.
+occurred, the stream came to an `'end'`, or `destroy()` was called.
 
 这是一个布尔值，默认值为`true`。当`'error'`事件或`'end'`事件发生后，或者`destroy()`被调用后，这个属性将变为`false`。
 
