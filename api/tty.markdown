@@ -6,6 +6,8 @@ Use `require('tty')` to access this module.
 
 Example:
 
+示例：
+
     var tty = require('tty');
     tty.setRawMode(true);
     process.stdin.resume();
