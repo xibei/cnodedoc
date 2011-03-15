@@ -158,7 +158,7 @@ the common stream methods and events.
 当一个新的连接成功完成握手过程后此事件被触发。参数是一个可读可写的`stream.Stream`实例对象，此对象具有Stream（流）对象所有公共的方法和事件。
 
 `cleartextStream.authorized` is a boolean value which indicates if the
-client has verified by one of the supplied cerificate authorities for the
+client has verified by one of the supplied certificate authorities for the
 server. If `cleartextStream.authorized` is false, then
 `cleartextStream.authorizationError` is set to describe how authorization
 failed. Implied but worth mentioning: depending on the settings of the TLS
