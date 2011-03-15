@@ -4,6 +4,19 @@ Use `require('tty')` to access this module.
 
 可使用`require('tty')`访问此模块。
 
+Example:
+
+    var tty = require('tty');
+    tty.setRawMode(true);
+    process.stdin.resume();
+    process.stdin.on('keypress', function(char, key) {
+      if (key && key.ctrl && key.name == 'c') {
+        console.log('graceful exit');
+        process.exit()
+      }
+    });
+
+
 
 ### tty.open(path, args=[])
 
@@ -28,7 +41,7 @@ terminal.
 
 ### tty.setRawMode(mode)
 
-`mode` should be `true` or `false`. This sets the properies of the current
+`mode` should be `true` or `false`. This sets the properties of the current
 process's stdin fd to act either as a raw device or default.
 
 `mode`参数可以设为`true`或`false`。此方法设置当前进程的stdin（标准输入）为原始设备方式，或默认方式。
