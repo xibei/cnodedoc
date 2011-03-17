@@ -487,20 +487,25 @@ Options:
 选项：
 
 - `host`: A domain name or IP address of the server to issue the request to.
+  
   请求的域名或者服务器的IP地址
           
 - `port`: Port of remote server.
+  
   远端服务器的端口
           
 - `method`: A string specifing the HTTP request method. Possible values:
   `'GET'` (default), `'POST'`, `'PUT'`, and `'DELETE'`.
+  
   指定HTTP请求的方法类型类型，可选的值有：`'GET'` (default), `'POST'`, `'PUT'`, and `'DELETE'`。
   
 - `path`: Request path. Should include query string and fragments if any.
    E.G. `'/index.html?page=12'`
+   
    请求地址，如果需要可以包含查询字符串片段
    
 - `headers`: An object containing request headers.
+   
    一个包含请求头的对象
 
 `http.request()` returns an instance of the `http.ClientRequest`

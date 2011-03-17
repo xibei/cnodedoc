@@ -3,7 +3,7 @@
 Datagram sockets are available through `require('dgram')`.  Datagrams are most commonly
 handled as IP/UDP messages but they can also be used over Unix domain sockets.
 
-要使用数据包SOCKET需要调用require('dgram')，数据报一般用来处理IP/UDP信息，但是数据报也可用在UNIX DOMAIN SOCKETS上 
+要使用SOCKET数据包需要调用require('dgram')，数据报一般用来处理IP/UDP信息，同时它也可用在UNIX DOMAIN SOCKETS上 
 
 ### Event: 'message'
 
@@ -12,7 +12,7 @@ handled as IP/UDP messages but they can also be used over Unix domain sockets.
 Emitted when a new datagram is available on a socket.  `msg` is a `Buffer` and `rinfo` is
 an object with the sender's address information and the number of bytes in the datagram.
 
-当一个SOCKET接收到一个新的数据包的时候触发此事件，msg是缓冲区变量,rinfo是一个包含了发送者地址信息以及数据报字节长度的对象
+当一个SOCKET接收到一个新的数据包的时候触发此事件，msg是缓冲区变量，rinfo是一个包含了发送者地址信息以及数据报字节长度的对象
 
 ### Event: 'listening'
 
@@ -21,7 +21,7 @@ an object with the sender's address information and the number of bytes in the d
 Emitted when a socket starts listening for datagrams.  This happens as soon as UDP sockets
 are created.  Unix domain sockets do not start listening until calling `bind()` on them.
 
-当一个SOCKET开始监听数据报的时候触发，当UDP SOCKET建立后就会触发这个事件。而UNIX DOMAIN SOCKET直到在SOCKET上调用了bind()方法才会触发这个消息.
+当一个SOCKET开始监听数据报的时候触发，一旦UDP SOCKET建立后就会触发这个事件。而UNIX DOMAIN SOCKET直到在SOCKET上调用了bind()方法才会开始监听
 
 ### Event: 'close'
 
@@ -30,14 +30,14 @@ are created.  Unix domain sockets do not start listening until calling `bind()` 
 Emitted when a socket is closed with `close()`.  No new `message` events will be emitted
 on this socket.
 
-当一个SOCKET使用close()方法关闭时触发此事件.在此事件之后此SOCKET不会有任何消息事件被触发。
+当一个SOCKET使用close()方法关闭时触发此事件，在此事件之后此SOCKET不会有任何消息事件被触发。
 
 ### dgram.createSocket(type, [callback])
 
 Creates a datagram socket of the specified types.  Valid types are:
 `udp4`, `udp6`, and `unix_dgram`.
 
-建立一个指定类型的数据报SOCKET,有效类型有:udp4,udp6,unix_dgram 
+建立一个指定类型的数据报SOCKET，有效类型有:udp4,udp6,unix_dgram 
 
 Takes an optional callback which is added as a listener for `message` events.
 
@@ -51,12 +51,12 @@ by the OS.  It is not safe to re-use `buf` until the callback is invoked.  Note 
 unless the socket is bound to a pathname with `bind()` there is no way to receive messages
 on this socket.
 
-对于unix domain datagram xockets来说,他的目标地址是一个使用文件系统表示的路径名,callback作为一个可选项会在系统调用sendto完毕后被触发。除非 callback被触发，否则重复使用buf是很不安全的。要注意除非这个socket已经使用bind()方法绑定到一个路径名上，否则这个 SOCKET无法接收到任何信息。 
+对于unix domain datagram sockets来说，它的目标地址是一个使用文件系统表示的路径名，callback作为一个可选项会在系统调用sendto完毕后被触发。在回调函数callback执行前重复使用buf是很不安全的。要注意除非这个socket已经使用bind()方法绑定到一个路径名上，否则这个 SOCKET无法接收到任何信息。 
 
 
 Example of sending a message to syslogd on OSX via Unix domain socket `/var/run/syslog`:
 
-下面是一个通过unix domain socket /var/run/syslog发送消息到syslogd的例子： 
+下面是一个向路径为/var/run/syslog的unix domain socket 发送消息的例子： 
 
     var dgram = require('dgram');
     var message = new Buffer("A message to log.");
@@ -69,7 +69,7 @@ Example of sending a message to syslogd on OSX via Unix domain socket `/var/run/
         console.log("Wrote " + bytes + " bytes to socket.");
     });
     
-从MESSAGE中偏移为0的地方开始，长度为MESSAGE.LENGTH的这些内容通过/var/run/syslog发送系统调用发送后，将调用CALLBACK，如果有错误则抛出异常，否则console.log实际发送了多少个字节 
+从MESSAGE中偏移为0的地方开始，向/var/run/syslog发送长度为MESSAGE.LENGTH的消息体后，将执行回调函数，如果有错误err则抛出异常，否则在控制台输出实际发送了多少个字节 
 
 ### dgram.send(buf, offset, length, port, address, [callback])
 
@@ -99,7 +99,7 @@ For Unix domain datagram sockets, start listening for incoming datagrams on a
 socket specified by `path`. Note that clients may `send()` without `bind()`,
 but no datagrams will be received without a `bind()`.
 
-只有在Unxi DOMAIN DATAGRAM SOCKET中使用，该函数开始在一个指定路径上监听一个SOCKET过来的的数据报。要记得，客户端可以在没有调用BIND()方法就直接调用SEND()方法，但是不使用BIND()方法是无法接收到任何信息的。 
+对Unxi DOMAIN DATAGRAM SOCKET来说，通过指定该函数的path可以开始监听即将到来的数据报。要记得，客户端可以在没有调用BIND()方法就直接调用SEND()方法，但是不使用BIND()方法是无法接收到任何数据报的。 
 
 Example of a Unix domain datagram server that echoes back all messages it receives:
 
@@ -148,7 +148,7 @@ Example of a Unix domain datagram client that talks to this server:
 For UDP sockets, listen for datagrams on a named `port` and optional `address`.  If
 `address` is not specified, the OS will try to listen on all addresses.
 
-对于UDP SOCKETS，这个方法会在指定端口和可选地址上监听，如果地址没有指定，则系统会尝试监听所有有效地址。 
+对于UDP SOCKETS来说，该方法会在`port`指定的端口和可选地址 `address`上监听数据报，如果地址 `address` 没有指定，则系统会尝试监听所有有效地址。 
 
 Example of a UDP server listening on port 41234:
 
@@ -179,7 +179,7 @@ Example of a UDP server listening on port 41234:
 Close the underlying socket and stop listening for data on it.  UDP sockets
 automatically listen for messages, even if they did not call `bind()`.
 
-这个方法关闭非延迟的SOCKET并且停止在其上监听数据。即使没有调用BIND()方法UDP SOCKET也会自动监听消息，
+该函数关闭对应的SOCKET并且停止在其上监听数据。UDP SOCKET会在没有调用BIND()方法的情况下也自动监听消息。
 
 ### dgram.address()
 
@@ -187,7 +187,7 @@ Returns an object containing the address information for a socket.  For UDP sock
 this object will contain `address` and `port`.  For Unix domain sockets, it will contain
 only `address`.
 
-返回包含SOCKET地址信息的一个对象，对于UDP SOCKETS来说，这个对象将包含地址和端口，对于UNIX DOMAIN SOCKETS来说，这个对象仅包含地址 
+返回包含SOCKET地址信息的一个对象，对于UDP SOCKETS来说，这个对象将包含地址和端口，对于UNIX DOMAIN SOCKETS来说，这个对象仅包含地址。
 
 ### dgram.setBroadcast(flag)
 
@@ -195,7 +195,6 @@ Sets or clears the `SO_BROADCAST` socket option.  When this option is set, UDP p
 may be sent to a local interface's broadcast address.
 
 设置或者清除套接字的`SO_BROADCAST`（广播）选项。当该设置生效时，UDP包将被发送至本地接口的广播地址
-
 
 ### dgram.setTTL(ttl)
 

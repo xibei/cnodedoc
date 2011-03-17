@@ -6,7 +6,7 @@ simple [TCP protocol](http://code.google.com/p/v8/wiki/DebuggerProtocol).
 Node has a built-in client for this debugger. To use this, start Node with the
 `debug` argument; a prompt will appear:
 
-V8引擎自身配备了全面的调试器，该调试器通过简单的TCP协议(http://code.google.com/p/v8/wiki/DebuggerProtocol)实现了在外部访问进程。这对该调试器Node内置了一个客户端，要使用该客户端可以在启动Node时附加`debug`参数，如下所示：
+V8引擎自身配备了全面的调试器，该调试器通过简单的TCP协议(http://code.google.com/p/v8/wiki/DebuggerProtocol)实现了在外部访问进程。Node中内置了该调试器的客户端，要使用它可以在启动Node时附加`debug`参数，如下所示：
 
     % node debug myscript.js
     debug>
@@ -15,7 +15,7 @@ At this point `myscript.js` is not yet running. To start the script, enter
 the command `run`. If everything works okay, the output should look like
 this:
 
-这时候`myscript.js`还没有开始执行，如果要执行这段脚本，还需要输入`run`命令。如果一切运行正常的话输出信息应该如下所示：
+执行上述代码的时候 `myscript.js`还没有开始执行，若要执行这段脚本，还需要输入`run`命令。如果一切运行正常的话输出信息应该如下所示：
 
     % node debug myscript.js
     debug> run

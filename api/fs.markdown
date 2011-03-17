@@ -4,15 +4,14 @@ File I/O is provided by simple wrappers around standard POSIX functions.  To
 use this module do `require('fs')`. All the methods have asynchronous and
 synchronous forms.
 
-文件的I/O是由标准POSIX函数封装而成。需要使用"require('fs')"操作这个类。所有的方法设有异步方式和同步方式。 
+文件的I/O是由标准POSIX函数封装而成。需要使用"require('fs')"操作这个模块。所有的方法都提供了异步和同步两种方式。 
 
 The asynchronous form always take a completion callback as its last argument.
 The arguments passed to the completion callback depend on the method, but the
 first argument is always reserved for an exception. If the operation was
 completed successfully, then the first argument will be `null` or `undefined`.
 
-
-异步形式下的方法其最后一个参数，总是一个完整的回调函数（callback）。这个回调函数有哪些参数，就取决于异步方法怎么送入参数，但通常来说，第一个送入的参数是异常对象。如果是操作成功的完成了，那么这个异常对象就变为null或者undefined，表示操作正常。
+异步形式下，方法的最后一个参数需要传入一个完整的回调函数（callback）。传给回调函数的参数取决于具体的异步方法，但第一个参数总是保留给异常对象。如果操作成功，那么该异常对象就变为null或者undefined。
 
 Here is an example of the asynchronous version:
 
@@ -37,7 +36,7 @@ Here is the synchronous version:
 With the asynchronous methods there is no guaranteed ordering. So the
 following is prone to error:
 
-由于异步方法调用无法保证执行的顺序，所以以下的代码容易导致出现错误。
+由于异步方法调用无法保证执行的顺序，所以下面的代码容易导致出现错误。
 
     fs.rename('/tmp/hello', '/tmp/world', function (err) {
       if (err) throw err;
@@ -65,7 +64,7 @@ In busy processes, the programmer is _strongly encouraged_ to use the
 asynchronous versions of these calls. The synchronous versions will block
 the entire process until they complete--halting all connections.
 
-当执行动作繁杂时，强烈建议使用异步方式调用此类。同步方式在其完成之前将会阻挡一切随后的动作，这代表搁置所有连接。 
+当需要频繁操作时，建议使用异步方式调用此方法。同步方式在其完成之前将会阻塞当前的整个进程，即搁置所有连接。 
 
 ### fs.rename(path1, path2, [callback])
 
