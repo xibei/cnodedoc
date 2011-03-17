@@ -111,6 +111,9 @@ Updates the cipher with `data`, the encoding of which is given in `input_encodin
 and can be `'utf8'`, `'ascii'` or `'binary'`. The `output_encoding` specifies
 the output format of the enciphered data, and can be `'binary'`, `'base64'` or `'hex'`.
 
+对`data`更新加密内容，其编码方式由参数`input_encoding`指定，可以为 `'utf8'`, `'ascii'`或者`'binary'`。参数`output_encoding`指定了已加密内容的输出编码方式，可以为 `'binary'`, `'base64'`或`'hex'`。
+
+
 Returns the enciphered contents, and can be called many times with new data as it is streamed.
 
 ### cipher.final(output_encoding='binary')
