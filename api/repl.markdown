@@ -146,10 +146,14 @@ There are a few special REPL commands:
 
   - `.break` - While inputting a multi-line expression, sometimes you get lost
     or just don't care about completing it. `.break` will start over.
+
      `.break` - 当你输入多行表达式，有时你会迷糊或者不想完整输入，这时`.break`就可以帮你跳出。
   - `.clear` - Resets the `context` object to an empty object and clears any multi-line expression.
+
     `.clear` - 该命令翻重置了 `context`对象
   - `.exit` - Close the I/O stream, which will cause the REPL to exit.
+
     `.exit` - 该命令用于关闭I/O流，并退出REPL。
   - `.help` - Show this list of special commands.
+
     `.help` - 输出特殊命令的列表。
