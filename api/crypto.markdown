@@ -150,29 +150,39 @@ Creates and returns a signing object, with the given algorithm.
 On recent OpenSSL releases, `openssl list-public-key-algorithms` will display
 the available signing algorithms. Examples are `'RSA-SHA256'`.
 
-使用给定的算法创建并返回一个登录器对象。
+使用给定的算法创建并返回一个登录器对象。在现有的OpenSSL发行版中，`openssl list-public-key-algorithms`会显示可用的登录算法，例如：`'RSA-SHA256'`。
 
 ### signer.update(data)
 
 Updates the signer object with data.
 This can be called many times with new data as it is streamed.
 
+对给定数据更新登录器。当使用流数据时可能会多次调用该方法。
+
 ### signer.sign(private_key, output_format='binary')
 
 Calculates the signature on all the updated data passed through the signer.
 `private_key` is a string containing the PEM encoded private key for signing.
 
+对所有通过登录器的已更新的数据计算签名。`private_key`为字符串，它包含了PEM编码的用于登录的私有键。
+
 Returns the signature in `output_format` which can be `'binary'`, `'hex'` or `'base64'`.
+
+返回该签名，其`output_format`可以为`'binary'`, `'hex'` 或者`'base64'`。
 
 ### crypto.createVerify(algorithm)
 
 Creates and returns a verification object, with the given algorithm.
 This is the mirror of the signing object above.
 
+使用给定算法创建并返回一个验证器对象。它是上述登录器对象的镜像。
+
 ### verifier.update(data)
 
 Updates the verifier object with data.
 This can be called many times with new data as it is streamed.
+
+对给定的数据更行验证器。当使用流数据时，可能会多次调用该方法。
 
 ### verifier.verify(cert, signature, signature_format='binary')
 
@@ -180,4 +190,8 @@ Verifies the signed data by using the `cert` which is a string containing
 the PEM encoded public key, and `signature`, which is the previously calculates
 signature for the data, in the `signature_format` which can be `'binary'`, `'hex'` or `'base64'`.
 
+使用参数`cert`和`signature`验证已登录的数据，`cert`为包含了PEM编码的公共键的字符串，`signature`为之前已计算的数据的签名，`signature_format`可以为`'binary'`, `'hex'` 或者`'base64'`。
+
 Returns true or false depending on the validity of the signature for the data and public key.
+
+根据对数据和公共键签进行签名认证的结果确定该方法的返回值为true或者false。
