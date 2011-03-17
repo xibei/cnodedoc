@@ -135,17 +135,22 @@ This is the mirror of the cipher object above.
 Updates the decipher with `data`, which is encoded in `'binary'`, `'base64'` or `'hex'`.
 The `output_decoding` specifies in what format to return the deciphered plaintext: `'binary'`, `'ascii'` or `'utf8'`.
 
+对编码方式为`'binary'`, `'base64'`或者`'hex'``data`更新解密内容。参数 `output_decoding`指定了返回的已解密明文的编码方式，可以为 `'binary'`, `'ascii'`或者`'utf8'`。
+
 ### decipher.final(output_encoding='binary')
 
 Returns any remaining plaintext which is deciphered,
 with `output_encoding' being one of: `'binary'`, `'ascii'` or `'utf8'`.
 
+返回全部剩余的已解密的明文，其`output_encoding' 为`'binary'`, `'ascii'`或`'utf8'`其中之一。
 
 ### crypto.createSign(algorithm)
 
 Creates and returns a signing object, with the given algorithm.
 On recent OpenSSL releases, `openssl list-public-key-algorithms` will display
 the available signing algorithms. Examples are `'RSA-SHA256'`.
+
+使用给定的算法创建并返回一个登录器对象。
 
 ### signer.update(data)
 
