@@ -113,17 +113,22 @@ the output format of the enciphered data, and can be `'binary'`, `'base64'` or `
 
 对`data`更新加密内容，其编码方式由参数`input_encoding`指定，可以为 `'utf8'`, `'ascii'`或者`'binary'`。参数`output_encoding`指定了已加密内容的输出编码方式，可以为 `'binary'`, `'base64'`或`'hex'`。
 
-
 Returns the enciphered contents, and can be called many times with new data as it is streamed.
+
+返回已加密的内容，当数据为留数据时，可能会多次调用该方法。
 
 ### cipher.final(output_encoding='binary')
 
 Returns any remaining enciphered contents, with `output_encoding` being one of: `'binary'`, `'ascii'` or `'utf8'`.
 
+返回所有剩余的已加密内容，`output_encoding`为`'binary'`, `'ascii'`或`'utf8'`其中之一。
+
 ### crypto.createDecipher(algorithm, key)
 
 Creates and returns a decipher object, with the given algorithm and key.
 This is the mirror of the cipher object above.
+
+使用给定的算法和主键创建并返回一个加密对象。该对象为上述加密对象的镜像。
 
 ### decipher.update(data, input_encoding='binary', output_encoding='binary')
 
