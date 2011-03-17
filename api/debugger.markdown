@@ -6,9 +6,7 @@ simple [TCP protocol](http://code.google.com/p/v8/wiki/DebuggerProtocol).
 Node has a built-in client for this debugger. To use this, start Node with the
 `debug` argument; a prompt will appear:
 
-V8引擎自身配备了全面的调试器，该调试器通过简单的TCP协议(http://code.google.com/p/v8/wiki/DebuggerProtocol)
-实现了在外部访问进程。这对该调试器Node内置了一个客户端，要使用该客户端可以在启动Node时
-附加`debug`参数，如下所示：
+V8引擎自身配备了全面的调试器，该调试器通过简单的TCP协议(http://code.google.com/p/v8/wiki/DebuggerProtocol)实现了在外部访问进程。这对该调试器Node内置了一个客户端，要使用该客户端可以在启动Node时附加`debug`参数，如下所示：
 
     % node debug myscript.js
     debug>
@@ -17,8 +15,7 @@ At this point `myscript.js` is not yet running. To start the script, enter
 the command `run`. If everything works okay, the output should look like
 this:
 
-这时候`myscript.js`还没有开始执行，如果要执行这段脚本，还需要输入`run`命令。如果一切运行正常的话
-输出信息应该如下所示：
+这时候`myscript.js`还没有开始执行，如果要执行这段脚本，还需要输入`run`命令。如果一切运行正常的话输出信息应该如下所示：
 
     % node debug myscript.js
     debug> run
@@ -29,8 +26,7 @@ Node's debugger client doesn't support the full range of commands, but
 simple step and inspection is possible. By putting the statement `debugger;`
 into the source code of your script, you will enable a breakpoint.
 
-Node的调试器客户端虽然没有支持所有范围的命令，但是实现单步调试是可能的。
-你可以在脚本代码中声明`debugger;`语句从而启用一个断点。
+Node的调试器客户端虽然没有支持所有范围的命令，但是实现单步调试是可能的。你可以在脚本代码中声明`debugger;`语句从而启用一个断点。
 
 For example, suppose `myscript.js` looked like this:
 
@@ -78,8 +74,7 @@ The `print` command allows you to evaluate variables. The `next` command steps
 over to the next line. There are a few other commands available and more to
 come type `help` to see others.
 
-`print`命令允许将变量输出到控制台进行查看。`next`命令单步调试到下一行代码。
-还有其他一些可用的命令你可以通过输入`help`进行查看
+`print`命令允许将变量输出到控制台进行查看。`next`命令单步调试到下一行代码。还有其他一些可用的命令你可以通过输入`help`进行查看
 
 
 ### Advanced Usage
@@ -88,7 +83,6 @@ The V8 debugger can be enabled and accessed either by starting Node with
 the `--debug` command-line flag or by signaling an existing Node process
 with `SIGUSR1`.
 
-要启用V8引擎调试器你可以在启动Node时增加命令行参数`--debug`
-或者给一个已经存在的Node进程发送值为`SIGUSR1`的信号量
+要启用V8引擎调试器你可以在启动Node时增加命令行参数`--debug`或者给一个已经存在的Node进程发送值为`SIGUSR1`的信号量
 
 

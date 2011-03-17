@@ -41,8 +41,7 @@ is a string representation of a IP v4 or v6 address. The `family` argument
 is either the integer 4 or 6 and denotes the family of `address` (not
 neccessarily the value initially passed to `lookup`).
 
-调函数的有(err, address, family)这三个参数。address参数是一个代表IPv4或IPv6的地址的字符串。
-family是一个表示地址版本的整形数字4或6(并不一定是解析域名时传递的数字)。
+调函数的有(err, address, family)这三个参数。address参数是一个代表IPv4或IPv6的地址的字符串。family是一个表示地址版本的整形数字4或6(并不一定是解析域名时传递的数字)。
 
 ### dns.resolve(domain, rrtype='A', callback)
 
@@ -51,23 +50,19 @@ specified by rrtype. Valid rrtypes are `A` (IPV4 addresses), `AAAA` (IPV6
 addresses), `MX` (mail exchange records), `TXT` (text records), `SRV` (SRV
 records), and `PTR` (used for reverse IP lookups).
 
-将参数domain(比如'google.com')按照参数rrtype所指定数据类型解析到一个数组中。
-合法的类型为A（IPV4地址），AAAA（IPV6地址），MX（mail exchange records）,
-TXT(text records)，SRV（SRV records），和PTR（used for reveres IP lookups）。 
+将参数domain(比如'google.com')按照参数rrtype所指定数据类型解析到一个数组中。合法的类型为A（IPV4地址），AAAA（IPV6地址），MX（mail exchange records）,TXT(text records)，SRV（SRV records），和PTR（used for reveres IP lookups）。 
 
 The callback has arguments `(err, addresses)`.  The type of each item
 in `addresses` is determined by the record type, and described in the
 documentation for the corresponding lookup methods below.
 
-回调函数（callback）接受两个参数：err和address。参数address中的每一项根据记录类型(record type)分割，
-在下面lookup方法的文档里有详细的解释。 
+回调函数（callback）接受两个参数：err和address。参数address中的每一项根据记录类型(record type)分割，在下面lookup方法的文档里有详细的解释。 
 
 On error, `err` would be an instanceof `Error` object, where `err.errno` is
 one of the error codes listed below and `err.message` is a string describing
 the error in English.
 
-当有错误发生时，参数err的内容是一个Error对象的实例，err的errno属性是下面错误代码列表中的一个，
-err的message属性是一个用英语表述的错误解释。 
+当有错误发生时，参数err的内容是一个Error对象的实例，err的errno属性是下面错误代码列表中的一个，err的message属性是一个用英语表述的错误解释。 
 
 ### dns.resolve4(domain, callback)
 
@@ -75,8 +70,7 @@ The same as `dns.resolve()`, but only for IPv4 queries (`A` records).
 `addresses` is an array of IPv4 addresses (e.g.
 `['74.125.79.104', '74.125.79.105', '74.125.79.106']`).
 
-与dns.resolve()类似,但是仅对IPV4地址进行查询(A records)。addresses是一个IPV4地址数组
-(例如['74.125.79.104', '74.125.79.105', '74.125.79.106']) 
+与dns.resolve()类似,但是仅对IPV4地址进行查询(A records)。addresses是一个IPV4地址数组(例如['74.125.79.104', '74.125.79.105', '74.125.79.106']) 
 
 ### dns.resolve6(domain, callback)
 
@@ -93,8 +87,7 @@ The same as `dns.resolve()`, but only for mail exchange queries (`MX` records).
 `addresses` is an array of MX records, each with a priority and an exchange
 attribute (e.g. `[{'priority': 10, 'exchange': 'mx.example.com'},...]`).
 
-回调函数的参数address是一个MX类型记录的数组,每个记录有一个优先级属性和一个交换
-属性(类似[{'priority': 10, 'exchange': 'mx.example.com'},...]) 
+回调函数的参数address是一个MX类型记录的数组,每个记录有一个优先级属性和一个交换属性(类似[{'priority': 10, 'exchange': 'mx.example.com'},...]) 
 
 ### dns.resolveTxt(domain, callback)
 
@@ -111,8 +104,7 @@ The same as `dns.resolve()`, but only for service records (`SRV` records).
 of SRV records are priority, weight, port, and name (e.g.,
 `[{'priority': 10, {'weight': 5, 'port': 21223, 'name': 'service.example.com'}, ...]`).
 
-与dns.resolve()很类似,但仅是只查询service记录(srv records)。地址是一个对于域来说有效的SRV记录的数组，
-SRV记录的属性有优先级、权重、端口，名字(例如 [{'priority': 10, {'weight': 5, 'port': 21223, 'name': 'service.example.com'}, ...]) 
+与dns.resolve()很类似,但仅是只查询service记录(srv records)。地址是一个对于域来说有效的SRV记录的数组，SRV记录的属性有优先级、权重、端口，名字(例如 [{'priority': 10, {'weight': 5, 'port': 21223, 'name': 'service.example.com'}, ...]) 
 
 ### dns.reverse(ip, callback)
 

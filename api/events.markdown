@@ -5,15 +5,12 @@ a peer connects to it, a `fs.readStream` emits an event when the file is
 opened. All objects which emit events are instances of `events.EventEmitter`.
 You can access this module by doing: `require("events");`
 
-Node引擎中很多对象都会派发事件：例如`net.Server`会在每一次有端点连接到它时派发事件，
-又如`fs.readStream`会在文件打开时派发事件。所以能够派发事件的对象都是`events.EventEmitter`的实例。
-你可以通过`require("events");`访问这个模块。
+Node引擎中很多对象都会派发事件：例如`net.Server`会在每一次有端点连接到它时派发事件，又如`fs.readStream`会在文件打开时派发事件。所以能够派发事件的对象都是`events.EventEmitter`的实例。你可以通过`require("events");`访问这个模块。
 
 Typically, event names are represented by a camel-cased string, however,
 there aren't any strict restrictions on that, as any string will be accepted.
 
-通常情况下，事件名称用大小写分隔表示，不过目前并没有对事件名称作任何的限制，
-也就是说任何的字符串都可以被接受。
+通常情况下，事件名称用大小写分隔表示，不过目前并没有对事件名称作任何的限制，也就是说任何的字符串都可以被接受。
 
 Functions can then be attached to objects, to be executed when an event
 is emitted. These functions are called _listeners_.
@@ -31,8 +28,7 @@ to emit an `'error'` event.  Error events are treated as a special case in node.
 If there is no listener for it, then the default action is to print a stack
 trace and exit the program.
 
-当事件触发器过程中出现错误时，典型的处理方式是它将触发一个'error'事件。 Error事件的特殊性在于：
-如果没有函数处理这个事件，它将会输出调用堆栈，并随之退出应用程序。
+当事件触发器过程中出现错误时，典型的处理方式是它将触发一个'error'事件。 Error事件的特殊性在于：如果没有函数处理这个事件，它将会输出调用堆栈，并随之退出应用程序。
 
 All EventEmitters emit the event `'newListener'` when new listeners are
 added.
@@ -68,6 +64,7 @@ Remove a listener from the listener array for the specified event.
 **Caution**: changes array indices in the listener array behind the listener.
 
 将监听器从指定事件的监听器数组中移除出去。
+
 **小心**: changes array indices in the listener array behind the listener.
 
     var callback = function(stream) {
@@ -91,9 +88,7 @@ added to it. This is a useful default which helps finding memory leaks.
 Obviously not all Emitters should be limited to 10. This function allows
 that to be increased. Set to zero for unlimited.
 
-默认情况下当EventEmitters注册了超过10个以上的监听器时系统会打印警告信息，
-这个默认配置将有助于你查找内存泄露问题。很显然并不是所有的Emitters都会有10个
-监听器警告的限制，setMaxListeners函数允许你手动设置该数量值，如果值为0意味值没有限制。
+默认情况下当EventEmitters注册了超过10个以上的监听器时系统会打印警告信息，这个默认配置将有助于你查找内存泄露问题。很显然并不是所有的Emitters都会有10个监听器警告的限制，setMaxListeners函数允许你手动设置该数量值，如果值为0意味值没有限制。
 
 #### emitter.listeners(event)
 

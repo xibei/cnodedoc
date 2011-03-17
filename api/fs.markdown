@@ -4,8 +4,7 @@ File I/O is provided by simple wrappers around standard POSIX functions.  To
 use this module do `require('fs')`. All the methods have asynchronous and
 synchronous forms.
 
-文件的I/O是由标准POSIX函数封装而成。需要使用"require('fs')"操作这个类。
-所有的方法设有异步方式和同步方式。 
+文件的I/O是由标准POSIX函数封装而成。需要使用"require('fs')"操作这个类。所有的方法设有异步方式和同步方式。 
 
 The asynchronous form always take a completion callback as its last argument.
 The arguments passed to the completion callback depend on the method, but the
@@ -13,9 +12,7 @@ first argument is always reserved for an exception. If the operation was
 completed successfully, then the first argument will be `null` or `undefined`.
 
 
-异步形式下的方法其最后一个参数，总是一个完整的回调函数（callback）。这个回调函数有哪些参数，
-就取决于异步方法怎么送入参数，但通常来说，第一个送入的参数是异常对象。
-如果是操作成功的完成了，那么这个异常对象就变为null或者undefined，表示操作正常。
+异步形式下的方法其最后一个参数，总是一个完整的回调函数（callback）。这个回调函数有哪些参数，就取决于异步方法怎么送入参数，但通常来说，第一个送入的参数是异常对象。如果是操作成功的完成了，那么这个异常对象就变为null或者undefined，表示操作正常。
 
 Here is an example of the asynchronous version:
 
@@ -142,8 +139,7 @@ Asynchronous lstat(2). The callback gets two arguments `(err, stats)` where
 path is a symbolic link, then the link itself is stat-ed, not the file that it
 refers to.
 
-异步形式调用lstat(2)，回调函数返回两个参数`(err, stats)`，其中stats是`fs.Stats`的一个对象，
-lstat()和stat()类似，区别在于当path是一个符号链接时，它指向该连接的属性，而不是所指向文件的属性
+异步形式调用lstat(2)，回调函数返回两个参数`(err, stats)`，其中stats是`fs.Stats`的一个对象，lstat()和stat()类似，区别在于当path是一个符号链接时，它指向该连接的属性，而不是所指向文件的属性
 
 ### fs.fstat(fd, [callback])
 
@@ -265,8 +261,7 @@ Asynchronous readdir(3).  Reads the contents of a directory.
 The callback gets two arguments `(err, files)` where `files` is an array of
 the names of the files in the directory excluding `'.'` and `'..'`.
 
-异步读取目录中的内容(readdir(3))。回调函数的第二个参数是以阵列构成的目录内
-对象的名称('.'与'..'除外)。(err, files) 
+异步读取目录中的内容(readdir(3))。回调函数的第二个参数是以阵列构成的目录内对象的名称('.'与'..'除外)。(err, files) 
 
 ### fs.readdirSync(path)
 
@@ -293,8 +288,7 @@ Synchronous close(2).
 Asynchronous file open. See open(2). Flags can be 'r', 'r+', 'w', 'w+', 'a',
 or 'a+'. The callback gets two arguments `(err, fd)`.
 
-异步开启文件，详阅 open(2)。标签可为'r', 'r+', 'w', 'w+', 'a', 或 'a+'。
-回调函数的第二个参数是指标。(err, fd) 
+异步开启文件，详阅 open(2)。标签可为'r', 'r+', 'w', 'w+', 'a', 或 'a+'。回调函数的第二个参数是指标。(err, fd) 
 
 ### fs.openSync(path, flags, mode=0666)
 
@@ -317,8 +311,7 @@ should be written. If `position` is `null`, the data will be written at the
 current position.
 See pwrite(2).
 
-position指向待写入数据按文件从头部算起的偏移位置，若position为空，数据将从当前位置
-开始写入，详阅pwrite(2)
+position指向待写入数据按文件从头部算起的偏移位置，若position为空，数据将从当前位置开始写入，详阅pwrite(2)
 
 The callback will be given two arguments `(err, written)` where `written`
 specifies how many _bytes_ were written.
@@ -360,8 +353,7 @@ Read data from the file specified by `fd`.
 `position` is an integer specifying where to begin reading from in the file.
 If `position` is `null`, data will be read from the current file position.
 
-`position`为一个整形变量，标识从哪个位置开始读取文件，如果`position`参数为`null`，
-数据将从文件当前位置开始读取。
+`position`为一个整形变量，标识从哪个位置开始读取文件，如果`position`参数为`null`，数据将从文件当前位置开始读取。
 
 The callback is given the two arguments, `(err, bytesRead)`.
 
@@ -444,9 +436,7 @@ The second argument is optional. The `options` if provided should be an object
 containing two members a boolean, `persistent`, and `interval`, a polling
 value in milliseconds. The default is `{ persistent: true, interval: 0 }`.
 
-第二个参数是可选项，`options`参数应当以一个对象的形式提供，且该对象包含两个布尔类型
-的成员属性，属性名为`persistent`，和 `interval` 轮询的时间间隔，
-默认值为`{ persistent: true, interval: 0 }`。
+第二个参数是可选项，`options`参数应当以一个对象的形式提供，且该对象包含两个布尔类型的成员属性，属性名为`persistent`，和 `interval` 轮询的时间间隔，默认值为`{ persistent: true, interval: 0 }`。
 
 The `listener` gets two arguments the current stat object and the previous
 stat object:
@@ -513,8 +503,7 @@ Returns a new ReadStream object (See `Readable Stream`).
 the file instead of the entire file.  Both `start` and `end` are inclusive and
 start at 0.  When used, both the limits must be specified always.
 
-选项中还包括了`start` 和 `end`参数值表示需要读取文件从`start` 到 `end`这个范围字节内容而不是
-读取整个文件，`start` 和 `end`包含在选项中并且start默认为0，一旦启用，这两个参数都需要设置。
+选项中还包括了`start` 和 `end`参数值表示需要读取文件从`start` 到 `end`这个范围字节内容而不是读取整个文件，`start` 和 `end`包含在选项中并且start默认为0，一旦启用，这两个参数都需要设置。
 
 An example to read the last 10 bytes of a file which is 100 bytes long:
 

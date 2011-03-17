@@ -24,8 +24,7 @@ Example:
       res.end("hello world\n");
     }).listen(8000);
 
-这个例子演示如何创建基于HTTPS的服务器，options对象中的KEY为对应的钥匙文件，cert为对应的证书类型，
-在Node中，钥匙、CA信息都是用pem格式的文件保存的
+这个例子演示如何创建基于HTTPS的服务器，options对象中的KEY为对应的钥匙文件，cert为对应的证书类型，在Node中，钥匙、CA信息都是用pem格式的文件保存的
 
 ## https.request(options, callback)
 

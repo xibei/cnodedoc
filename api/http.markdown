@@ -10,8 +10,7 @@ In particular, large, possibly chunk-encoded, messages. The interface is
 careful to never buffer entire requests or responses--the
 user is able to stream data.
 
-NODE中的HTTP接口被设计成为支持HTTP协议的很多特性，这些特性通常那难以掌控，特别是 large,possible chunk-encoded(块编码),messages。 
-这个接口特意不缓冲整个请求(request)或者响应(responses)使用户可以使用流的形式操作数据。 
+NODE中的HTTP接口被设计成为支持HTTP协议的很多特性，这些特性通常那难以掌控，特别是 large,possible chunk-encoded(块编码),messages。这个接口特意不缓冲整个请求(request)或者响应(responses)使用户可以使用流的形式操作数据。 
 
 HTTP message headers are represented by an object like this:
 
@@ -31,8 +30,7 @@ HTTP API is very low-level. It deals with stream handling and message
 parsing only. It parses a message into headers and body but it does not
 parse the actual headers or the body.
 
-为了支持尽可能多的HTTP应用，NODE的HTTP API非常底层。 其只处理到流(stream)相关的操作以及信息解析。
-API将信息解析成为信息头和信息体，但并不解析实际的信息头和信息体的具体内容。
+为了支持尽可能多的HTTP应用，NODE的HTTP API非常底层。 其只处理到流(stream)相关的操作以及信息解析。API将信息解析成为信息头和信息体，但并不解析实际的信息头和信息体的具体内容。
 
 ## http.Server
 
@@ -57,8 +55,7 @@ This is an `EventEmitter` with the following events:
  `net.Stream`. Usually users will not want to access this event. The
  `stream` can also be accessed at `request.connection`.
  
-当一个新的TCP stream建立后发出此消息。stream是一个net.Stream的对象，
-通常用户不会访问/使用这个事件。参数stream也可以在request.connection中访问到. 
+当一个新的TCP stream建立后发出此消息。stream是一个net.Stream的对象，通常用户不会访问/使用这个事件。参数stream也可以在request.connection中访问到. 
 
 ### Event: 'close'
 
@@ -85,16 +82,14 @@ Emitted each time a request with an http Expect: 100-continue is received.
 If this event isn't listened for, the server will automatically respond
 with a 100 Continue as appropriate.
 
-每当请求期望接收到100-continue时派发，如果该事件未被监听，服务器会自动
-返回100-continue给客户端。
+每当请求期望接收到100-continue时派发，如果该事件未被监听，服务器会自动返回100-continue给客户端。
 
 Handling this event involves calling `response.writeContinue` if the client
 should continue to send the request body, or generating an appropriate HTTP
 response (e.g., 400 Bad Request) if the client should not continue to send the
 request body.
 
-该事件的处理涉及两种情况，如果客户端应当继续发送请求体，那么需要调用response.writeContinue，
-而如果客户端不应该继续发送请求正文，那么应该产生一个适当的HTTP反应（如400错误请求）。
+该事件的处理涉及两种情况，如果客户端应当继续发送请求体，那么需要调用response.writeContinue，而如果客户端不应该继续发送请求正文，那么应该产生一个适当的HTTP反应（如400错误请求）。
 
 Note that when this event is emitted and handled, the `request` event will
 not be emitted.
@@ -109,8 +104,7 @@ Emitted each time a client requests a http upgrade. If this event isn't
 listened for, then clients requesting an upgrade will have their connections
 closed.
 
-每当一个客户端请求一个http upgrade时候发出此消息。如果这个事件没有监听，
-那么请求upgrade的客户端对应的连接将被关闭。 
+每当一个客户端请求一个http upgrade时候发出此消息。如果这个事件没有监听，那么请求upgrade的客户端对应的连接将被关闭。 
 
 * `request` is the arguments for the http request, as it is in the request event.
 参数“request”代表一个http请求，和'request'事件的参数意义相同。
@@ -125,8 +119,7 @@ After this event is emitted, the request's socket will not have a `data`
 event listener, meaning you will need to bind to it in order to handle data
 sent to the server on that socket.
 
-当此事件被触发后，该请求所使用的socket并不会有一个数据事件的监听者,这意味着你如果需要
-处理通过这个SOCKET发送到服务器端的数据的话则需要自己绑定数据事件监听器 
+当此事件被触发后，该请求所使用的socket并不会有一个数据事件的监听者,这意味着你如果需要处理通过这个SOCKET发送到服务器端的数据的话则需要自己绑定数据事件监听器 
 
 ### Event: 'clientError'
 
@@ -153,8 +146,7 @@ Begin accepting connections on the specified port and hostname.  If the
 hostname is omitted, the server will accept connections directed to any
 IPv4 address (`INADDR_ANY`).
 
-在指定端口和主机名上接受连接。如果hostname没有写,这个服务器将直接在此机器的
-所有IPV4地址上接受连接(INADDR_ANY). 
+在指定端口和主机名上接受连接。如果hostname没有写,这个服务器将直接在此机器的所有IPV4地址上接受连接(INADDR_ANY). 
 
 To listen to a unix socket, supply a filename instead of port and hostname.
 
@@ -204,8 +196,7 @@ argument. The transfer-encoding has been decoded.  The
 body chunk is a string.  The body encoding is set with
 `request.setBodyEncoding()`.
 
-例如:代表消息体的数据块将作为唯一的参数传递给回调函数。这个时候数据已经按照传输编码
-进行了解码（不是字符集编码）。消息体本身是一个字符串，可以使用request.setBodyEncoding()方法设定消息体的编码。 
+例如:代表消息体的数据块将作为唯一的参数传递给回调函数。这个时候数据已经按照传输编码进行了解码（不是字符集编码）。消息体本身是一个字符串，可以使用request.setBodyEncoding()方法设定消息体的编码。 
 
 ### Event: 'end'
 
@@ -255,8 +246,7 @@ If you would like to extract the params from the query string,
 you can use the `require('querystring').parse` function, or pass
 `true` as the second argument to `require('url').parse`.  Example:
 
-如果你想从查询字符串中提出这些参数，你可以使用require('querystring').parse方法,
-或者传一个true作为第二个参数给require('url').parse方法。 
+如果你想从查询字符串中提出这些参数，你可以使用require('querystring').parse方法,或者传一个true作为第二个参数给require('url').parse方法。 
 
     node> require('url').parse('/status?name=ryan', true)
     { href: '/status?name=ryan',
@@ -285,8 +275,7 @@ The HTTP protocol version as a string. Read only. Examples:
 Also `request.httpVersionMajor` is the first integer and
 `request.httpVersionMinor` is the second.
 
-以字符串形式表示HTTP协议版本。例如'1.1','1.0'。request.httpVersionMajor对应版本号的第一个数字，
-request.httpVersionMinor则对应第二个数字。 
+以字符串形式表示HTTP协议版本。例如'1.1','1.0'。request.httpVersionMajor对应版本号的第一个数字，request.httpVersionMinor则对应第二个数字。 
 
 ### request.setEncoding(encoding=null)
 
@@ -341,8 +330,7 @@ status code, like `404`. The last argument, `headers`, are the response headers.
 Optionally one can give a human-readable `reasonPhrase` as the second
 argument.
 
-这个方法的是用来发送一个响应报文头给本次的请求方，第一个参数状态码是由一个3位数字所构成的HTTP状态，
-比如404之类的。最后一个参数headers是响应头具体内容.也可以使用一个方便人们直观了解的reasonPhrase作为第二个参数。 
+这个方法的是用来发送一个响应报文头给本次的请求方，第一个参数状态码是由一个3位数字所构成的HTTP状态，比如404之类的。最后一个参数headers是响应头具体内容.也可以使用一个方便人们直观了解的reasonPhrase作为第二个参数。 
 
 Example:
 
@@ -381,8 +369,7 @@ Sets a single header value for implicit headers.  If this header already exists
 in the to-be-sent headers, it's value will be replaced.  Use an array of strings
 here if you need to send multiple headers with the same name.
 
-显示设置头部信息参数，如果已经设置了对应的头部信息，那么该值将被替换，如果你想发送相同名字的多个头部信息，
-可以使用字符串数组的形式设置
+显示设置头部信息参数，如果已经设置了对应的头部信息，那么该值将被替换，如果你想发送相同名字的多个头部信息，可以使用字符串数组的形式设置
 
 Example:
 
@@ -401,8 +388,7 @@ Reads out a header that's already been queued but not sent to the client.  Note
 that the name is case insensitive.  This can only be called before headers get
 implicitly flushed.
 
-读取尚未发送给客户端且已经排列好的的头部信息，注意参数名不区分大小写，该方法只有在
-头部信息没有隐式刷新前调用。
+读取尚未发送给客户端且已经排列好的的头部信息，注意参数名不区分大小写，该方法只有在头部信息没有隐式刷新前调用。
 
 Example:
 
@@ -435,8 +421,7 @@ be called multiple times to provide successive parts of the body.
 the second parameter specifies how to encode it into a byte stream.
 By default the `encoding` is `'utf8'`.
 
-参数chunk可以是一个字符串或者一个buffer。如果chunk是一个字符串，则第二个参数指定如何将
-这个字符串编码成字节流，缺省情况下，编码为'utf8'。 
+参数chunk可以是一个字符串或者一个buffer。如果chunk是一个字符串，则第二个参数指定如何将这个字符串编码成字节流，缺省情况下，编码为'utf8'。 
 
 **Note**: This is the raw HTTP body and has nothing to do with
 higher-level multi-part body encodings that may be used.
@@ -449,9 +434,7 @@ header information and the first body to the client. The second time
 data, and sends that separately. That is, the response is buffered up to the
 first chunk of body.
 
-第一次调用response.write()时，此方法会将已经缓冲的消息头和第一块消息体发送给客户。 
-当第二次调用response.write()的时候，node将假定你想要以流的形式发送数据（分别发送每一个数据块并不做缓存）。 
-这样，其实response对象只是缓存消息体的第一个数据块。 
+第一次调用response.write()时，此方法会将已经缓冲的消息头和第一块消息体发送给客户。 当第二次调用response.write()的时候，node将假定你想要以流的形式发送数据（分别发送每一个数据块并不做缓存）。 这样，其实response对象只是缓存消息体的第一个数据块。 
 
 ### response.addTrailers(headers)
 
@@ -485,8 +468,7 @@ has been sent; that server should consider this message complete.
 The method, `response.end()`, MUST be called on each
 response.
 
-这个方法会告诉服务器此响应的所有报文头及报文体已经发出；服务器在此调用后认为这条信息已经发送完毕；
-这个方法必须对每个响应调用一次。 
+这个方法会告诉服务器此响应的所有报文头及报文体已经发出；服务器在此调用后认为这条信息已经发送完毕；这个方法必须对每个响应调用一次。 
 
 If `data` is specified, it is equivalent to calling `response.write(data, encoding)`
 followed by `response.end()`.
@@ -505,29 +487,27 @@ Options:
 选项：
 
 - `host`: A domain name or IP address of the server to issue the request to.
-          请求的域名或者服务器的IP地址
+  请求的域名或者服务器的IP地址
           
 - `port`: Port of remote server.
-          远端服务器的端口
+  远端服务器的端口
           
 - `method`: A string specifing the HTTP request method. Possible values:
   `'GET'` (default), `'POST'`, `'PUT'`, and `'DELETE'`.
-          指定HTTP请求的方法类型类型，可选的值有：`'GET'` (default), 
-          `'POST'`, `'PUT'`, and `'DELETE'`。
+  指定HTTP请求的方法类型类型，可选的值有：`'GET'` (default), `'POST'`, `'PUT'`, and `'DELETE'`。
   
 - `path`: Request path. Should include query string and fragments if any.
    E.G. `'/index.html?page=12'`
-          请求地址，如果需要可以包含查询字符串片段
+   请求地址，如果需要可以包含查询字符串片段
    
 - `headers`: An object containing request headers.
-          一个包含请求头的对象
+   一个包含请求头的对象
 
 `http.request()` returns an instance of the `http.ClientRequest`
 class. The `ClientRequest` instance is a writable stream. If one needs to
 upload a file with a POST request, then write to the `ClientRequest` object.
 
-`http.request()`函数返回`http.ClientRequest`类的一个实例，`ClientRequest`对象
-是一个可写入的流，如果你需要用POST方法请求上传一个文件，需要将其写入到`ClientRequest`对象中。
+`http.request()`函数返回`http.ClientRequest`类的一个实例，`ClientRequest`对象是一个可写入的流，如果你需要用POST方法请求上传一个文件，需要将其写入到`ClientRequest`对象中。
 
 Example:
 
@@ -556,15 +536,13 @@ Note that in the example `req.end()` was called. With `http.request()` one
 must always call `req.end()` to signify that you're done with the request -
 even if there is no data being written to the request body.
 
-注意这个例子中`req.end()`被调用了，无论请求体是否包含数据，每一次调用`http.request()`
-最后都需要调用一次`req.end()`表示已经完成了请求
+注意这个例子中`req.end()`被调用了，无论请求体是否包含数据，每一次调用`http.request()`最后都需要调用一次`req.end()`表示已经完成了请求
 
 If any error is encountered during the request (be that with DNS resolution,
 TCP level errors, or actual HTTP parse errors) an `'error'` event is emitted
 on the returned request object.
 
-如果在请求过程中出现了错误（可能是DNS解析、TCP的错误、或者HTTP解析错误），
-名为`'error'`的事件将派发到返回的请求对象中
+如果在请求过程中出现了错误（可能是DNS解析、TCP的错误、或者HTTP解析错误），名为`'error'`的事件将派发到返回的请求对象中
 
 There are a few special headers that should be noted.
 
@@ -593,8 +571,7 @@ Since most requests are GET requests without bodies, Node provides this
 convience method. The only difference between this method and `http.request()` is
 that it sets the method to GET and calls `req.end()` automatically.
 
-由于很多GET方法的请求不会包含正文体，Node提供了这个方法便于调用，唯一的不同点
-是该方法将`http.request()`的方法设置为GET并且自动在最后调用`req.end()`。
+由于很多GET方法的请求不会包含正文体，Node提供了这个方法便于调用，唯一的不同点是该方法将`http.request()`的方法设置为GET并且自动在最后调用`req.end()`。
 
 Example:
 
@@ -619,9 +596,7 @@ an HTTP server. Normally `Agent` instances should not be exposed to user
 code, however in certain situations it's useful to check the status of the
 agent. The `http.getAgent()` function allows you to access the agents.
 
-`http.request()`使用一个特别的`Agent`代理来管理服务器上的多个连接，通常`Agent`对象
-不应该暴露给用户，但在某些特定的情况下，该对象对用户检测代理的状态非常有用，`http.getAgent()`
-函数允许你访问这些代理对象
+`http.request()`使用一个特别的`Agent`代理来管理服务器上的多个连接，通常`Agent`对象不应该暴露给用户，但在某些特定的情况下，该对象对用户检测代理的状态非常有用，`http.getAgent()`函数允许你访问这些代理对象
 
 ### Event: 'upgrade'
 
@@ -673,10 +648,7 @@ header is still mutable using the `setHeader(name, value)`, `getHeader(name)`,
 `removeHeader(name)` API.  The actual header will be sent along with the first
 data chunk or when closing the connection.
 
-这个对象由内部创建，通过`http.request()`返回该对象，它表示一个正在进行中且
-头部信息已经安排好了的请求，这时候通过`setHeader(name, value)`, `getHeader(name)`,
-`removeHeader(name)`这些API是无法改变头部信息的，实际的头部信息将随着chunk的第一
-部分或者关闭连接时发送出去
+这个对象由内部创建，通过`http.request()`返回该对象，它表示一个正在进行中且头部信息已经安排好了的请求，这时候通过`setHeader(name, value)`, `getHeader(name)`,`removeHeader(name)`这些API是无法改变头部信息的，实际的头部信息将随着chunk的第一部分或者关闭连接时发送出去
 
 To get the response, add a listener for `'response'` to the request object.
 `'response'` will be emitted from the request object when the response
@@ -692,9 +664,7 @@ so there is no need to worry about racing to catch the first part of the
 body. As long as a listener for `'data'` is added during the `'response'`
 event, the entire body will be caught.
 
-在`'response'`事件中，可以给响应对象添加监听器，特别是监听`'data'`事件，
-注意`'response'`事件在正文体接收之前就已经被调用，所以不需要担心捕获不到正文体的第一部分，
-一旦在`'response'`事件中添加了对`'data'`的监听器，那么整个消息体将被捕获
+在`'response'`事件中，可以给响应对象添加监听器，特别是监听`'data'`事件，注意`'response'`事件在正文体接收之前就已经被调用，所以不需要担心捕获不到正文体的第一部分，一旦在`'response'`事件中添加了对`'data'`的监听器，那么整个消息体将被捕获
 
     // Good
     request.on('response', function (response) {
@@ -737,8 +707,7 @@ server--in that case it is suggested to use the
 `['Transfer-Encoding', 'chunked']` header line when
 creating the request.
 
-发送body中的一块。用户可以通过多次调用这个方法将请求数据包通过流的方式发送到服务器。
-在这个时候我们建议使用在建立请求的时候把['Transfer-Encoding', 'chunked']放在请求头里。 
+发送body中的一块。用户可以通过多次调用这个方法将请求数据包通过流的方式发送到服务器。在这个时候我们建议使用在建立请求的时候把['Transfer-Encoding', 'chunked']放在请求头里。 
 
 The `chunk` argument should be an array of integers
 or a string.
@@ -757,8 +726,7 @@ Finishes sending the request. If any parts of the body are
 unsent, it will flush them to the stream. If the request is
 chunked, this will send the terminating `'0\r\n\r\n'`.
 
-完成本次请求的发送。如果消息体中的任何一个部分没有来得及发送，request.end将把他们全部刷新到流中。
-如果本次请求是分块的，这个函数将发出结束字符'0\r\n\r\n'。 
+完成本次请求的发送。如果消息体中的任何一个部分没有来得及发送，request.end将把他们全部刷新到流中。如果本次请求是分块的，这个函数将发出结束字符'0\r\n\r\n'。 
 
 If `data` is specified, it is equivalent to calling `request.write(data, encoding)`
 followed by `request.end()`.
@@ -812,9 +780,7 @@ The HTTP version of the connected-to server. Probably either
 Also `response.httpVersionMajor` is the first integer and
 `response.httpVersionMinor` is the second.
 
-连接至服务器端的HTTP版本，可能的值为`'1.1'` or `'1.0'`，你也
-可以使用`response.httpVersionMajor`获得版本号第一位，使用`response.httpVersionMinor`
-获得版本号第二位
+连接至服务器端的HTTP版本，可能的值为`'1.1'` or `'1.0'`，你也可以使用`response.httpVersionMajor`获得版本号第一位，使用`response.httpVersionMinor`获得版本号第二位
 
 ### response.headers
 
@@ -833,8 +799,7 @@ The response trailers object. Only populated after the 'end' event.
 Set the encoding for the response body. Either `'utf8'`, `'ascii'`, or `'base64'`.
 Defaults to `null`, which means that the `'data'` event will emit a `Buffer` object..
 
-设置响应体的编码，可以是`'utf8'`, `'ascii'`, 或者 `'base64'`，默认值为`null`，
-也就是说`'data'`事件将发送缓冲区对象
+设置响应体的编码，可以是`'utf8'`, `'ascii'`, 或者 `'base64'`，默认值为`null`，也就是说`'data'`事件将发送缓冲区对象
 
 ### response.pause()
 

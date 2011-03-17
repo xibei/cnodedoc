@@ -15,9 +15,7 @@ browsers if you're in the global scope `var something` will define a global
 variable. In Node this is different. The top-level scope is not the global
 scope; `var something` inside a Node module will be local to that module.
 
-在浏览器中，顶级作用域为全局作用域，在全局作用域下通过`var something`即定义了
-一个全局变量。但是在Node中并不如此，顶级作用域并非是全局作用域，在Node模块中
-通过`var something`定义的变量仅作用于该模块。
+在浏览器中，顶级作用域为全局作用域，在全局作用域下通过`var something`即定义了一个全局变量。但是在Node中并不如此，顶级作用域并非是全局作用域，在Node模块中通过`var something`定义的变量仅作用于该模块。
 
 ### process
 
