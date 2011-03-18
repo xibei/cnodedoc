@@ -1,5 +1,4 @@
-## Buffers
-##缓存器
+## Buffers  缓存器
 
 Pure Javascript is Unicode friendly but not nice to binary data.  When
 dealing with TCP streams or the file system, it's necessary to handle octet
