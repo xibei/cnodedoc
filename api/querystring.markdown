@@ -27,9 +27,6 @@ Example:
     // returns
     'foo:bar;baz:bob'
 
-### querystring.stringify(obj, sep='&', eq='=')
-
-
 ### querystring.parse(str, sep='&', eq='=')
 
 Deserialize a query string to an object.
