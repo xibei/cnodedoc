@@ -1,5 +1,4 @@
-## Addons
-##扩展插件
+## Addons  扩展插件
 
 
 Addons are dynamically linked shared objects. They can provide glue to C and
