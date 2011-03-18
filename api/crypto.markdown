@@ -1,5 +1,4 @@
-## Crypto
-## 加密
+## Crypto   加密
 
 Use `require('crypto')` to access this module.
 
