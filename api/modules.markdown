@@ -138,7 +138,7 @@ First, `/node_modules` is never appended to a folder already ending in
 首先， `/node_modules`不要添加到以 `/node_modules`结尾的目录上。
 
 Second, if the file calling `require()` is already inside a `node_modules`
-heirarchy, then the top-most `node_modules` folder is treated as the
+hierarchy, then the top-most `node_modules` folder is treated as the
 root of the search tree.
 
 其次，如果调用`require()`的文件已经位于一个`node_modules`层次中，最上级的`node_modules`目录将被作为搜索的根。
@@ -273,6 +273,10 @@ the `NODE_PATH` environment variable might have been set to:
 
     /home/micheil/.node_modules:/usr/local/lib/node_modules
 
+Loading from the `require.paths` locations is only performed if the
+module could not be found using the `node_modules` algorithm above.
+Global modules are lower priority than bundled dependencies.
+
 #### **Note:** Please Avoid Modifying `require.paths`
 
 For compatibility reasons, `require.paths` is still given first priority
@@ -303,7 +307,7 @@ then it does *not* add the full resolved path to where `./lib`
 is on the filesystem.  Instead, it literally adds `'./lib'`,
 meaning that if you do `require('y.js')` in `/a/b/x.js`, then it'll look
 in `/a/b/lib/y.js`.  If you then did `require('y.js')` in
-`/l/m/n/o/p.js`, then it'd look in `/l/m/n/o/p/lib/y.js`.
+`/l/m/n/o/p.js`, then it'd look in `/l/m/n/o/lib/y.js`.
 
 In practice, people have used this as an ad hoc way to bundle
 dependencies, but this technique is brittle.
