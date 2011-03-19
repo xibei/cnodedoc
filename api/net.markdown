@@ -5,12 +5,21 @@ methods for creating both servers and clients (called streams). You can include
 this module with `require("net");`
 
 'net'模块为您提供了一种异步网络包装器，它包含创建服务端和客户端（称为streams）的方法，您可以通过'require("net")'的方式来使用它。
-### net.createServer(connectionListener)
+### net.createServer([options], [connectionListener])
 
 Creates a new TCP server. The `connectionListener` argument is
 automatically set as a listener for the `'connection'` event.
 
 创建一个新的TCP服务端，参数connectionListener在connection事件发生时自动设置为监听器。
+
+`options` is an object with the following defaults:
+    { allowHalfOpen: false
+    }
+
+If `allowHalfOpen` is `true`, then the socket won't automatically send FIN
+packet when the other end of the socket sends a FIN packet. The socket becomes
+non-readable, but still writable. You should call the end() method explicitly.
+See `'end'` event for more information.
 
 ### net.createConnection(arguments...)
 
@@ -205,6 +214,21 @@ and passed to the user through the `'connection'` event of a server.
 
 `net.Socket` 的实例是下列事件的“事件触发者”:
 
+#### new net.Socket([options])
+
+Construct a new socket object.
+
+`options` is an object with the following defaults:
+
+    { fd: null
+      type: null
+      allowHalfOpen: false
+    }
+
+`fd` allows you to specify the existing file descriptor of socket. `type`
+specified underlying protocol. It can be `'tcp4'`, `'tcp6'`, or `'unix'`.
+About `allowHalfOpen`, refer to `createServer()` and `'end'` event.
+
 #### socket.connect(port, [host], [callback])
 #### socket.connect(path, [callback])
 
@@ -230,7 +254,7 @@ the exception.
 这个函数是异步函数。当发生 `'connect'`事件时套接字被建立，如果有连接问题， `'connect'`事件不会被触发，`'error'` 事件将在异常情况下被触发。
  
 
-The `callback` paramenter will be added as an listener for the 'connect'
+The `callback` parameter will be added as an listener for the 'connect'
 event.
 
 参数'callback'将作为 'connect'事件的监听器被增加进来。
