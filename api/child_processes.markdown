@@ -1,5 +1,4 @@
-## Child Processes
-##子进程
+## Child Processes  子进程
 
 Node provides a tri-directional `popen(3)` facility through the `ChildProcess`
 class.

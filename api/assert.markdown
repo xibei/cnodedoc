@@ -1,5 +1,4 @@
-## Assert
-## 断言
+## Assert  断言
 
 This module is used for writing unit tests for your applications, you can
 access it with `require('assert')`.

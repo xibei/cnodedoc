@@ -1,9 +1,7 @@
-## process
+## process 进程
 
 The `process` object is a global object and can be accessed from anywhere.
 It is an instance of `EventEmitter`.
-
-## process
 
  `process`对象是一个全局对象，可以在任何地方访问它。
 它是`EventEmitter`类的一个实例
@@ -17,7 +15,14 @@ constant time checks of the module's state (like for unit tests).  The main
 event loop will no longer be run after the 'exit' callback finishes, so
 timers may not be scheduled.
 
+当进程对象要退出时会触发此方法。这对于执行定时检查模块状态来说（比如单元测试）
+是一个不错的工具。当 'exit'被调用完成后主事件循环将终止，所以计时器可能会因此不
+按设定计时。
+
+
 Example of listening for `exit`:
+
+监听 `exit`行为的示例：
 
     process.on('exit', function () {
       process.nextTick(function () {
@@ -27,9 +32,6 @@ Example of listening for `exit`:
     });
 
 
-### Event: 'exit'
-
-`function () {}`
 
 ### Event: 'uncaughtException'
 
@@ -39,7 +41,12 @@ Emitted when an exception bubbles all the way back to the event loop. If a
 listener is added for this exception, the default action (which is to print
 a stack trace and exit) will not occur.
 
+当一个异常信息进入事件循环时，访方法被触发。如果该异常有一个监听器，那么
+默认的行为不会发生（即打印输出一个堆栈轨迹并退出）。
+
 Example of listening for `uncaughtException`:
+
+监听`uncaughtException`事件的示例：
 
     process.on('uncaughtException', function (err) {
       console.log('Caught exception: ' + err);
@@ -58,15 +65,23 @@ handling.  Using try / catch in your program will give you more control over
 your program's flow.  Especially for server programs that are designed to
 stay running forever, `uncaughtException` can be a useful safety mechanism.
 
+注意：就异常处理来说， `uncaughtException`是一个很粗糙的机制。在程序中使用 
+ try / catch可以更好好控制程序流。不过在服务器端的编程中，如果这些代码会永久
+运行，那么 `uncaughtException`还是一个很有用的安全机制。
 
-### Signal Events
+### Signal Events 信号事件
 
 `function () {}`
 
 Emitted when the processes receives a signal. See sigaction(2) for a list of
 standard POSIX signal names such as SIGINT, SIGUSR1, etc.
 
+该事件会在进程接收到一个信号时被触发。可参见sigaction(2)中的标准POSIX信号名称列表
+，比如SIGINT，SIGUSR1等等。
+
 Example of listening for `SIGINT`:
+
+监听 `SIGINT`的示例：
 
     // Start reading from stdin so we don't exit.
     process.stdin.resume();
@@ -78,12 +93,17 @@ Example of listening for `SIGINT`:
 An easy way to send the `SIGINT` signal is with `Control-C` in most terminal
 programs.
 
+在大多数终端程序中，一个简易发送 `SIGINT`信号的方法是在使用`Control-C`命令操作。
 
 ### process.stdout
 
 A `Writable Stream` to `stdout`.
 
+一个到标准输出流`stdout`的 `Writable Stream`可写流
+
 Example: the definition of `console.log`
+
+示例：定义`console.log`
 
     console.log = function (d) {
       process.stdout.write(d + '\n');
@@ -94,6 +114,8 @@ Example: the definition of `console.log`
 
 A writable stream to stderr. Writes on this stream are blocking.
 
+一个到错误流stderr的可写流，在这个流上的写操作是受阻的。
+
 ### process.stderr
 
 process是一个可以与stderr通信的输入输出流，该流中的输出是分块的。
@@ -103,7 +125,12 @@ process是一个可以与stderr通信的输入输出流，该流中的输出是�
 A `Readable Stream` for stdin. The stdin stream is paused by default, so one
 must call `process.stdin.resume()` to read from it.
 
+一个到标准输入流的可读流`Readable Stream`。默认情况下标准输入流是受阻的，
+所以需要调用方法`process.stdin.resume()`来从中读取信息。
+
 Example of opening standard input and listening for both events:
+
+示例：打开标准输入与监听：
 
     process.stdin.resume();
     process.stdin.setEncoding('utf8');
@@ -126,12 +153,17 @@ An array containing the command line arguments.  The first element will be
 'node', the second element will be the name of the JavaScript file.  The
 next elements will be any additional command line arguments.
 
+一个包含命令行参数的数组。第一个元素是'node'，第二个元素是JavaScript文件的文件名。
+接下来的元素则是附加的命令行参数。
+
     // print process.argv
     process.argv.forEach(function (val, index, array) {
       console.log(index + ': ' + val);
     });
 
 This will generate:
+
+这产生如下的信息：
 
     $ node process-2.js one two=three four
     0: node
@@ -145,6 +177,8 @@ This will generate:
 
 This is the absolute pathname of the executable that started the process.
 
+这是一个启动该进程的可执行程序的绝对路径名。
+
 Example:
 
     /usr/local/bin/node
@@ -153,6 +187,8 @@ Example:
 ### process.chdir(directory)
 
 Changes the current working directory of the process or throws an exception if that fails.
+
+改变进程的当前工作目录，如果操作失败则抛出异常。
 
     console.log('Starting directory: ' + process.cwd());
     try {
@@ -169,6 +205,8 @@ Changes the current working directory of the process or throws an exception if t
 
 Returns the current working directory of the process.
 
+返回进程的当前工作目录。
+
     console.log('Current directory: ' + process.cwd());
 
 
@@ -176,23 +214,34 @@ Returns the current working directory of the process.
 
 An object containing the user environment. See environ(7).
 
+一个包括用户环境的对象。可参见environ(7)。
+
 
 ### process.exit(code=0)
 
 Ends the process with the specified `code`.  If omitted, exit uses the
 'success' code `0`.
 
+用指定的参数`code`代码结束进程。如果不指定，退出时将使用'success' 代码 `0`。
+
 To exit with a 'failure' code:
+
+以'failure' 代码退出的示例：
 
     process.exit(1);
 
 The shell that executed node should see the exit code as 1.
+
+行该node的shell会把退出代码视为1。
 
 
 ### process.getgid()
 
 Gets the group identity of the process. (See getgid(2).)
 This is the numerical group id, not the group name.
+
+获取进程的群组标识（详见getgid(2)）。这是一个数字群组ID，
+不是群组名称。
 
     console.log('Current gid: ' + process.getgid());
 
@@ -202,6 +251,9 @@ This is the numerical group id, not the group name.
 Sets the group identity of the process. (See setgid(2).)  This accepts either
 a numerical ID or a groupname string. If a groupname is specified, this method
 blocks while resolving it to a numerical ID.
+
+设置进程的群组标识（详见getgid(2)）。这会接受一个数字ID或者一个群组名字符串。
+如果指定了一个群组名，那么当系统要将其解析成一个数字ID时，该方法会阻此这种操作。
 
     console.log('Current gid: ' + process.getgid());
     try {
@@ -218,6 +270,8 @@ blocks while resolving it to a numerical ID.
 Gets the user identity of the process. (See getuid(2).)
 This is the numerical userid, not the username.
 
+获取用户的进程ID详见getgid(2)）。这是一个数字用户ID，不是用户名。
+
     console.log('Current uid: ' + process.getuid());
 
 
@@ -226,6 +280,9 @@ This is the numerical userid, not the username.
 Sets the user identity of the process. (See setuid(2).)  This accepts either
 a numerical ID or a username string.  If a username is specified, this method
 blocks while resolving it to a numerical ID.
+
+设置进程的用户标识详见getgid(2)）。该方法接受一个数学ID或者一个用户名字符串。
+如果用户名已指定，那么该方法会阻止系统将其解析成一个用户名ID。
 
     console.log('Current uid: ' + process.getuid());
     try {
@@ -241,11 +298,15 @@ blocks while resolving it to a numerical ID.
 
 A compiled-in property that exposes `NODE_VERSION`.
 
+一个内置的属性，用于显示`NODE_VERSION`。
+
     console.log('Version: ' + process.version);
 
 ### process.installPrefix
 
 A compiled-in property that exposes `NODE_PREFIX`.
+
+一个内置的属性，用于显示`NODE_PREFIX`
 
     console.log('Prefix: ' + process.installPrefix);
 
@@ -256,6 +317,10 @@ Send a signal to a process. `pid` is the process id and `signal` is the
 string describing the signal to send.  Signal names are strings like
 'SIGINT' or 'SIGUSR1'.  If omitted, the signal will be 'SIGTERM'.
 See kill(2) for more information.
+
+发送一个信号到进程。`pid`是进程的ID，参数`signal`是用于描述要发送信号
+的字符口串。信号名称是像'SIGINT' 或者 'SIGUSR1'这样的字符串。如果参数
+ `signal`忽略，则信号为 'SIGTERM'。详见kill(2)。
 
 Note that just because the name of this function is `process.kill`, it is
 really just a signal sender, like the `kill` system call.  The signal sent
@@ -279,16 +344,22 @@ Example of sending a signal to yourself:
 
 The PID of the process.
 
+进程的PID。
+
     console.log('This process is pid ' + process.pid);
 
 ### process.title
 
 Getter/setter to set what is displayed in 'ps'.
 
+设置在 'ps'显示的内容的Getter/setter方法。
+
 
 ### process.platform
 
 What platform you're running on. `'linux2'`, `'darwin'`, etc.
+
+记录你运行Node的平台信息，如'linux2'`、 `'darwin'`等等。
 
     console.log('This platform is ' + process.platform);
 
@@ -297,11 +368,15 @@ What platform you're running on. `'linux2'`, `'darwin'`, etc.
 
 Returns an object describing the memory usage of the Node process.
 
+返回一个对象来描述Node进程的内存使用情况。
+
     var util = require('util');
 
     console.log(util.inspect(process.memoryUsage()));
 
 This will generate:
+
+这会生成如下信息：
 
     { rss: 4935680,
       vsize: 41893888,
@@ -310,12 +385,17 @@ This will generate:
 
 `heapTotal` and `heapUsed` refer to V8's memory usage.
 
+`heapTotal`与`heapUsed`指 V8的内存使用情况。
+
 
 ### process.nextTick(callback)
 
 On the next loop around the event loop call this callback.
 This is *not* a simple alias to `setTimeout(fn, 0)`, it's much more
 efficient.
+
+在事件循环的下一个循环调用这个方法。这*不是*`setTimeout(fn, 0)`
+的一个别名，因为它有效率多了。
 
     process.nextTick(function () {
       console.log('nextTick callback');
@@ -327,6 +407,9 @@ efficient.
 Sets or reads the process's file mode creation mask. Child processes inherit
 the mask from the parent process. Returns the old mask if `mask` argument is
 given, otherwise returns the current mask.
+
+设置或者读取进程的文件模式创建特征码。子进程从父进程中继承这个特征码，如果参数 `mask`设定了
+那么返回旧的特征码，否则返回当前的。
 
     var oldmask, newmask = 0644;
 
