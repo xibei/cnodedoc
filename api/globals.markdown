@@ -46,7 +46,7 @@ custom paths.
 
 Example: add a new path to the beginning of the search list
 
-例如：将一个新的搜索路径添加到搜索列表中
+例如：将一个新的搜索路径插入到搜索列表的第一个元素中
 
     require.paths.unshift('/usr/local/node');
 

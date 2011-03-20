@@ -71,7 +71,7 @@ the entire process until they complete--halting all connections.
 Asynchronous rename(2). No arguments other than a possible exception are given
 to the completion callback.
 
-异步同步调用rename(2)，重命名某个文件，除非回调函数执行过程出现了异常，否则不会传递任何参数。
+异步调用rename(2)，重命名某个文件，除非回调函数执行过程出现了异常，否则不会传递任何参数。
 
 ### fs.renameSync(path1, path2)
 
@@ -97,7 +97,7 @@ Synchronous ftruncate(2).
 Asynchronous chmod(2). No arguments other than a possible exception are given
 to the completion callback.
 
-异步同步调用chmod(2)，修改文件权限，除非回调函数执行过程出现了异常，否则不会传递任何参数。
+异步调用chmod(2)，修改文件权限，除非回调函数执行过程出现了异常，否则不会传递任何参数。
 
 ### fs.chmodSync(path, mode)
 
@@ -170,7 +170,7 @@ Synchronous fstat(2). Returns an instance of `fs.Stats`.
 Asynchronous link(2). No arguments other than a possible exception are given to
 the completion callback.
 
-异步同步调用link(2)，创建符号连接，除非回调函数执行过程出现了异常，否则不会传递任何参数。
+异步调用link(2)，创建符号连接，除非回调函数执行过程出现了异常，否则不会传递任何参数。
 
 ### fs.linkSync(srcpath, dstpath)
 
@@ -183,7 +183,7 @@ Synchronous link(2).
 Asynchronous symlink(2). No arguments other than a possible exception are given
 to the completion callback.
 
-异步同步调用symlink(2)，除非回调函数执行过程出现了异常，否则不会传递任何参数。
+异步调用symlink(2)，除非回调函数执行过程出现了异常，否则不会传递任何参数。
 
 ### fs.symlinkSync(linkdata, path)
 
@@ -233,7 +233,7 @@ Synchronous unlink(2).
 Asynchronous rmdir(2). No arguments other than a possible exception are given
 to the completion callback.
 
-异步同步调用rmdir(2)，除非回调函数执行过程出现了异常，否则不会传递任何参数。
+异步调用rmdir(2)，除非回调函数执行过程出现了异常，否则不会传递任何参数。
 
 ### fs.rmdirSync(path)
 
@@ -246,7 +246,7 @@ Synchronous rmdir(2).
 Asynchronous mkdir(2). No arguments other than a possible exception are given
 to the completion callback.
 
-异步同步调用mkdir(2)，除非回调函数执行过程出现了异常，否则不会传递任何参数。
+异步调用mkdir(2)，除非回调函数执行过程出现了异常，否则不会传递任何参数。
 
 ### fs.mkdirSync(path, mode)
 

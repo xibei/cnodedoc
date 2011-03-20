@@ -10,7 +10,7 @@ In particular, large, possibly chunk-encoded, messages. The interface is
 careful to never buffer entire requests or responses--the
 user is able to stream data.
 
-NODE中的HTTP接口被设计成为支持HTTP协议的很多特性，这些特性通常那难以掌控，特别是 large,possible chunk-encoded(块编码),messages。这个接口特意不缓冲整个请求(request)或者响应(responses)使用户可以使用流的形式操作数据。 
+NODE中的HTTP接口在设计时就考虑到了要支持HTTP协议的很多特性，甚至是 large,possible chunk-encoded(块编码),messages 这些特性。该接口不缓冲整个请求(request)或者响应(responses)从而使用户可以使用流的形式操作数据。 
 
 HTTP message headers are represented by an object like this:
 
@@ -23,20 +23,20 @@ HTTP message headers are represented by an object like this:
 
 Keys are lowercased. Values are not modified.
 
-所有key都是小写，数值不能被修改 
+所有HTTP信息头的参数名都是小写，数值不能被修改。
 
 In order to support the full spectrum of possible HTTP applications, Node's
 HTTP API is very low-level. It deals with stream handling and message
 parsing only. It parses a message into headers and body but it does not
 parse the actual headers or the body.
 
-为了支持尽可能多的HTTP应用，NODE的HTTP API非常底层。 其只处理到流(stream)相关的操作以及信息解析。API将信息解析成为信息头和信息体，但并不解析实际的信息头和信息体的具体内容。
+为了支持尽可能多的HTTP应用，NODE的HTTP API非常底层。 它只处理流(stream)相关的操作以及进行信息解析。API将信息解析成为信息头和信息体，但并不解析实际的信息头和信息体的具体内容。
 
 ## http.Server
 
 This is an `EventEmitter` with the following events:
 
-此模块会触发以下事件 
+http.Server模块会触发以下事件 
 
 ### Event: 'request'
 
@@ -55,7 +55,7 @@ This is an `EventEmitter` with the following events:
  `net.Stream`. Usually users will not want to access this event. The
  `stream` can also be accessed at `request.connection`.
  
-当一个新的TCP stream建立后发出此消息。stream是一个net.Stream的对象，通常用户不会访问/使用这个事件。参数stream也可以在request.connection中访问到. 
+当一个新的TCP stream建立后发出此消息。stream是一个net.Stream的对象，通常用户不会访问/使用这个事件。参数stream也可以在request.connection中访问到。
 
 ### Event: 'close'
 
@@ -110,7 +110,7 @@ closed.
 参数“request”代表一个http请求，和'request'事件的参数意义相同。
 
 * `socket` is the network socket between the server and client.
-socket是在服务器与客户端之间连接用的网络socket 
+socket是在服务器与客户端之间连接用的网络套接字 
 
 * `head` is an instance of Buffer, the first packet of the upgraded stream, this may be empty.
 head是Buffer的一个实例,是upgraded stream(升级版stream....应当就是http upgrade)所发出的第一个包，这个参数可以为空。 
@@ -377,7 +377,7 @@ Example:
 
     response.setHeader("Content-Type", "text/html");
 
-or
+或者
 
     response.setHeader("Set-Cookie", ["type=ninja", "language=javascript"]);
 
@@ -473,7 +473,7 @@ response.
 If `data` is specified, it is equivalent to calling `response.write(data, encoding)`
 followed by `response.end()`.
 
-如果指定data参数，他就相当于调用了response.write(data, encoding)然后跟着调用了response.end()。 
+如果指定了data参数，就相当先调用 response.write(data, encoding)再调用response.end()。
 
 ## http.request(options, callback)
 
@@ -791,7 +791,7 @@ Also `response.httpVersionMajor` is the first integer and
 
 The response headers object.
 
-响应头部对象
+响应头部对象。
 
 ### response.trailers
 
@@ -816,4 +816,4 @@ Pauses response from emitting events.  Useful to throttle back a download.
 
 Resumes a paused response.
 
-恢复一个暂停的响应
+恢复一个已经暂停的响应。
