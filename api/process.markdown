@@ -279,11 +279,18 @@ This is the numerical group id, not the group name.
 ### process.setgid(id)
 
 Sets the group identity of the process. (See setgid(2).)  This accepts either
+
+设置进程的群组标识（详见getgid(2)）。这会接受
 a numerical ID or a groupname string. If a groupname is specified, this method
+
+一个数字ID或者一个群组名字符串。如果指定了一个群组名，那么当系统要将
+
 blocks while resolving it to a numerical ID.
 
-设置进程的群组标识（详见getgid(2)）。这会接受一个数字ID或者一个群组名字符串。
-如果指定了一个群组名，那么当系统要将其解析成一个数字ID时，该方法会阻此这种操作。
+其解析成一个数字ID时，该方法会阻此这种操作。
+
+
+
 
     console.log('Current gid: ' + process.getgid());
     try {
@@ -298,9 +305,12 @@ blocks while resolving it to a numerical ID.
 ### process.getuid()
 
 Gets the user identity of the process. (See getuid(2).)
+
+获取用户的进程ID详见getgid(2)）。
+
 This is the numerical userid, not the username.
 
-获取用户的进程ID详见getgid(2)）。这是一个数字用户ID，不是用户名。
+这是一个数字用户ID，不是用户名。
 
     console.log('Current uid: ' + process.getuid());
 
@@ -308,12 +318,15 @@ This is the numerical userid, not the username.
 ### process.setuid(id)
 
 Sets the user identity of the process. (See setuid(2).)  This accepts either
+
 设置进程的用户标识详见getgid(2)）。该方法接受
 
 a numerical ID or a username string.  If a username is specified, this method
+
 一个数字ID或者一个用户名字符串。如果用户名已指定，那么该方法
 
 blocks while resolving it to a numerical ID.
+
 会阻止系统将其解析成一个用户名ID。
 
 
@@ -347,28 +360,36 @@ A compiled-in property that exposes `NODE_PREFIX`.
 ### process.kill(pid, signal='SIGTERM')
 
 Send a signal to a process. `pid` is the process id and `signal` is the
+
 发送一个信号到进程。`pid`是进程的ID，参数`signal`是
 
 string describing the signal to send.  Signal names are strings like
+
 的字符串。信号名称是像'SIGINT' 或者 'SIGUSR1
 
 'SIGINT' or 'SIGUSR1'.  If omitted, the signal will be 'SIGTERM'.
+
 这样的字符串。如果参数`signal`忽略，则信号为 'SIGTERM'。
 
 See kill(2) for more information.
+
 详见kill(2)。
 
 
 Note that just because the name of this function is `process.kill`, it is
+
 注意刚好由于该函数名为`process.kill`,它
 
 really just a signal sender, like the `kill` system call.  The signal sent
+
 实际上也仅仅是一个信号发送器，就像 `kill`系统调用一样。这个被发送的信号
 
 may do something other than kill the target process.
+
 除了终止目标进程外，可能还会有其它的功能。
 
 Example of sending a signal to yourself:
+
 一个给自己发送一个信号的示例：
 
     process.on('SIGHUP', function () {
