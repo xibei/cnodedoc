@@ -1,4 +1,4 @@
-## Buffers  缓存器
+## Buffers  缓冲区
 
 Pure Javascript is Unicode friendly but not nice to binary data.  When
 dealing with TCP streams or the file system, it's necessary to handle octet
@@ -20,27 +20,36 @@ The `Buffer` object is global.
 Converting between Buffers and JavaScript string objects requires an explicit encoding
 method.  Here are the different string encodings;
 
-在缓存器（Buffers）和JavaScript间进行字符串的转换需要调用特定的编码方法。如下列举了不同的编码方法：
+在缓冲区（Buffers）和JavaScript间进行字符串的转换需要调用特定的编码方法。如下列举了不同的编码方法：
 
 * `'ascii'` - for 7 bit ASCII data only.  This encoding method is very fast, and will
 strip the high bit if set.
 
-* `'ascii'` - 仅对应7为的ASCII数据。虽然这种编码方式非常迅速，但是采用此编码方式需要大量存储空间。
+  `'ascii'` - 仅对应7为的ASCII数据。虽然这种编码方式非常迅速，但是采用此编码方式需要大量存储空间。
 
-* `'utf8'` - Unicode characters.  Many web pages and other document formats use UTF-8.
+* `'utf8'` - Multi byte encoded Unicode characters.  Many web pages and other document formats use UTF-8.
 
-* `'utf8'` - 对应Unicode字符。大量网页和其他文件格式使用这类编码方式。
+  `'utf8'` - 对应多字节编码Unicode字符。大量网页和其他文件格式使用这类编码方式。
+
+* `'ucs2'` - 2-bytes, little endian encoded Unicode characters. It can encode
+only BMP(Basic Multilingual Plane, U+0000 - U+FFFF).
+
+  `'ucs2'` - 2字节的，低字节序编码Unicode字符。只能编码BMP（第零平面，U+0000 - U+FFFF）字符。
 
 * `'base64'` - Base64 string encoding.
 
-* `'base64'` - Base64 字符串编码.
+  `'base64'` - Base64 字符串编码.
 
 * `'binary'` - A way of encoding raw binary data into strings by using only
 the first 8 bits of each character. This encoding method is depreciated and
 should be avoided in favor of `Buffer` objects where possible. This encoding
 will be removed in future versions of Node.
 
-* `'binary'` - 仅使用每个字符的头8位将原始的二进制信息进行编码。在需使用`Buffer`的情况下，应该尽量避免使用这个已经过时的编码方式。而且，这个编码方式不会出现在未来版本的Node中。
+  `'binary'` - 仅使用每个字符的头8位将原始的二进制信息进行编码。在需使用`Buffer`的情况下，应该尽量避免使用这个已经过时的编码方式。而且，这个编码方式不会出现在未来版本的Node中。
+
+* `'hex'` - Encode each byte as two hexidecimal characters.
+
+  `'hex'` - 将一个字节编码为两个16进制字符。
 
 ### new Buffer(size)
 
@@ -85,10 +94,11 @@ Example: write a utf8 string into a buffer, then print it
 Decodes and returns a string from buffer data encoded with `encoding`
 beginning at `start` and ending at `end`.
 
-对缓冲器中的以`encoding`方式编码的，以`start`标识符开始，以`end`标识符结尾的缓存数据进行解码，并输出字符串。
+对缓冲器中的以`encoding`方式编码的，以`start`标识符开始，以`end`标识符结尾的缓冲数据进行解码，并输出字符串。
 
 See `buffer.write()` example, above.
 
+参见上文的`buffer.write()`例子。
 
 ### buffer[index]
 
