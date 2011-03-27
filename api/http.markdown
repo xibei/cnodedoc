@@ -352,7 +352,7 @@ implicit/mutable headers will be calculated and call this function for you.
 ### response.statusCode
 
 When using implicit headers (not calling `response.writeHead()` explicitly), this property
-controlls the status code that will be send to the client when the headers get
+controls the status code that will be send to the client when the headers get
 flushed.
 
 如果没有显示指明消息头部信息（没有明确调用），这个属性将控制当头部刷新时返回给客户端的状态码。
@@ -494,7 +494,7 @@ Options:
   
   远端服务器的端口
           
-- `method`: A string specifing the HTTP request method. Possible values:
+- `method`: A string specifying the HTTP request method. Possible values:
   `'GET'` (default), `'POST'`, `'PUT'`, and `'DELETE'`.
   
   指定HTTP请求的方法类型类型，可选的值有：`'GET'` (default), `'POST'`, `'PUT'`, and `'DELETE'`。
@@ -573,7 +573,7 @@ There are a few special headers that should be noted.
 ## http.get(options, callback)
 
 Since most requests are GET requests without bodies, Node provides this
-convience method. The only difference between this method and `http.request()` is
+convenience method. The only difference between this method and `http.request()` is
 that it sets the method to GET and calls `req.end()` automatically.
 
 由于很多GET方法的请求不会包含正文体，Node提供了这个方法便于调用，唯一的不同点是该方法将`http.request()`的方法设置为GET并且自动在最后调用`req.end()`。
@@ -635,7 +635,7 @@ By default set to 5. Determines how many concurrent sockets the agent can have o
 
 ### agent.sockets
 
-An array of sockets currently inuse by the Agent. Do not modify.
+An array of sockets currently in use by the Agent. Do not modify.
 
 当前代理管理的套接字数组，无法更改，只读
 
