@@ -200,7 +200,7 @@ indexes.
 
 **Modifying the new buffer slice will modify memory in the original buffer!**
 
-  特别注意：通过修改新的Buffer切片（slice）中的内容同样会修改存储在原Buffer中的信息！
+**特别注意：通过修改新的Buffer切片（slice）中的内容同样会修改存储在原Buffer中的信息！**
 
 Example: build a Buffer with the ASCII alphabet, take a slice, then modify one byte
 from the original Buffer.
