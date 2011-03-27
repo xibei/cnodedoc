@@ -58,6 +58,27 @@ Example:
       console.error(e);
     });
 
+The options argument has the following options
+
+options参数可包含一下内容：
+
+- host: IP or domain of host to make request to. Defaults to `'localhost'`.
+  host: 要访问的主机的IP地址或域名。默认为`'localhost'`。
+- port: port of host to request to. Defaults to 443.
+  port: 要访问的主机端口。默认为433。
+- path: Path to request. Default `'/'`.
+  path: 要访问的路径。莫认为`'/'`。
+- method: HTTP request method. Default `'GET'`.
+  method: HTTP请求方式。默认为`'GET'`。
+- key: Private key to use for SSL. Default `null`.
+  key: SSL所使用的私钥。默认为`null`。
+- cert: Public x509 certificate to use. Default `null`.
+  cert: 所使用的x509公钥证书。默认为`null`。
+- ca: An authority certificate or array of authority certificates to check
+  the remote host against.
+  ca: 用于验证远程主机身份的一个认证中心证书（或多个认证中心证书数组）。
+
+
 ## https.get(options, callback)
 
 Like `http.get()` but for HTTPS.
