@@ -1,8 +1,11 @@
 ## process 进程
 
 The `process` object is a global object and can be accessed from anywhere.
+
  `process`对象是一个全局对象，可以在任何地方访问它。
+
 It is an instance of `EventEmitter`.
+
 它是`EventEmitter`类的一个实例
 
 ### Event: 'exit'
@@ -10,15 +13,19 @@ It is an instance of `EventEmitter`.
 `function () {}`
 
 Emitted when the process is about to exit.  This is a good hook to perform
+
 当进程对象要退出时会触发此方法。这对于执行
 
 constant time checks of the module's state (like for unit tests).  The main
+
 是定时检查模块状态来说（比如单元测试）一个不错的工具。
 
 event loop will no longer be run after the 'exit' callback finishes, so
+
 当 'exit'被调用完成后主事件循环将终止，所以
 
 timers may not be scheduled.
+
 计时器可能会因此不按设定计时。
 
 
@@ -40,12 +47,15 @@ Example of listening for `exit`:
 `function (err) { }`
 
 Emitted when an exception bubbles all the way back to the event loop. If a
+
 当一个异常信息进入事件循环时，该方法被触发。
 
 listener is added for this exception, the default action (which is to print
+
 如果该异常有一个监听器，那么默认的行为（即打印输出一个堆栈轨迹并退出）
 
 a stack trace and exit) will not occur.
+
 不会发生。
 
 Example of listening for `uncaughtException`:
@@ -65,15 +75,19 @@ Example of listening for `uncaughtException`:
     console.log('This will not run.');
 
 Note that `uncaughtException` is a very crude mechanism for exception
+
 注意：就异常处理来说， `uncaughtException`是一个很粗糙的机制。
 
 handling.  Using try / catch in your program will give you more control over
+
 在程序中使用  try / catch可以更好好控制程序流。
 
 your program's flow.  Especially for server programs that are designed to
+
 不过在服务器端的编程中，如果这些代码会永久运行，
 
 stay running forever, `uncaughtException` can be a useful safety mechanism.
+
 那么 `uncaughtException`还是一个很有用的安全机制
 
 ### Signal Events 信号事件
@@ -81,9 +95,11 @@ stay running forever, `uncaughtException` can be a useful safety mechanism.
 `function () {}`
 
 Emitted when the processes receives a signal. See sigaction(2) for a list of
+
 该事件会在进程接收到一个信号时被触发。可参见sigaction(2)中的标准
 
 standard POSIX signal names such as SIGINT, SIGUSR1, etc.
+
 POSIX信号名称列表，比如SIGINT，SIGUSR1等等。
 
 
@@ -131,9 +147,11 @@ process是一个可以与stderr通信的输入输出流，该流中的输出是�
 ### process.stdin
 
 A `Readable Stream` for stdin. The stdin stream is paused by default, so one
-must call `process.stdin.resume()` to read from it.
 
 一个到标准输入流的可读流`Readable Stream`。默认情况下标准输入流是受阻的，
+
+must call `process.stdin.resume()` to read from it.
+
 所以需要调用方法`process.stdin.resume()`来从中读取信息。
 
 Example of opening standard input and listening for both events:
@@ -430,10 +448,15 @@ efficient.
 ### process.umask([mask])
 
 Sets or reads the process's file mode creation mask. Child processes inherit
+
 设置或者读取进程的文件模式创建特征码。子进程从父进程中继承
+
 the mask from the parent process. Returns the old mask if `mask` argument is
+
 这个特征码。如果参数 `mask`设定了，那么返回旧的特征码
+
 given, otherwise returns the current mask.
+
 否则返回当前的。
 
 
