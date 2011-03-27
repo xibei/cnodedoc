@@ -176,14 +176,16 @@ Example of opening standard input and listening for both events:
 ### process.argv
 
 An array containing the command line arguments.  The first element will be
+
 一个包含命令行参数的数组。第一个元素是'node'，
 
 'node', the second element will be the name of the JavaScript file.  The
+
 第二个元素是JavaScript文件的文件名。
 
 next elements will be any additional command line arguments.
-接下来的元素则是附加的命令行参数。
 
+接下来的元素则是附加的命令行参数。
 
 
     // print process.argv
@@ -281,6 +283,7 @@ This is the numerical group id, not the group name.
 Sets the group identity of the process. (See setgid(2).)  This accepts either
 
 设置进程的群组标识（详见getgid(2)）。这会接受
+
 a numerical ID or a groupname string. If a groupname is specified, this method
 
 一个数字ID或者一个群组名字符串。如果指定了一个群组名，那么当系统要将
