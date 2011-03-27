@@ -295,6 +295,21 @@ Synchronous open(2).
 
 同步调用open(2)。
 
+### fs.utimes(path, atime, mtime, callback)
+### fs.utimesSync(path, atime, mtime)
+
+Change file timestamps.
+
+更改文件时间戳。
+
+### fs.futimes(path, atime, mtime, callback)
+### fs.futimesSync(path, atime, mtime)
+
+Change file timestamps with the difference that if filename refers to a
+symbolic link, then the link is not dereferenced.
+
+另一种更改文件时间戳的方式。区别在于如果文件名指向一个符号连接，则改变此符号连接的时间戳，而不改变所引用文件的时间戳。
+
 ### fs.write(fd, buffer, offset, length, position, [callback])
 
 Write `buffer` to the file specified by `fd`.
@@ -495,8 +510,10 @@ Returns a new ReadStream object (See `Readable Stream`).
 
     { flags: 'r',
       encoding: null,
+      fd: null,
       mode: 0666,
-      bufferSize: 4096 }
+      bufferSize: 64 * 1024
+    }
 
 `options` can include `start` and `end` values to read a range of bytes from
 the file instead of the entire file.  Both `start` and `end` are inclusive and
