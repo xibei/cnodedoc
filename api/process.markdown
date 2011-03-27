@@ -1,9 +1,8 @@
 ## process 进程
 
 The `process` object is a global object and can be accessed from anywhere.
-It is an instance of `EventEmitter`.
-
  `process`对象是一个全局对象，可以在任何地方访问它。
+It is an instance of `EventEmitter`.
 它是`EventEmitter`类的一个实例
 
 ### Event: 'exit'
@@ -11,13 +10,16 @@ It is an instance of `EventEmitter`.
 `function () {}`
 
 Emitted when the process is about to exit.  This is a good hook to perform
-constant time checks of the module's state (like for unit tests).  The main
-event loop will no longer be run after the 'exit' callback finishes, so
-timers may not be scheduled.
+当进程对象要退出时会触发此方法。这对于执行
 
-当进程对象要退出时会触发此方法。这对于执行定时检查模块状态来说（比如单元测试）
-是一个不错的工具。当 'exit'被调用完成后主事件循环将终止，所以计时器可能会因此不
-按设定计时。
+constant time checks of the module's state (like for unit tests).  The main
+是定时检查模块状态来说（比如单元测试）一个不错的工具。
+
+event loop will no longer be run after the 'exit' callback finishes, so
+当 'exit'被调用完成后主事件循环将终止，所以
+
+timers may not be scheduled.
+计时器可能会因此不按设定计时。
 
 
 Example of listening for `exit`:
@@ -38,11 +40,13 @@ Example of listening for `exit`:
 `function (err) { }`
 
 Emitted when an exception bubbles all the way back to the event loop. If a
-listener is added for this exception, the default action (which is to print
-a stack trace and exit) will not occur.
+当一个异常信息进入事件循环时，该方法被触发。
 
-当一个异常信息进入事件循环时，访方法被触发。如果该异常有一个监听器，那么
-默认的行为不会发生（即打印输出一个堆栈轨迹并退出）。
+listener is added for this exception, the default action (which is to print
+如果该异常有一个监听器，那么默认的行为（即打印输出一个堆栈轨迹并退出）
+
+a stack trace and exit) will not occur.
+不会发生。
 
 Example of listening for `uncaughtException`:
 
@@ -61,23 +65,27 @@ Example of listening for `uncaughtException`:
     console.log('This will not run.');
 
 Note that `uncaughtException` is a very crude mechanism for exception
-handling.  Using try / catch in your program will give you more control over
-your program's flow.  Especially for server programs that are designed to
-stay running forever, `uncaughtException` can be a useful safety mechanism.
+注意：就异常处理来说， `uncaughtException`是一个很粗糙的机制。
 
-注意：就异常处理来说， `uncaughtException`是一个很粗糙的机制。在程序中使用 
- try / catch可以更好好控制程序流。不过在服务器端的编程中，如果这些代码会永久
-运行，那么 `uncaughtException`还是一个很有用的安全机制。
+handling.  Using try / catch in your program will give you more control over
+在程序中使用  try / catch可以更好好控制程序流。
+
+your program's flow.  Especially for server programs that are designed to
+不过在服务器端的编程中，如果这些代码会永久运行，
+
+stay running forever, `uncaughtException` can be a useful safety mechanism.
+那么 `uncaughtException`还是一个很有用的安全机制
 
 ### Signal Events 信号事件
 
 `function () {}`
 
 Emitted when the processes receives a signal. See sigaction(2) for a list of
-standard POSIX signal names such as SIGINT, SIGUSR1, etc.
+该事件会在进程接收到一个信号时被触发。可参见sigaction(2)中的标准
 
-该事件会在进程接收到一个信号时被触发。可参见sigaction(2)中的标准POSIX信号名称列表
-，比如SIGINT，SIGUSR1等等。
+standard POSIX signal names such as SIGINT, SIGUSR1, etc.
+POSIX信号名称列表，比如SIGINT，SIGUSR1等等。
+
 
 Example of listening for `SIGINT`:
 
@@ -150,11 +158,15 @@ Example of opening standard input and listening for both events:
 ### process.argv
 
 An array containing the command line arguments.  The first element will be
-'node', the second element will be the name of the JavaScript file.  The
-next elements will be any additional command line arguments.
+一个包含命令行参数的数组。第一个元素是'node'，
 
-一个包含命令行参数的数组。第一个元素是'node'，第二个元素是JavaScript文件的文件名。
+'node', the second element will be the name of the JavaScript file.  The
+第二个元素是JavaScript文件的文件名。
+
+next elements will be any additional command line arguments.
 接下来的元素则是附加的命令行参数。
+
+
 
     // print process.argv
     process.argv.forEach(function (val, index, array) {
@@ -278,11 +290,14 @@ This is the numerical userid, not the username.
 ### process.setuid(id)
 
 Sets the user identity of the process. (See setuid(2).)  This accepts either
-a numerical ID or a username string.  If a username is specified, this method
-blocks while resolving it to a numerical ID.
+设置进程的用户标识详见getgid(2)）。该方法接受
 
-设置进程的用户标识详见getgid(2)）。该方法接受一个数学ID或者一个用户名字符串。
-如果用户名已指定，那么该方法会阻止系统将其解析成一个用户名ID。
+a numerical ID or a username string.  If a username is specified, this method
+一个数字ID或者一个用户名字符串。如果用户名已指定，那么该方法
+
+blocks while resolving it to a numerical ID.
+会阻止系统将其解析成一个用户名ID。
+
 
     console.log('Current uid: ' + process.getuid());
     try {
@@ -314,19 +329,29 @@ A compiled-in property that exposes `NODE_PREFIX`.
 ### process.kill(pid, signal='SIGTERM')
 
 Send a signal to a process. `pid` is the process id and `signal` is the
-string describing the signal to send.  Signal names are strings like
-'SIGINT' or 'SIGUSR1'.  If omitted, the signal will be 'SIGTERM'.
-See kill(2) for more information.
+发送一个信号到进程。`pid`是进程的ID，参数`signal`是
 
-发送一个信号到进程。`pid`是进程的ID，参数`signal`是用于描述要发送信号
-的字符口串。信号名称是像'SIGINT' 或者 'SIGUSR1'这样的字符串。如果参数
- `signal`忽略，则信号为 'SIGTERM'。详见kill(2)。
+string describing the signal to send.  Signal names are strings like
+的字符串。信号名称是像'SIGINT' 或者 'SIGUSR1
+
+'SIGINT' or 'SIGUSR1'.  If omitted, the signal will be 'SIGTERM'.
+这样的字符串。如果参数`signal`忽略，则信号为 'SIGTERM'。
+
+See kill(2) for more information.
+详见kill(2)。
+
 
 Note that just because the name of this function is `process.kill`, it is
+注意刚好由于该函数名为`process.kill`,它
+
 really just a signal sender, like the `kill` system call.  The signal sent
+实际上也仅仅是一个信号发送器，就像 `kill`系统调用一样。这个被发送的信号
+
 may do something other than kill the target process.
+除了终止目标进程外，可能还会有其它的功能。
 
 Example of sending a signal to yourself:
+一个给自己发送一个信号的示例：
 
     process.on('SIGHUP', function () {
       console.log('Got SIGHUP signal.');
@@ -405,11 +430,12 @@ efficient.
 ### process.umask([mask])
 
 Sets or reads the process's file mode creation mask. Child processes inherit
+设置或者读取进程的文件模式创建特征码。子进程从父进程中继承
 the mask from the parent process. Returns the old mask if `mask` argument is
+这个特征码。如果参数 `mask`设定了，那么返回旧的特征码
 given, otherwise returns the current mask.
+否则返回当前的。
 
-设置或者读取进程的文件模式创建特征码。子进程从父进程中继承这个特征码，如果参数 `mask`设定了
-那么返回旧的特征码，否则返回当前的。
 
     var oldmask, newmask = 0644;
 
