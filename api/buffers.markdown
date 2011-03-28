@@ -1,4 +1,4 @@
-## Buffers  缓冲区
+## Buffers  缓冲器
 
 Pure Javascript is Unicode friendly but not nice to binary data.  When
 dealing with TCP streams or the file system, it's necessary to handle octet
@@ -20,7 +20,7 @@ The `Buffer` object is global.
 Converting between Buffers and JavaScript string objects requires an explicit encoding
 method.  Here are the different string encodings;
 
-在缓冲区（Buffers）和JavaScript间进行字符串的转换需要调用特定的编码方法。如下列举了不同的编码方法：
+在缓冲器（Buffers）和JavaScript间进行字符串的转换需要调用特定的编码方法。如下列举了不同的编码方法：
 
 * `'ascii'` - for 7 bit ASCII data only.  This encoding method is very fast, and will
 strip the high bit if set.
