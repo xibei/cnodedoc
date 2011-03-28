@@ -1,4 +1,3 @@
-
 @include synopsis
 @include globals
 @include timers
@@ -32,6 +31,6 @@
 @include os
 @include debugger
 
-# Appendixes
+# Appendixes 附录
 @include appendix_1
 @include appendix_2
