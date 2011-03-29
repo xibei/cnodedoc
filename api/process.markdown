@@ -2,36 +2,27 @@
 
 The `process` object is a global object and can be accessed from anywhere.
 
- `process`对象是一个全局对象，可以在任何地方访问它。
+`process`对象是一个全局对象，可以在任何地方访问它。
 
 It is an instance of `EventEmitter`.
 
-它是`EventEmitter`类的一个实例
+它是`EventEmitter`事件触发器类型的一个实例。
 
-### Event: 'exit'
+### Event: 'exit' 事件：'exit'
 
 `function () {}`
 
 Emitted when the process is about to exit.  This is a good hook to perform
-
-当进程对象要退出时会触发此方法。这对于执行
-
 constant time checks of the module's state (like for unit tests).  The main
-
-是定时检查模块状态来说（比如单元测试）一个不错的工具。
-
 event loop will no longer be run after the 'exit' callback finishes, so
-
-当 'exit'被调用完成后主事件循环将终止，所以
-
 timers may not be scheduled.
 
-计时器可能会因此不按设定计时。
+当进程对象要退出时会触发此方法，这是检查模块状态（比如单元测试）的好时机。当'exit'被调用完成后主事件循环将终止，所以计时器将不会按计划执行。
 
 
 Example of listening for `exit`:
 
-监听 `exit`行为的示例：
+监听`exit`行为的示例：
 
     process.on('exit', function () {
       process.nextTick(function () {
@@ -42,21 +33,15 @@ Example of listening for `exit`:
 
 
 
-### Event: 'uncaughtException'
+### Event: 'uncaughtException' 事件：'uncaughtException'
 
 `function (err) { }`
 
 Emitted when an exception bubbles all the way back to the event loop. If a
-
-当一个异常信息进入事件循环时，该方法被触发。
-
 listener is added for this exception, the default action (which is to print
-
-如果该异常有一个监听器，那么默认的行为（即打印输出一个堆栈轨迹并退出）
-
 a stack trace and exit) will not occur.
 
-不会发生。
+当一个异常信息一路冒出到事件循环时，该方法被触发。如果该异常有一个监听器，那么默认的行为（即打印一个堆栈轨迹并退出）将不会发生。
 
 Example of listening for `uncaughtException`:
 
@@ -75,32 +60,20 @@ Example of listening for `uncaughtException`:
     console.log('This will not run.');
 
 Note that `uncaughtException` is a very crude mechanism for exception
-
-注意：就异常处理来说， `uncaughtException`是一个很粗糙的机制。
-
 handling.  Using try / catch in your program will give you more control over
-
-在程序中使用  try / catch可以更好好控制程序流。
-
 your program's flow.  Especially for server programs that are designed to
-
-不过在服务器端的编程中，如果这些代码会永久运行，
-
 stay running forever, `uncaughtException` can be a useful safety mechanism.
 
-那么 `uncaughtException`还是一个很有用的安全机制
+注意：就异常处理来说，`uncaughtException`是一个很粗糙的机制。在程序中使用try/catch可以更好好控制程序流程。而在服务器编程中，因为要持续运行，`uncaughtException`还是一个很有用的安全机制。
 
 ### Signal Events 信号事件
 
 `function () {}`
 
 Emitted when the processes receives a signal. See sigaction(2) for a list of
-
-该事件会在进程接收到一个信号时被触发。可参见sigaction(2)中的标准
-
 standard POSIX signal names such as SIGINT, SIGUSR1, etc.
 
-POSIX信号名称列表，比如SIGINT，SIGUSR1等等。
+该事件会在进程接收到一个信号时被触发。可参见sigaction(2)中的标准POSIX信号名称列表，比如SIGINT，SIGUSR1等等。
 
 
 Example of listening for `SIGINT`:
@@ -117,17 +90,17 @@ Example of listening for `SIGINT`:
 An easy way to send the `SIGINT` signal is with `Control-C` in most terminal
 programs.
 
-在大多数终端程序中，一个简易发送 `SIGINT`信号的方法是在使用`Control-C`命令操作。
+在大多数终端程序中，一个简易发送`SIGINT`信号的方法是在使用`Control-C`命令操作。
 
 ### process.stdout
 
 A `Writable Stream` to `stdout`.
 
-一个到标准输出流`stdout`的 `Writable Stream`可写流
+一个指向标准输出`stdout`的`Writable Stream`可写流。
 
 Example: the definition of `console.log`
 
-示例：定义`console.log`
+示例：`console.log`的定义。
 
     console.log = function (d) {
       process.stdout.write(d + '\n');
@@ -138,25 +111,18 @@ Example: the definition of `console.log`
 
 A writable stream to stderr. Writes on this stream are blocking.
 
-一个到错误流stderr的可写流，在这个流上的写操作是受阻的。
-
-### process.stderr
-
-process是一个可以与stderr通信的输入输出流，该流中的输出是分块的。
+一个指向错误的可写流，在这个流上的写操作是阻塞式的。
 
 ### process.stdin
 
 A `Readable Stream` for stdin. The stdin stream is paused by default, so one
-
-一个到标准输入流的可读流`Readable Stream`。默认情况下标准输入流是受阻的，
-
 must call `process.stdin.resume()` to read from it.
 
-所以需要调用方法`process.stdin.resume()`来从中读取信息。
+一个到标准输入的可读流`Readable Stream`。默认情况下标准输入流是暂停的，要从中读取内容需要调用方法`process.stdin.resume()`。
 
 Example of opening standard input and listening for both events:
 
-示例：打开标准输入与监听：
+示例：打开标准输入与监听两个事件：
 
     process.stdin.resume();
     process.stdin.setEncoding('utf8');
@@ -170,23 +136,13 @@ Example of opening standard input and listening for both events:
     });
 
 
-### process.stdin
-
-
 ### process.argv
 
 An array containing the command line arguments.  The first element will be
-
-一个包含命令行参数的数组。第一个元素是'node'，
-
 'node', the second element will be the name of the JavaScript file.  The
-
-第二个元素是JavaScript文件的文件名。
-
 next elements will be any additional command line arguments.
 
-接下来的元素则是附加的命令行参数。
-
+一个包含命令行参数的数组。第一个元素是'node'，第二个元素是JavaScript文件的文件名。接下来的元素则是附加的命令行参数。
 
     // print process.argv
     process.argv.forEach(function (val, index, array) {
@@ -212,6 +168,8 @@ This is the absolute pathname of the executable that started the process.
 这是一个启动该进程的可执行程序的绝对路径名。
 
 Example:
+
+例如：
 
     /usr/local/bin/node
 
@@ -254,17 +212,17 @@ An object containing the user environment. See environ(7).
 Ends the process with the specified `code`.  If omitted, exit uses the
 'success' code `0`.
 
-用指定的参数`code`代码结束进程。如果不指定，退出时将使用'success' 代码 `0`。
+用指定的`code`代码结束进程。如果不指定，退出时将使用'success'（成功）代码 `0`。
 
 To exit with a 'failure' code:
 
-以'failure' 代码退出的示例：
+以'failure'（失败）代码退出的示例：
 
     process.exit(1);
 
 The shell that executed node should see the exit code as 1.
 
-行该node的shell会把退出代码视为1。
+执行node的shell会把退出代码视为1。
 
 
 ### process.getgid()
@@ -272,8 +230,7 @@ The shell that executed node should see the exit code as 1.
 Gets the group identity of the process. (See getgid(2).)
 This is the numerical group id, not the group name.
 
-获取进程的群组标识（详见getgid(2)）。这是一个数字群组ID，
-不是群组名称。
+获取进程的群组标识（详见getgid(2)）。这是一个数字的群组ID，不是群组名称。
 
     console.log('Current gid: ' + process.getgid());
 
@@ -281,19 +238,10 @@ This is the numerical group id, not the group name.
 ### process.setgid(id)
 
 Sets the group identity of the process. (See setgid(2).)  This accepts either
-
-设置进程的群组标识（详见getgid(2)）。这会接受
-
 a numerical ID or a groupname string. If a groupname is specified, this method
-
-一个数字ID或者一个群组名字符串。如果指定了一个群组名，那么当系统要将
-
 blocks while resolving it to a numerical ID.
 
-其解析成一个数字ID时，该方法会阻此这种操作。
-
-
-
+设置进程的群组标识（详见getgid(2)）。参数可以是一个数字ID或者群组名字符串。如果指定了一个群组名，这个方法会阻塞等待将群组名解析为数字ID。
 
     console.log('Current gid: ' + process.getgid());
     try {
@@ -308,12 +256,9 @@ blocks while resolving it to a numerical ID.
 ### process.getuid()
 
 Gets the user identity of the process. (See getuid(2).)
-
-获取用户的进程ID详见getgid(2)）。
-
 This is the numerical userid, not the username.
 
-这是一个数字用户ID，不是用户名。
+获取进程的用户ID（详见getgid(2)）。这是一个数字用户ID，不是用户名。
 
     console.log('Current uid: ' + process.getuid());
 
@@ -321,17 +266,10 @@ This is the numerical userid, not the username.
 ### process.setuid(id)
 
 Sets the user identity of the process. (See setuid(2).)  This accepts either
-
-设置进程的用户标识详见getgid(2)）。该方法接受
-
 a numerical ID or a username string.  If a username is specified, this method
-
-一个数字ID或者一个用户名字符串。如果用户名已指定，那么该方法
-
 blocks while resolving it to a numerical ID.
 
-会阻止系统将其解析成一个用户名ID。
-
+设置进程的用户ID（详见getgid(2)）。参数可以使一个数字ID或者用户名字符串。如果指定了一个用户名，那么该方法会阻塞等待将用户名解析为数字ID。
 
     console.log('Current uid: ' + process.getuid());
     try {
@@ -347,7 +285,7 @@ blocks while resolving it to a numerical ID.
 
 A compiled-in property that exposes `NODE_VERSION`.
 
-一个内置的属性，用于显示`NODE_VERSION`。
+一个编译内置的属性，用于显示`NODE_VERSION`（Node版本）。
 
     console.log('Version: ' + process.version);
 
@@ -355,7 +293,7 @@ A compiled-in property that exposes `NODE_VERSION`.
 
 A compiled-in property that exposes `NODE_PREFIX`.
 
-一个内置的属性，用于显示`NODE_PREFIX`
+一个编译内置的属性，用于显示`NODE_PREFIX`（Node安装路径前缀）。
 
     console.log('Prefix: ' + process.installPrefix);
 
@@ -363,37 +301,21 @@ A compiled-in property that exposes `NODE_PREFIX`.
 ### process.kill(pid, signal='SIGTERM')
 
 Send a signal to a process. `pid` is the process id and `signal` is the
-
-发送一个信号到进程。`pid`是进程的ID，参数`signal`是
-
 string describing the signal to send.  Signal names are strings like
-
-的字符串。信号名称是像'SIGINT' 或者 'SIGUSR1
-
 'SIGINT' or 'SIGUSR1'.  If omitted, the signal will be 'SIGTERM'.
-
-这样的字符串。如果参数`signal`忽略，则信号为 'SIGTERM'。
-
 See kill(2) for more information.
 
-详见kill(2)。
-
+发送一个信号到进程。`pid`是进程的ID，参数`signal`是欲发送信号的字符串描述。信号名称是像'SIGINT'或者'SIGUSR1'这样的字符串。如果参数`signal`忽略，则信号为'SIGTERM'。详见kill(2)。
 
 Note that just because the name of this function is `process.kill`, it is
-
-注意刚好由于该函数名为`process.kill`,它
-
 really just a signal sender, like the `kill` system call.  The signal sent
-
-实际上也仅仅是一个信号发送器，就像 `kill`系统调用一样。这个被发送的信号
-
 may do something other than kill the target process.
 
-除了终止目标进程外，可能还会有其它的功能。
+注意该函数名为`process.kill`，实际上也就像`kill`系统调用一样仅仅是一个信号发送器。发送的信号可能是要终止目标进程，也可能是实现其他不同的目的。
 
 Example of sending a signal to yourself:
 
-一个给自己发送一个信号的示例：
+一个给自己发送信号的示例：
 
     process.on('SIGHUP', function () {
       console.log('Got SIGHUP signal.');
@@ -419,14 +341,14 @@ The PID of the process.
 
 Getter/setter to set what is displayed in 'ps'.
 
-设置在 'ps'显示的内容的Getter/setter方法。
+获取或设置在'ps'命令中显示的进程的标题。
 
 
 ### process.platform
 
 What platform you're running on. `'linux2'`, `'darwin'`, etc.
 
-记录你运行Node的平台信息，如'linux2'`、 `'darwin'`等等。
+运行Node的平台信息，如'linux2'`，`'darwin'`等等。
 
     console.log('This platform is ' + process.platform);
 
@@ -435,7 +357,7 @@ What platform you're running on. `'linux2'`, `'darwin'`, etc.
 
 Returns an object describing the memory usage of the Node process.
 
-返回一个对象来描述Node进程的内存使用情况。
+返回一个描述Node进程内存使用情况的对象。
 
     var util = require('util');
 
@@ -452,7 +374,7 @@ This will generate:
 
 `heapTotal` and `heapUsed` refer to V8's memory usage.
 
-`heapTotal`与`heapUsed`指 V8的内存使用情况。
+`heapTotal`与`heapUsed`指V8的内存使用情况。
 
 
 ### process.nextTick(callback)
@@ -461,8 +383,7 @@ On the next loop around the event loop call this callback.
 This is *not* a simple alias to `setTimeout(fn, 0)`, it's much more
 efficient.
 
-在事件循环的下一个循环调用这个方法。这*不是*`setTimeout(fn, 0)`
-的一个别名，因为它有效率多了。
+在事件循环的下一次循环中调用callback回调函数。这*不是*`setTimeout(fn, 0)`的一个别名，因为它有效率多了。
 
     process.nextTick(function () {
       console.log('nextTick callback');
@@ -472,21 +393,13 @@ efficient.
 ### process.umask([mask])
 
 Sets or reads the process's file mode creation mask. Child processes inherit
-
-设置或者读取进程的文件模式创建特征码。子进程从父进程中继承
-
 the mask from the parent process. Returns the old mask if `mask` argument is
-
-这个特征码。如果参数 `mask`设定了，那么返回旧的特征码
-
 given, otherwise returns the current mask.
 
-否则返回当前的。
-
+设置或者读取进程的文件模式创建掩码。子进程从父进程中继承这个掩码。如果设定了参数`mask`那么返回旧的掩码，否则返回当前的掩码。
 
     var oldmask, newmask = 0644;
 
     oldmask = process.umask(newmask);
     console.log('Changed umask from: ' + oldmask.toString(8) +
                 ' to ' + newmask.toString(8));
-
