@@ -1,4 +1,4 @@
-## Global Objects
+## Global Objects 全局对象
 
 These object are available in the global scope and can be accessed from anywhere.
 
@@ -21,7 +21,7 @@ scope; `var something` inside a Node module will be local to that module.
 
 The process object. See the 'process object' section.
 
-进程对象，参见'process object'章节
+进程对象，参见'process object'章节。
 
 ### require()
 
@@ -34,19 +34,19 @@ To require modules. See the 'Modules' section.
 Use the internal `require()` machinery to look up the location of a module,
 but rather than loading the module, just return the resolved filename.
 
-使用内部函数`require()`遍历查找一个模块的位置，而不用加载模块，只是返回对应的文件名。
+使用内部函数`require()`的机制查找一个模块的位置，而不用加载模块，只是返回解析后的文件名。
 
 ### require.paths
 
 An array of search paths for `require()`.  This array can be modified to add
 custom paths.
 
-以数组形式返回`require()`的搜索路径，你可以更改该数组添加自定义的搜索路径。
+`require()`的搜索路径数组，你可以修改该数组添加自定义的搜索路径。
 
 
 Example: add a new path to the beginning of the search list
 
-例如：将一个新的搜索路径插入到搜索列表的第一个元素中
+例如：将一个新的搜索路径插入到搜索列表的头部。
 
     require.paths.unshift('/usr/local/node');
 
@@ -56,7 +56,7 @@ Example: add a new path to the beginning of the search list
 The filename of the script being executed.  This is the absolute path, and not necessarily
 the same filename passed in as a command line argument.
 
-当前正在执行的脚本的文件名，由于它是绝对路径，所以当把它作为命令行参数不会出现文件名重名的情况
+当前正在执行的脚本的文件名。这是一个绝对路径，可能会和命令行参数中传入的文件名不同。
 
 Example: running `node example.js` from `/Users/mjr`
 
@@ -69,7 +69,7 @@ Example: running `node example.js` from `/Users/mjr`
 
 The dirname of the script being executed.
 
-当前正在执行脚本所在的目录名
+当前正在执行脚本所在的目录名。
 
 Example: running `node example.js` from `/Users/mjr`
 
@@ -85,4 +85,4 @@ A reference to the current module. In particular
 `module.exports` is the same as the `exports` object. See `src/node.js`
 for more information.
 
-module指向当前模块，特别的，当你通过`module.exports`和`exports`两种方式访问的将是同一个对象，参见`src/node.js`可以获得更多信息
+指向当前模块的引用。特别的，当你通过`module.exports`和`exports`两种方式访问的将是同一个对象，参见`src/node.js`。
