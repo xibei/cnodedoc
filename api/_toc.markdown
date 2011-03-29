@@ -63,5 +63,5 @@
 * [Debugger](debugger.html)
 
 * Appendixes 附录
- * [Appendix 1: Recommended Third-party Modules 推荐的第三方组件](appendix_1.html)
+  * [Appendix 1: Recommended Third-party Modules 推荐的第三方组件](appendix_1.html)
   * [Appendix 2: Deprecated API's 不再使用的API](appendix_2.html)
