@@ -1,4 +1,4 @@
-?## UDP / Datagram Sockets 数据报套接字模块
+## UDP / Datagram Sockets 数据报套接字模块
 
 Datagram sockets are available through `require('dgram')`.  Datagrams are most commonly
 handled as IP/UDP messages but they can also be used over Unix domain sockets.
