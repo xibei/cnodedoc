@@ -1,9 +1,9 @@
-## Path 路径
+## Path 路径模块
 
 This module contains utilities for dealing with file paths.  Use
 `require('path')` to use it.  It provides the following methods:
 
-该模块包括了一些处理文件路径的功能。可以通过`require('path')方法来使用它。该模块提供了如下的方法：
+该模块包括了一些处理文件路径的功能，可以通过`require('path')`方法来使用它。该模块提供了如下的方法：
 
 ### path.normalize(p)
 
@@ -51,7 +51,7 @@ no absolute path is found, the current working directory is used as well. The
 resulting path is normalized, and trailing slashes are removed unless the path 
 gets resolved to the root directory.
 
-如果参数 `to`当前不是绝对的，系统会将`from` 参数从右到左进行一个排列，直到系统找到一个绝对路径。如果遍历所有`from`中的路径后，系统依然没有找到一个绝对路径，那么当前工作目录也会作为参数使用。最终得到的路径是标准化的字符串，并且标准化时系统会自动删除路径末尾的斜杠，但是如果获取的路径是解析到根目录的，那么系统将保留路径末尾的斜杠。
+如果参数 `to`当前不是绝对的，系统会将`from` 参数按从右到左的顺序依次前缀到`to`上，直到在`from`中找到一个绝对路径时停止。如果遍历所有`from`中的路径后，系统依然没有找到一个绝对路径，那么当前工作目录也会作为参数使用。最终得到的路径是标准化的字符串，并且标准化时系统会自动删除路径末尾的斜杠，但是如果获取的路径是解析到根目录的，那么系统将保留路径末尾的斜杠。
 
 Another way to think of it is as a sequence of `cd` commands in a shell.
 
