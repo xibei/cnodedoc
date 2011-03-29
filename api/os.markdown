@@ -1,4 +1,4 @@
-## os Module os 模块
+## os Module 操作系统模块
 
 Use `require('os')` to access this module.
 
@@ -8,56 +8,50 @@ Use `require('os')` to access this module.
 
 Returns the hostname of the operating system.
 
-该方法返回当前操作系统的主机名.
+该方法返回当前操作系统的主机名。
 
 ### os.type()
 
 Returns the operating system name.
 
-该方法返回当前操作系统名称
+该方法返回当前操作系统名称。
 
 ### os.release()
 
 Returns the operating system release.
 
-### os.release()
-
-该方法返回当前操作系统的发行版本
+返回当前操作系统的发型版本。
 
 ### os.uptime()
 
 Returns the system uptime in seconds.
 
-该方法返回当前系统的正常运行时间，时间以秒为单位
+该方法返回当前系统的正常运行时间，时间以秒为单位。
 
 ### os.loadavg()
 
 Returns an array containing the 1, 5, and 15 minute load averages.
 
-
-该方法返回一个数组，该数组存储着系统1分钟,5分钟,以及15分钟时间长度的负载均值
+该方法返回一个数组，该数组存储着系统1分钟，5分钟，以及15分钟的负载均值。
 
 ### os.totalmem()
 
 Returns the total amount of system memory in bytes.
 
-返回系统存储空间总值，该值以字节（ byte）为单位
+返回系统存储空间总值，该值以字节（byte）为单位。
 
 ### os.freemem()
 
 Returns the amount of free system memory in bytes.
 
-返回系统存储的剩余空间，该值以字节（ byte）为单位
+返回系统存储的剩余空间，该值以字节（byte）为单位。
 
 ### os.cpus()
 
 Returns an array of objects containing information about each CPU/core installed: model, speed (in MHz), and times (an object containing the number of 
-
-该方法返回一个对象数组，该数组包含了关于系统每个CPU/CPU核心的信息：模式（Mode），速度（以MHz为单位）(Speed)，以及时间（一个包含CPU资
-
 CPU ticks spent in: user, nice, sys, idle, and irq).
 
-源使用率的对象，包括用户(User)，Nice，系统(Sys)，以及中断请求（IRQ）等几个方面的参数。
+该方法返回一个对象数组，该数组包含了关于系统每个CPU/内核的信息：型号，速度（以MHz为单位），以及CPU时间使用情况（包含CPU时间片在用户态、改变过优先级的用户进程、内核态、空闲、以及IRQ各方面的消耗）。
 
 
 Example inspection of os.cpus:
