@@ -147,7 +147,7 @@ Examples:
 Test whether or not the given path exists.  Then, call the `callback` argument
 with either true or false. Example:
 
-该方法用于测试参数`p`中的路径是否存在。然后以true 或者 false的方式调用`callback`参数。示例：
+该方法用于测试参数`p`中的路径是否存在。然后以true或者false作为参数调用`callback`回调函数。示例：
 
     path.exists('/etc/passwd', function (exists) {
       util.debug(exists ? "it's there" : "no passwd!");
