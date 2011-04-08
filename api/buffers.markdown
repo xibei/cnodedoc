@@ -5,13 +5,13 @@ dealing with TCP streams or the file system, it's necessary to handle octet
 streams. Node has several strategies for manipulating, creating, and
 consuming octet streams.
 
-纯Javascript语言是Unicode友好性的，但是难以表述成二进制代码。在处理TCP流和文件系统时经常需要操作字节流。Node提供了一些列机制，用于操作、创建、以及消耗（consuming）字节流。
+纯Javascript语言是Unicode友好性的，但是难以处理二进制数据。在处理TCP流和文件系统时经常需要操作字节流。Node提供了一些列机制，用于操作、创建、以及消耗（consuming）字节流。
 
 Raw data is stored in instances of the `Buffer` class. A `Buffer` is similar
 to an array of integers but corresponds to a raw memory allocation outside
 the V8 heap. A `Buffer` cannot be resized.
 
-在实例化的`Buffer`类中存储了原始数据。相比整数数组，`Buffer`对应了在V8堆（the V8 heap）外的原始存储空间分配。但是，一旦创建了`Buffer`实例，其存储空间无法改变。
+在实例化的`Buffer`类中存储了原始数据。`Buffer`类似于一个整数数组，但`Buffer`对应了在V8堆（the V8 heap）外的原始存储空间分配。一旦创建了`Buffer`实例，则无法改变其大小。
 
 The `Buffer` object is global.
 
@@ -25,7 +25,7 @@ method.  Here are the different string encodings;
 * `'ascii'` - for 7 bit ASCII data only.  This encoding method is very fast, and will
 strip the high bit if set.
 
-  `'ascii'` - 仅对应7为的ASCII数据。虽然这种编码方式非常迅速，但是采用此编码方式需要大量存储空间。
+  `'ascii'` - 仅对应7位的ASCII数据。虽然这种编码方式非常迅速，并且如果设置了最高位，则会将其移去。
 
 * `'utf8'` - Multi byte encoded Unicode characters.  Many web pages and other document formats use UTF-8.
 

@@ -8,7 +8,7 @@ class.
 It is possible to stream data through the child's `stdin`, `stdout`, and
 `stderr` in a fully non-blocking way.
 
-子进程类中的`stdin`， `stdout`，和`stderr` 可以使数据流完全非阻塞式地（non-blocking way）流动（stream）
+子进程类中的`stdin`， `stdout`，和`stderr` 可以使数据流以完全非阻塞式的方式（non-blocking way）流动（stream）
 
 To create a child process use `require('child_process').spawn()`.
 
@@ -32,36 +32,36 @@ normally, `code` is the final exit code of the process, otherwise `null`. If
 the process terminated due to receipt of a signal, `signal` is the string name
 of the signal, otherwise `null`.
 
-当子进程结束时，（Node）触发如下事件。如果进程正常终结，那么进程的最终退出代码（ final exit code）为`code`，否则为`null`。如果进程的结束是因为接收到一个信号，那么`signal`为string型的信号名称，否则为`null`。
+当子进程结束时，（Node）触发该事件。如果进程正常终结，那么进程的最终退出代码（ final exit code）为`code`，否则为`null`。如果进程的结束是因为接收到一个信号，那么`signal`为string型的信号名称，否则为`null`。
 
 See `waitpid(2)`.
 
-可见`waitpid(2)`。
+参见`waitpid(2)`。
 
 ### child.stdin
 
 A `Writable Stream` that represents the child process's `stdin`.
 Closing this stream via `end()` often causes the child process to terminate.
 
-它是一个`Writable Stream`（可写流），是子进程中的`stdin`。调用`end()`来关闭这个流通常会终结整个进程。
+一个`Writable Stream`（可写流），表示子进程的`stdin`。调用`end()`来关闭这个流通常会终结整个子进程。
 
 ### child.stdout
 
 A `Readable Stream` that represents the child process's `stdout`.
 
-它是一个`Readable Stream`（可读流），是子进程中的`stdout`（标准输出）。
+一个`Readable Stream`（可读流），表示子进程的`stdout`（标准输出）。
 
 ### child.stderr
 
 A `Readable Stream` that represents the child process's `stderr`.
 
-它是一个`Readable Stream`（可读流），是子进程中的`stderr`（标准错误）。
+一个`Readable Stream`（可读流），表示子进程的`stderr`（标准错误）。
 
 ### child.pid
 
 The PID of the child process.
 
-它是子进程的PID（进程编号）。
+子进程的PID（进程编号）。
 
 Example:
 
@@ -97,7 +97,7 @@ With `customFds` it is possible to hook up the new process' [stdin, stout, stder
 existing streams; `-1` means that a new stream should be created. `setsid`,
 if set true, will cause the subprocess to be run in a new session.
 
-参数`cwd` 可以使当前目录从发出进程的路径转向指定的工作目录。参数`env`可以指定哪些环境变量在新进程中是可见的。参数`customFds`可以使新进程中的[stdin, stout, stderr]和已存在的流进行挂接（hook up）。参数`-1`可以建立一个新的流。如果设置参数`setsid`为true，该子进程将转入到一个新会话（session）中运行。
+参数`cwd`允许你指定要创建的子进程的工作目录(working directory)。参数`env`可以指定哪些环境变量在新进程中是可见的。参数`customFds`可以使新进程中的[stdin, stout, stderr]和已存在的流进行挂接（hook up）。参数`-1`可以建立一个新的流。如果设置参数`setsid`为true，该子进程将转入到一个新会话（session）中运行。
 
 Example of running `ls -lh /usr`, capturing `stdout`, `stderr`, and the exit code:
 

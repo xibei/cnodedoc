@@ -8,7 +8,7 @@ The crypto module requires OpenSSL to be available on the underlying platform.
 It offers a way of encapsulating secure credentials to be used as part
 of a secure HTTPS net or http connection.
 
-加密模块需要底层系统提供OpenSSL的支持。它提供了一种安全凭证的封装方式，用于HTTPS安全网络以及普通HTTP连接。
+加密模块需要底层系统提供OpenSSL的支持。它提供了一种安全凭证的封装方式，可以用于HTTPS安全网络以及普通HTTP连接。
 
 It also offers a set of wrappers for OpenSSL's hash, hmac, cipher, decipher, sign and verify methods.
 

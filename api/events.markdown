@@ -105,7 +105,8 @@ manipulated, e.g. to remove listeners.
 
 Execute each of the listeners in order with the supplied arguments.
 
-根据提供的参数顺序执行监听器列表中的每个监听器函数。
+以提供的参数作为监听器函数的参数，顺序执行监听器列表中的每个监听器函数。
+
 
 #### Event: 'newListener' 事件：'newListener'
 
